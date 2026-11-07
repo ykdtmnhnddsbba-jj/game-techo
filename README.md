@@ -22,16 +22,15 @@ scripts/fetch-igdb.mjs               （旧）IGDB版。使いません。削除
 - 発売日は変更されることがあります。購入前にメーカーやPS Storeの公式情報もご確認ください。
 - 個人利用（非商用）の範囲で使ってください。
 
-## 1. 公開する（GitHub Pages・約5分）
-1. GitHub で新しいリポジトリを作る（例: `game-techo`、Public）
-2. このフォルダの中身をアップロード。そのとき `github-workflows/update-games.yml` は、リポジトリ内で **`.github/workflows/update-games.yml`** の位置に置く（GitHub画面の Add file → Create new file で、ファイル名欄に `.github/workflows/update-games.yml` と入力して中身を貼り付けるのが簡単）。置いたあとは `github-workflows` フォルダは不要です
-3. Settings → Pages → Source を `Deploy from a branch`、Branch を `main` / `(root)` にして Save
-4. 数分後 `https://<ユーザー名>.github.io/game-techo/` で開ける
+## 1. 公開する（GitHub Pages）
+リポジトリ https://github.com/ykdtmnhnddsbba-jj/game-techo に一式をアップロード済みです。あとは Pages を有効にするだけです。
+1. リポジトリの Settings → Pages → Source を `Deploy from a branch`、Branch を `main` / `(root)` にして Save
+2. 1〜2分後 `https://ykdtmnhnddsbba-jj.github.io/game-techo/` で開ける
 
-この時点で、評価・メモ・好み分析・AI用プロンプト出力・**ゲームの手動追加**が使えます（データはブラウザ内に保存）。
+この時点で、評価・メモ・好み分析・AI用プロンプト出力・**ゲームの手動追加**が使えます（データはブラウザ内に保存）。ゲーム一覧は同梱の `games.json`（ファミ通から取得した118本）が表示されます。
 
 ## 2. 発売日を自動で入れる（ファミ通・登録やキーは不要）
-1. GitHub の Actions タブ → `Update games.json` → **Run workflow** で初回実行（以後は毎日 04:17 JST に自動実行）
+1. GitHub の Actions タブ → `Update games.json` → **Run workflow** で初回実行（以後は毎日 04:17 JST に自動実行）。ワークフローは `.github/workflows/update-games.yml`
 2. 初回は個別ページを数百件取得するため、5〜10分ほどかかります
 3. 完了すると `games.json` が更新され、サイトの「発売月」タブにゲームが並びます
 
