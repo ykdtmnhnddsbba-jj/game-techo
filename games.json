@@ -1,7 +1,7 @@
 {
  "source": "ファミ通.com",
  "platform": "PS5",
- "generated_at": "2026-11-07T17:25:12.814Z",
+ "generated_at": "2026-11-07T19:53:32.397Z",
  "window": {
   "from": "2024-11-01",
   "to": "2027-12-01"
@@ -40810,15 +40810,18 @@
    "cover": "",
    "release": "2026-05-19",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Xeneder Team",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "399円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71502/page/1"
+   "url": "https://www.famitsu.com/game/title/71502/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71506",
@@ -40827,15 +40830,21 @@
    "cover": "",
    "release": "2026-05-19",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "RPG",
+    "アドベンチャー",
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "THQ Nordic",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3990円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71506/page/1"
+   "url": "https://www.famitsu.com/game/title/71506/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71500",
@@ -40864,15 +40873,18 @@
    "cover": "",
    "release": "2026-05-19",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "バンダイナムコエンターテインメント",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "999円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71504/page/1"
+   "url": "https://www.famitsu.com/game/title/71504/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71217",
@@ -40901,15 +40913,18 @@
    "cover": "",
    "release": "2026-05-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "eastasiasoft",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1636円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71509/page/1"
+   "url": "https://www.famitsu.com/game/title/71509/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71512",
@@ -40918,15 +40933,18 @@
    "cover": "",
    "release": "2026-05-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Cyan Worlds",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71512/page/1"
+   "url": "https://www.famitsu.com/game/title/71512/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71507",
@@ -40935,15 +40953,18 @@
    "cover": "",
    "release": "2026-05-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Riddle Master Productions",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1799円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71507/page/1"
+   "url": "https://www.famitsu.com/game/title/71507/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71518",
@@ -40952,15 +40973,18 @@
    "cover": "",
    "release": "2026-05-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Aristo Studio",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "300円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71518/page/1"
+   "url": "https://www.famitsu.com/game/title/71518/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71508",
@@ -40969,15 +40993,18 @@
    "cover": "",
    "release": "2026-05-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "ボードゲーム"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Kwalee",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71508/page/1"
+   "url": "https://www.famitsu.com/game/title/71508/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71513",
@@ -40986,15 +41013,19 @@
    "cover": "",
    "release": "2026-05-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション",
+    "テーブルゲーム"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "GGMUKS",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "699円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71513/page/1"
+   "url": "https://www.famitsu.com/game/title/71513/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71515",
@@ -41003,15 +41034,18 @@
    "cover": "",
    "release": "2026-05-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Afil Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "700円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71515/page/1"
+   "url": "https://www.famitsu.com/game/title/71515/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71517",
@@ -41020,15 +41054,18 @@
    "cover": "",
    "release": "2026-05-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ANKAMA GAMES",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71517/page/1"
+   "url": "https://www.famitsu.com/game/title/71517/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71511",
@@ -41037,15 +41074,18 @@
    "cover": "",
    "release": "2026-05-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Cyan Worlds",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71511/page/1"
+   "url": "https://www.famitsu.com/game/title/71511/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71525",
@@ -41054,15 +41094,18 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Silesia Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71525/page/1"
+   "url": "https://www.famitsu.com/game/title/71525/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71535",
@@ -41071,15 +41114,18 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Brainium Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "900円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71535/page/1"
+   "url": "https://www.famitsu.com/game/title/71535/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69506",
@@ -41088,15 +41134,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151725/XpK9kAgQ?w=400&h=400&func=bound",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "シティコネクション",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69506/page/1"
+   "url": "https://www.famitsu.com/game/title/69506/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71527",
@@ -41105,15 +41154,18 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Afil Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "700円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71527/page/1"
+   "url": "https://www.famitsu.com/game/title/71527/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71524",
@@ -41122,15 +41174,19 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション",
+    "ボードゲーム"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Microids",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71524/page/1"
+   "url": "https://www.famitsu.com/game/title/71524/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71523",
@@ -41139,15 +41195,18 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションシューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Cube Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "699円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71523/page/1"
+   "url": "https://www.famitsu.com/game/title/71523/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71522",
@@ -41156,15 +41215,19 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "教育・実用"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Markt+Technik Verlag",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "150円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71522/page/1"
+   "url": "https://www.famitsu.com/game/title/71522/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71186",
@@ -41173,15 +41236,18 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "スポーツ"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Goblinz Studio",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1300円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71186/page/1"
+   "url": "https://www.famitsu.com/game/title/71186/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71521",
@@ -41190,15 +41256,18 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "PM Studios",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2200円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71521/page/1"
+   "url": "https://www.famitsu.com/game/title/71521/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69730",
@@ -41207,15 +41276,20 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152127/hixGO4MY?w=400&h=400&func=bound",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG",
+    "シミュレーション",
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Dear Villagers",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4500円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69730/page/1"
+   "url": "https://www.famitsu.com/game/title/69730/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71520",
@@ -41224,15 +41298,19 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "レース",
+    "アクションシューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Wired Productions",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71520/page/1"
+   "url": "https://www.famitsu.com/game/title/71520/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72108",
@@ -41241,15 +41319,18 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "スポーツ"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "999円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72108/page/1"
+   "url": "https://www.famitsu.com/game/title/72108/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "58166",
@@ -41279,15 +41360,18 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "727円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72106/page/1"
+   "url": "https://www.famitsu.com/game/title/72106/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69046",
@@ -41296,15 +41380,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151038/Jb6NkJ38?w=400&h=400&func=bound",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "サクセス",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "5800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69046/page/1"
+   "url": "https://www.famitsu.com/game/title/69046/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69500",
@@ -41313,15 +41400,18 @@
    "cover": "",
    "release": "2026-05-21",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "リアルタイムストラテジー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Kalypso Media",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7264円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69500/page/1"
+   "url": "https://www.famitsu.com/game/title/69500/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71541",
@@ -41330,15 +41420,18 @@
    "cover": "",
    "release": "2026-05-22",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "アタリ",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71541/page/1"
+   "url": "https://www.famitsu.com/game/title/71541/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71533",
@@ -41347,15 +41440,18 @@
    "cover": "",
    "release": "2026-05-22",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Ratalaika Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "700円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71533/page/1"
+   "url": "https://www.famitsu.com/game/title/71533/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71540",
@@ -41364,15 +41460,18 @@
    "cover": "",
    "release": "2026-05-22",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Fabrizio Ballante",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "250円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71540/page/1"
+   "url": "https://www.famitsu.com/game/title/71540/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71532",
@@ -41381,15 +41480,18 @@
    "cover": "",
    "release": "2026-05-22",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Kwalee",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71532/page/1"
+   "url": "https://www.famitsu.com/game/title/71532/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71537",
@@ -41398,15 +41500,18 @@
    "cover": "",
    "release": "2026-05-22",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションシューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Asylum Square Interactive",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "900円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71537/page/1"
+   "url": "https://www.famitsu.com/game/title/71537/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71530",
@@ -41415,15 +41520,19 @@
    "cover": "",
    "release": "2026-05-22",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション",
+    "スポーツ"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "PRODIGY DESIGN",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3200円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71530/page/1"
+   "url": "https://www.famitsu.com/game/title/71530/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71538",
@@ -41432,15 +41541,18 @@
    "cover": "",
    "release": "2026-05-22",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "APPWILL COMPANY",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71538/page/1"
+   "url": "https://www.famitsu.com/game/title/71538/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69393",
@@ -41449,15 +41561,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151578/G_4uarWM?w=400&h=400&func=bound",
    "release": "2026-05-22",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ワーナー ブラザース",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7980円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69393/page/1"
+   "url": "https://www.famitsu.com/game/title/69393/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71547",
@@ -41466,15 +41581,18 @@
    "cover": "",
    "release": "2026-05-23",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Gametry",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "300円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71547/page/1"
+   "url": "https://www.famitsu.com/game/title/71547/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71543",
@@ -41483,15 +41601,18 @@
    "cover": "",
    "release": "2026-05-23",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Phoenix Reborn Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71543/page/1"
+   "url": "https://www.famitsu.com/game/title/71543/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71545",
@@ -41500,15 +41621,18 @@
    "cover": "",
    "release": "2026-05-23",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Gametry",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "300円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71545/page/1"
+   "url": "https://www.famitsu.com/game/title/71545/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71261",
@@ -41517,15 +41641,18 @@
    "cover": "",
    "release": "2026-05-24",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "SOFTWARE TECHNOLOGIES",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1999円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71261/page/1"
+   "url": "https://www.famitsu.com/game/title/71261/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71549",
@@ -41534,15 +41661,18 @@
    "cover": "",
    "release": "2026-05-25",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Xitilon",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "150円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71549/page/1"
+   "url": "https://www.famitsu.com/game/title/71549/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71553",
@@ -41551,15 +41681,19 @@
    "cover": "",
    "release": "2026-05-25",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "教育・実用",
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "y-zo studio",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "799円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71553/page/1"
+   "url": "https://www.famitsu.com/game/title/71553/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71551",
@@ -41568,15 +41702,18 @@
    "cover": "",
    "release": "2026-05-25",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "TRENCH GHOST MEDIA",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "700円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71551/page/1"
+   "url": "https://www.famitsu.com/game/title/71551/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "62003",
@@ -41585,15 +41722,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/148054/7eCIxo-C?w=400&h=400&func=bound",
    "release": "2026-05-26",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー",
+    "アクションシューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "IO Interactive",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "8100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/62003/page/1"
+   "url": "https://www.famitsu.com/game/title/62003/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71555",
@@ -41602,15 +41743,18 @@
    "cover": "",
    "release": "2026-05-26",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Perpetual Europe",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2900円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71555/page/1"
+   "url": "https://www.famitsu.com/game/title/71555/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71558",
@@ -41619,15 +41763,19 @@
    "cover": "",
    "release": "2026-05-26",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション",
+    "テーブルゲーム"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "GGMUKS",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "600円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71558/page/1"
+   "url": "https://www.famitsu.com/game/title/71558/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71557",
@@ -41636,15 +41784,18 @@
    "cover": "",
    "release": "2026-05-26",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "LEAP STUDIO",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2600円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71557/page/1"
+   "url": "https://www.famitsu.com/game/title/71557/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71561",
@@ -41653,15 +41804,18 @@
    "cover": "",
    "release": "2026-05-26",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Xitilon",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "150円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71561/page/1"
+   "url": "https://www.famitsu.com/game/title/71561/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71560",
@@ -41670,15 +41824,18 @@
    "cover": "",
    "release": "2026-05-26",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Wargaming",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "",
-   "url": "https://www.famitsu.com/game/title/71560/page/1"
+   "url": "https://www.famitsu.com/game/title/71560/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71564",
@@ -41687,15 +41844,18 @@
    "cover": "",
    "release": "2026-05-27",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Xeneder Team",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "399円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71564/page/1"
+   "url": "https://www.famitsu.com/game/title/71564/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71566",
@@ -41704,15 +41864,18 @@
    "cover": "",
    "release": "2026-05-27",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "eastasiasoft",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "544円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71566/page/1"
+   "url": "https://www.famitsu.com/game/title/71566/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71719",
@@ -41721,15 +41884,18 @@
    "cover": "",
    "release": "2026-05-27",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Afil Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "699円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71719/page/1"
+   "url": "https://www.famitsu.com/game/title/71719/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71731",
@@ -41738,15 +41904,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Brainium Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71731/page/1"
+   "url": "https://www.famitsu.com/game/title/71731/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71733",
@@ -41755,15 +41924,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Brainium Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71733/page/1"
+   "url": "https://www.famitsu.com/game/title/71733/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71727",
@@ -41772,15 +41944,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "PM Studios",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71727/page/1"
+   "url": "https://www.famitsu.com/game/title/71727/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "70989",
@@ -41789,15 +41964,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/153661/bPLgmgrq?w=400&h=400&func=bound",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー",
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "PM Studios",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "価格未定",
-   "url": "https://www.famitsu.com/game/title/70989/page/1"
+   "url": "https://www.famitsu.com/game/title/70989/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71735",
@@ -41806,15 +41985,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Brainium Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71735/page/1"
+   "url": "https://www.famitsu.com/game/title/71735/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69907",
@@ -41823,15 +42005,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152396/MoMaOjrE?w=400&h=400&func=bound",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "レース",
+    "スポーツ"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Milestone",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69907/page/1"
+   "url": "https://www.famitsu.com/game/title/69907/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71738",
@@ -41840,15 +42026,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "PQube",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2900円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71738/page/1"
+   "url": "https://www.famitsu.com/game/title/71738/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71725",
@@ -41857,15 +42046,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Oiven Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "700円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71725/page/1"
+   "url": "https://www.famitsu.com/game/title/71725/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71428",
@@ -41874,15 +42066,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "スポーツ"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "GGMUKS",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "600円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71428/page/1"
+   "url": "https://www.famitsu.com/game/title/71428/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71729",
@@ -41891,15 +42086,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Silen Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "250円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71729/page/1"
+   "url": "https://www.famitsu.com/game/title/71729/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71737",
@@ -41908,15 +42106,19 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "スポーツ"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "JOINDOTS",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "6698円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71737/page/1"
+   "url": "https://www.famitsu.com/game/title/71737/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72118",
@@ -41925,15 +42127,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "レース"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1636円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72118/page/1"
+   "url": "https://www.famitsu.com/game/title/72118/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72115",
@@ -41942,15 +42147,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "999円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72115/page/1"
+   "url": "https://www.famitsu.com/game/title/72115/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69178",
@@ -41959,15 +42167,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151250/DRRe2Y_l?w=400&h=400&func=bound",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "アクアプラス",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69178/page/1"
+   "url": "https://www.famitsu.com/game/title/69178/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72113",
@@ -41976,15 +42187,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1091円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72113/page/1"
+   "url": "https://www.famitsu.com/game/title/72113/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71726",
@@ -41993,15 +42207,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "スポーツ"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ゲームロフト",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71726/page/1"
+   "url": "https://www.famitsu.com/game/title/71726/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71723",
@@ -42010,15 +42227,18 @@
    "cover": "",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Mob Entertainment",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2200円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71723/page/1"
+   "url": "https://www.famitsu.com/game/title/71723/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69789",
@@ -42027,15 +42247,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152231/GBvF9_LW?w=400&h=400&func=bound",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "マーベラス",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "6000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69789/page/1"
+   "url": "https://www.famitsu.com/game/title/69789/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69534",
@@ -42044,15 +42267,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151767/jRe9sxPF?w=400&h=400&func=bound",
    "release": "2026-05-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "インティ・クリエイツ",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "6500円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69534/page/1"
+   "url": "https://www.famitsu.com/game/title/69534/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71742",
@@ -42061,15 +42287,18 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "クイズ"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "JGABRIB",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "700円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71742/page/1"
+   "url": "https://www.famitsu.com/game/title/71742/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71740",
@@ -42078,15 +42307,18 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Ratalaika Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "600円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71740/page/1"
+   "url": "https://www.famitsu.com/game/title/71740/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71746",
@@ -42095,15 +42327,18 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "DreadXP",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71746/page/1"
+   "url": "https://www.famitsu.com/game/title/71746/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71751",
@@ -42112,15 +42347,18 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Kanuni Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71751/page/1"
+   "url": "https://www.famitsu.com/game/title/71751/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72049",
@@ -42129,15 +42367,18 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Wales Interactive",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72049/page/1"
+   "url": "https://www.famitsu.com/game/title/72049/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71749",
@@ -42146,15 +42387,18 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Talha And Jack",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71749/page/1"
+   "url": "https://www.famitsu.com/game/title/71749/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71744",
@@ -42163,15 +42407,19 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー",
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "EVGENIY KOLPAKOV",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71744/page/1"
+   "url": "https://www.famitsu.com/game/title/71744/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71750",
@@ -42180,15 +42428,18 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "DreaMotion",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2626円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71750/page/1"
+   "url": "https://www.famitsu.com/game/title/71750/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72047",
@@ -42197,15 +42448,18 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Forever Entertainment",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72047/page/1"
+   "url": "https://www.famitsu.com/game/title/72047/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71748",
@@ -42214,15 +42468,18 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Entity3",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "300円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71748/page/1"
+   "url": "https://www.famitsu.com/game/title/71748/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72045",
@@ -42231,15 +42488,18 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Gametry",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "299円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72045/page/1"
+   "url": "https://www.famitsu.com/game/title/72045/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72050",
@@ -42248,15 +42508,18 @@
    "cover": "",
    "release": "2026-05-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "APPWILL COMPANY",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72050/page/1"
+   "url": "https://www.famitsu.com/game/title/72050/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72052",
@@ -42265,15 +42528,18 @@
    "cover": "",
    "release": "2026-05-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "GGMUKS",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "500円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72052/page/1"
+   "url": "https://www.famitsu.com/game/title/72052/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72056",
@@ -42282,15 +42548,18 @@
    "cover": "",
    "release": "2026-05-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Or Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "900円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72056/page/1"
+   "url": "https://www.famitsu.com/game/title/72056/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72054",
@@ -42299,15 +42568,18 @@
    "cover": "",
    "release": "2026-05-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Mameshiba Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72054/page/1"
+   "url": "https://www.famitsu.com/game/title/72054/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69679",
@@ -42316,15 +42588,18 @@
    "cover": "",
    "release": "2026-05-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ヨットクラブゲームズ",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2300円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69679/page/1"
+   "url": "https://www.famitsu.com/game/title/69679/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72058",
@@ -42333,15 +42608,18 @@
    "cover": "",
    "release": "2026-05-31",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "レース"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Gametry",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "300円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72058/page/1"
+   "url": "https://www.famitsu.com/game/title/72058/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72445",
@@ -42350,15 +42628,18 @@
    "cover": "",
    "release": "2026-06-01",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Serafini Productions",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72445/page/1"
+   "url": "https://www.famitsu.com/game/title/72445/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72437",
@@ -42367,15 +42648,19 @@
    "cover": "",
    "release": "2026-06-01",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "リアルタイムストラテジー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Gray Mantis",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1900円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72437/page/1"
+   "url": "https://www.famitsu.com/game/title/72437/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72435",
@@ -42384,15 +42669,18 @@
    "cover": "",
    "release": "2026-06-01",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Christian Marcell de Oliveira trading as chroda",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72435/page/1"
+   "url": "https://www.famitsu.com/game/title/72435/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72433",
@@ -42401,15 +42689,19 @@
    "cover": "",
    "release": "2026-06-01",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング",
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "y-zo studio",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72433/page/1"
+   "url": "https://www.famitsu.com/game/title/72433/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72448",
@@ -42418,15 +42710,18 @@
    "cover": "",
    "release": "2026-06-02",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Fabrizio Ballante",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72448/page/1"
+   "url": "https://www.famitsu.com/game/title/72448/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72450",
@@ -42435,15 +42730,18 @@
    "cover": "",
    "release": "2026-06-02",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションパズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Silen Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "600円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72450/page/1"
+   "url": "https://www.famitsu.com/game/title/72450/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72446",
@@ -42452,15 +42750,18 @@
    "cover": "",
    "release": "2026-06-02",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "EVGENIY KOLPAKOV",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72446/page/1"
+   "url": "https://www.famitsu.com/game/title/72446/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72449",
@@ -42469,15 +42770,18 @@
    "cover": "",
    "release": "2026-06-02",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Ocean Media",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "900円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72449/page/1"
+   "url": "https://www.famitsu.com/game/title/72449/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72497",
@@ -42486,15 +42790,18 @@
    "cover": "",
    "release": "2026-06-03",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "GGMUKS",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "600円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72497/page/1"
+   "url": "https://www.famitsu.com/game/title/72497/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72493",
@@ -42503,15 +42810,18 @@
    "cover": "",
    "release": "2026-06-03",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "EVGENIY KOLPAKOV",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72493/page/1"
+   "url": "https://www.famitsu.com/game/title/72493/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72495",
@@ -42520,15 +42830,18 @@
    "cover": "",
    "release": "2026-06-03",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションパズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "eastasiasoft",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "454円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72495/page/1"
+   "url": "https://www.famitsu.com/game/title/72495/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72452",
@@ -42537,15 +42850,18 @@
    "cover": "",
    "release": "2026-06-03",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Blue and Red Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72452/page/1"
+   "url": "https://www.famitsu.com/game/title/72452/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72340",
@@ -42554,15 +42870,18 @@
    "cover": "",
    "release": "2026-06-04",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72340/page/1"
+   "url": "https://www.famitsu.com/game/title/72340/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69866",
@@ -42571,15 +42890,18 @@
    "cover": "",
    "release": "2026-06-04",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "アークシステムワークス",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2700円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69866/page/1"
+   "url": "https://www.famitsu.com/game/title/69866/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72415",
@@ -42588,15 +42910,18 @@
    "cover": "",
    "release": "2026-06-04",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "727円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72415/page/1"
+   "url": "https://www.famitsu.com/game/title/72415/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69731",
@@ -42605,15 +42930,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152130/-uAHb6Jx?w=400&h=400&func=bound",
    "release": "2026-06-04",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "賈船",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69731/page/1"
+   "url": "https://www.famitsu.com/game/title/69731/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72277",
@@ -42622,15 +42950,18 @@
    "cover": "",
    "release": "2026-06-05",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ケムコ",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72277/page/1"
+   "url": "https://www.famitsu.com/game/title/72277/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72465",
@@ -42660,15 +42991,18 @@
    "cover": "",
    "release": "2026-06-11",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "THQ Nordic",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69490/page/1"
+   "url": "https://www.famitsu.com/game/title/69490/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "70915",
@@ -42677,15 +43011,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/153499/vEEy3vnT?w=400&h=400&func=bound",
    "release": "2026-06-11",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "ボードゲーム"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ユービーアイソフト",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/70915/page/1"
+   "url": "https://www.famitsu.com/game/title/70915/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71704",
@@ -42694,15 +43031,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/154470/uYrkI7JJ?w=400&h=400&func=bound",
    "release": "2026-06-11",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション",
+    "アクションパズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Beep Japan",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2899円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71704/page/1"
+   "url": "https://www.famitsu.com/game/title/71704/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72344",
@@ -42711,15 +43052,18 @@
    "cover": "",
    "release": "2026-06-11",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "テーブルゲーム"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72344/page/1"
+   "url": "https://www.famitsu.com/game/title/72344/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72417",
@@ -42728,15 +43072,18 @@
    "cover": "",
    "release": "2026-06-11",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "727円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72417/page/1"
+   "url": "https://www.famitsu.com/game/title/72417/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "47303",
@@ -42745,15 +43092,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152334/pr-yL9UV?w=400&h=400&func=bound",
    "release": "2026-06-18",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "FPS・TPS"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Digerati",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3500円[税抜]",
-   "url": "https://www.famitsu.com/game/title/47303/page/1"
+   "url": "https://www.famitsu.com/game/title/47303/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72381",
@@ -42762,15 +43113,18 @@
    "cover": "",
    "release": "2026-06-18",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72381/page/1"
+   "url": "https://www.famitsu.com/game/title/72381/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72419",
@@ -42779,15 +43133,18 @@
    "cover": "",
    "release": "2026-06-18",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "727円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72419/page/1"
+   "url": "https://www.famitsu.com/game/title/72419/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "62792",
@@ -42796,15 +43153,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/149293/EZHG5Dwp?w=400&h=400&func=bound",
    "release": "2026-06-18",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "スクウェア・エニックス",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "6800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/62792/page/1"
+   "url": "https://www.famitsu.com/game/title/62792/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "70990",
@@ -42813,15 +43173,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/153670/28Vu28_K?w=400&h=400&func=bound",
    "release": "2026-06-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "スポーツ"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "エレクトロニック・アーツ",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "8909円[税抜]",
-   "url": "https://www.famitsu.com/game/title/70990/page/1"
+   "url": "https://www.famitsu.com/game/title/70990/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "41118",
@@ -42830,15 +43193,21 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151868/FtnzedVV?w=400&h=400&func=bound",
    "release": "2026-06-25",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "RPG",
+    "アドベンチャー",
+    "FPS・TPS"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Beep Japan",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "5400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/41118/page/1"
+   "url": "https://www.famitsu.com/game/title/41118/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69553",
@@ -42847,15 +43216,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151811/u5XT1rsr?w=400&h=400&func=bound",
    "release": "2026-06-25",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "コンパイルハート",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69553/page/1"
+   "url": "https://www.famitsu.com/game/title/69553/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72384",
@@ -42864,15 +43236,18 @@
    "cover": "",
    "release": "2026-06-25",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72384/page/1"
+   "url": "https://www.famitsu.com/game/title/72384/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72388",
@@ -42881,15 +43256,18 @@
    "cover": "",
    "release": "2026-06-25",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1636円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72388/page/1"
+   "url": "https://www.famitsu.com/game/title/72388/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72223",
@@ -42898,15 +43276,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/155189/jGtGDvxj?w=400&h=400&func=bound",
    "release": "2026-06-25",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ケムコ",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3891円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72223/page/1"
+   "url": "https://www.famitsu.com/game/title/72223/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72421",
@@ -42915,15 +43296,19 @@
    "cover": "",
    "release": "2026-06-25",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー",
+    "アクションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "727円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72421/page/1"
+   "url": "https://www.famitsu.com/game/title/72421/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69672",
@@ -42932,15 +43317,18 @@
    "cover": "",
    "release": "2026-06-25",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "格闘"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "コーエーテクモゲームス",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "5800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69672/page/1"
+   "url": "https://www.famitsu.com/game/title/69672/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "62092",
@@ -42949,15 +43337,18 @@
    "cover": "",
    "release": "2026-06-26",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "シティコネクション",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2700円[税抜]",
-   "url": "https://www.famitsu.com/game/title/62092/page/1"
+   "url": "https://www.famitsu.com/game/title/62092/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69914",
@@ -42966,15 +43357,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152409/610qmnTZ?w=400&h=400&func=bound",
    "release": "2026-07-02",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Tozai Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "5400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69914/page/1"
+   "url": "https://www.famitsu.com/game/title/69914/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72391",
@@ -42983,15 +43377,18 @@
    "cover": "",
    "release": "2026-07-02",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72391/page/1"
+   "url": "https://www.famitsu.com/game/title/72391/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69614",
@@ -43000,15 +43397,20 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151931/fMDVN8Jz?w=400&h=400&func=bound",
    "release": "2026-07-02",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "RPG",
+    "アクションパズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "KONAMI",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4980円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69614/page/1"
+   "url": "https://www.famitsu.com/game/title/69614/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72423",
@@ -43017,15 +43419,18 @@
    "cover": "",
    "release": "2026-07-02",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1091円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72423/page/1"
+   "url": "https://www.famitsu.com/game/title/72423/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69786",
@@ -43034,15 +43439,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152218/ney5PavW?w=400&h=400&func=bound",
    "release": "2026-07-09",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "バンダイナムコエンターテインメント",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "8100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69786/page/1"
+   "url": "https://www.famitsu.com/game/title/69786/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69605",
@@ -43051,15 +43459,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151911/g12BJPbI?w=400&h=400&func=bound",
    "release": "2026-07-09",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "サイゲームス",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "6300円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69605/page/1"
+   "url": "https://www.famitsu.com/game/title/69605/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72396",
@@ -43068,15 +43479,18 @@
    "cover": "",
    "release": "2026-07-09",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "レース"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72396/page/1"
+   "url": "https://www.famitsu.com/game/title/72396/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "70980",
@@ -43085,15 +43499,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/153638/PKlK6_pA?w=400&h=400&func=bound",
    "release": "2026-07-09",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ユービーアイソフト",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7600円[税抜]",
-   "url": "https://www.famitsu.com/game/title/70980/page/1"
+   "url": "https://www.famitsu.com/game/title/70980/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72425",
@@ -43102,15 +43519,18 @@
    "cover": "",
    "release": "2026-07-09",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1364円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72425/page/1"
+   "url": "https://www.famitsu.com/game/title/72425/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69922",
@@ -43119,15 +43539,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152429/0KQ_q3dC?w=400&h=400&func=bound",
    "release": "2026-07-09",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "賈船",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69922/page/1"
+   "url": "https://www.famitsu.com/game/title/69922/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69735",
@@ -43136,15 +43560,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152142/HVWVgVLw?w=400&h=400&func=bound",
    "release": "2026-07-09",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "インティ・クリエイツ",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "6300円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69735/page/1"
+   "url": "https://www.famitsu.com/game/title/69735/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72322",
@@ -43153,15 +43580,19 @@
    "cover": "",
    "release": "2026-07-14",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー",
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Annapurna Interactive",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72322/page/1"
+   "url": "https://www.famitsu.com/game/title/72322/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69796",
@@ -43170,15 +43601,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152248/hH96_RjC?w=400&h=400&func=bound",
    "release": "2026-07-16",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Bliss Brain",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69796/page/1"
+   "url": "https://www.famitsu.com/game/title/69796/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69446",
@@ -43208,15 +43642,18 @@
    "cover": "",
    "release": "2026-07-16",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72401/page/1"
+   "url": "https://www.famitsu.com/game/title/72401/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72430",
@@ -43225,15 +43662,18 @@
    "cover": "",
    "release": "2026-07-16",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "727円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72430/page/1"
+   "url": "https://www.famitsu.com/game/title/72430/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "70925",
@@ -43242,15 +43682,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/153523/O0_TpGxA?w=400&h=400&func=bound",
    "release": "2026-07-16",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "スポーツ"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "KONAMI",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7980円[税抜]",
-   "url": "https://www.famitsu.com/game/title/70925/page/1"
+   "url": "https://www.famitsu.com/game/title/70925/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69597",
@@ -43259,15 +43702,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151889/Rp7cn7jZ?w=400&h=400&func=bound",
    "release": "2026-07-16",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "日本ファルコム",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7200円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69597/page/1"
+   "url": "https://www.famitsu.com/game/title/69597/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72484",
@@ -43276,15 +43722,18 @@
    "cover": "",
    "release": "2026-07-17",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "SFB Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72484/page/1"
+   "url": "https://www.famitsu.com/game/title/72484/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72368",
@@ -43293,15 +43742,18 @@
    "cover": "",
    "release": "2026-07-23",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Astrolabe Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2200円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72368/page/1"
+   "url": "https://www.famitsu.com/game/title/72368/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "70919",
@@ -43310,15 +43762,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/153506/T96Drl3a?w=400&h=400&func=bound",
    "release": "2026-07-23",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "賈船",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/70919/page/1"
+   "url": "https://www.famitsu.com/game/title/70919/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72410",
@@ -43327,15 +43782,18 @@
    "cover": "",
    "release": "2026-07-23",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "レース"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1636円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72410/page/1"
+   "url": "https://www.famitsu.com/game/title/72410/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72406",
@@ -43344,15 +43802,18 @@
    "cover": "",
    "release": "2026-07-23",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72406/page/1"
+   "url": "https://www.famitsu.com/game/title/72406/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72432",
@@ -43361,15 +43822,18 @@
    "cover": "",
    "release": "2026-07-23",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1091円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72432/page/1"
+   "url": "https://www.famitsu.com/game/title/72432/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72428",
@@ -43378,15 +43842,19 @@
    "cover": "",
    "release": "2026-07-29",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "FPS・TPS",
+    "アクションシューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Microsoft",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7182円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72428/page/1"
+   "url": "https://www.famitsu.com/game/title/72428/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "70001",
@@ -43395,15 +43863,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152526/K_eSMYcZ?w=400&h=400&func=bound",
    "release": "2026-07-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "コーエーテクモゲームス",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "6800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/70001/page/1"
+   "url": "https://www.famitsu.com/game/title/70001/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72442",
@@ -43412,15 +43883,18 @@
    "cover": "",
    "release": "2026-07-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションシューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "PQube",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72442/page/1"
+   "url": "https://www.famitsu.com/game/title/72442/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69488",
@@ -43429,15 +43903,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151703/JHLOlb3-?w=400&h=400&func=bound",
    "release": "2026-07-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "THQ Nordic",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4500円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69488/page/1"
+   "url": "https://www.famitsu.com/game/title/69488/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72506",
@@ -43446,15 +43923,18 @@
    "cover": "",
    "release": "2026-07-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "レース"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72506/page/1"
+   "url": "https://www.famitsu.com/game/title/72506/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "70922",
@@ -43463,15 +43943,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/153513/2rcuqhqq?w=400&h=400&func=bound",
    "release": "2026-07-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "エディア",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/70922/page/1"
+   "url": "https://www.famitsu.com/game/title/70922/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69710",
@@ -43480,15 +43963,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152085/ot10mcWI?w=400&h=400&func=bound",
    "release": "2026-07-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "テーブル（トランプ・将棋など）",
+    "ボードゲーム"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "シティコネクション",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4500円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69710/page/1"
+   "url": "https://www.famitsu.com/game/title/69710/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "70927",
@@ -43497,15 +43984,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/153528/tBrTqOrQ?w=400&h=400&func=bound",
    "release": "2026-07-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ケムコ",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4527円[税抜]",
-   "url": "https://www.famitsu.com/game/title/70927/page/1"
+   "url": "https://www.famitsu.com/game/title/70927/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72500",
@@ -43514,15 +44004,18 @@
    "cover": "",
    "release": "2026-07-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "727円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72500/page/1"
+   "url": "https://www.famitsu.com/game/title/72500/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "62782",
@@ -43531,15 +44024,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/149272/TXykohcb?w=400&h=400&func=bound",
    "release": "2026-07-30",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "日本一ソフトウェア",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "8200円[税抜]",
-   "url": "https://www.famitsu.com/game/title/62782/page/1"
+   "url": "https://www.famitsu.com/game/title/62782/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "62029",
@@ -43548,15 +44044,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/148091/lV2qC9_Q?w=400&h=400&func=bound",
    "release": "2026-08-04",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー",
+    "アクションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Fictions",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "8164円[税抜]",
-   "url": "https://www.famitsu.com/game/title/62029/page/1"
+   "url": "https://www.famitsu.com/game/title/62029/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71011",
@@ -43565,15 +44065,18 @@
    "cover": "",
    "release": "2026-08-06",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "レーシングアクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "SUNSOFT",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71011/page/1"
+   "url": "https://www.famitsu.com/game/title/71011/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72511",
@@ -43582,15 +44085,18 @@
    "cover": "",
    "release": "2026-08-06",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72511/page/1"
+   "url": "https://www.famitsu.com/game/title/72511/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69956",
@@ -43599,15 +44105,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152479/KOObFrmU?w=400&h=400&func=bound",
    "release": "2026-08-06",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "サクセス",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "5800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69956/page/1"
+   "url": "https://www.famitsu.com/game/title/69956/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72502",
@@ -43616,15 +44125,18 @@
    "cover": "",
    "release": "2026-08-06",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "バラエティー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1091円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72502/page/1"
+   "url": "https://www.famitsu.com/game/title/72502/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71006",
@@ -43633,15 +44145,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/153697/MGT8rWex?w=400&h=400&func=bound",
    "release": "2026-08-06",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "レイニーフロッグ",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3500円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71006/page/1"
+   "url": "https://www.famitsu.com/game/title/71006/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72473",
@@ -43650,15 +44165,18 @@
    "cover": "",
    "release": "2026-08-06",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シューティング"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "あまた株式会社",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2200円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72473/page/1"
+   "url": "https://www.famitsu.com/game/title/72473/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72540",
@@ -43667,15 +44185,19 @@
    "cover": "",
    "release": "2026-08-07",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "格闘"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Ratalaika Games",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72540/page/1"
+   "url": "https://www.famitsu.com/game/title/72540/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "62006",
@@ -43684,15 +44206,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152100/LImMiFd4?w=400&h=400&func=bound",
    "release": "2026-08-07",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "格闘"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ソニー・インタラクティブエンタテインメント",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7256円[税抜]",
-   "url": "https://www.famitsu.com/game/title/62006/page/1"
+   "url": "https://www.famitsu.com/game/title/62006/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72520",
@@ -43701,15 +44227,18 @@
    "cover": "",
    "release": "2026-08-13",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72520/page/1"
+   "url": "https://www.famitsu.com/game/title/72520/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72516",
@@ -43718,15 +44247,18 @@
    "cover": "",
    "release": "2026-08-13",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "テーブルゲーム"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72516/page/1"
+   "url": "https://www.famitsu.com/game/title/72516/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72504",
@@ -43735,15 +44267,19 @@
    "cover": "",
    "release": "2026-08-13",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "格闘"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハムスター",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "1091円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72504/page/1"
+   "url": "https://www.famitsu.com/game/title/72504/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72333",
@@ -43793,15 +44329,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151689/bUc4ARws?w=400&h=400&func=bound",
    "release": "2026-08-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーション",
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "Seed Sparkle Lab",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "6380円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69474/page/1"
+   "url": "https://www.famitsu.com/game/title/69474/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "71016",
@@ -43810,15 +44350,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/153719/iFmj4G3l?w=400&h=400&func=bound",
    "release": "2026-08-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "MAGES.",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "6800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71016/page/1"
+   "url": "https://www.famitsu.com/game/title/71016/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69088",
@@ -43827,15 +44370,18 @@
    "cover": "",
    "release": "2026-08-20",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクションアドベンチャー"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "タイトー",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69088/page/1"
+   "url": "https://www.famitsu.com/game/title/69088/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72371",
@@ -43865,15 +44411,18 @@
    "cover": "",
    "release": "2026-08-27",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "KONAMI",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3500円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69765/page/1"
+   "url": "https://www.famitsu.com/game/title/69765/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69768",
@@ -43882,15 +44431,18 @@
    "cover": "",
    "release": "2026-08-27",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "KONAMI",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "2500円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69768/page/1"
+   "url": "https://www.famitsu.com/game/title/69768/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69630",
@@ -43899,15 +44451,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/151969/IBv5Jm6A?w=400&h=400&func=bound",
    "release": "2026-08-27",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション",
+    "スポーツ"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "バンダイナムコエンターテインメント",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7700円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69630/page/1"
+   "url": "https://www.famitsu.com/game/title/69630/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "70931",
@@ -43916,15 +44472,19 @@
    "cover": "https://image.kagali.kgl-systems.io/item/153545/8fO-n0iq?w=400&h=400&func=bound",
    "release": "2026-08-27",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アドベンチャー",
+    "パズル"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "賈船",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/70931/page/1"
+   "url": "https://www.famitsu.com/game/title/70931/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69674",
@@ -43933,15 +44493,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152032/ntchEUI7?w=400&h=400&func=bound",
    "release": "2026-08-27",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ハピネット",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "8200円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69674/page/1"
+   "url": "https://www.famitsu.com/game/title/69674/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "41218",
@@ -43950,15 +44513,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/155171/XpQ-klXU?w=400&h=400&func=bound",
    "release": "2026-08-27",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "ワーナー ブラザース ジャパン",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "3627円[税抜]",
-   "url": "https://www.famitsu.com/game/title/41218/page/1"
+   "url": "https://www.famitsu.com/game/title/41218/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69683",
@@ -43967,15 +44533,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152043/BBS8RNpA?w=400&h=400&func=bound",
    "release": "2026-08-27",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "アクション"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "KONAMI",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "6000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69683/page/1"
+   "url": "https://www.famitsu.com/game/title/69683/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "69917",
@@ -43984,15 +44553,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/152420/Mt5lS4gE?w=400&h=400&func=bound",
    "release": "2026-08-27",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "RPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "コンパイルハート",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69917/page/1"
+   "url": "https://www.famitsu.com/game/title/69917/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72251",
@@ -44001,15 +44573,18 @@
    "cover": "https://image.kagali.kgl-systems.io/item/155252/lcoBdF7U?w=400&h=400&func=bound",
    "release": "2026-08-28",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "シミュレーションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "エレクトロニック・アーツ",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "7636円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72251/page/1"
+   "url": "https://www.famitsu.com/game/title/72251/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "68244",
@@ -44683,15 +45258,19 @@
    "cover": "",
    "release": "2026-10-08",
    "region": "JP",
-   "genres": [],
+   "genres": [
+    "本体・周辺商品",
+    "アクションRPG"
+   ],
    "tags": [],
-   "developer": "",
+   "developer": "スクウェア・エニックス",
    "series": "",
    "avg": null,
    "pop": 0,
    "desc": "",
    "price": "4800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72174/page/1"
+   "url": "https://www.famitsu.com/game/title/72174/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72300",
