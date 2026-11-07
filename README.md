@@ -40,7 +40,7 @@ GitHub Actions は海外のサーバーで動くため、ファミ通側に断�
 2. このフォルダで `node scripts/fetch-famitsu.mjs` を実行 → `games.json` が更新される
 3. 更新された `games.json` をGitHubにアップロード（Add file → Upload files）
 
-取得範囲は2か月前〜12か月先です（`MONTHS_BACK` / `MONTHS_AHEAD` 環境変数で変更可）。範囲より古いデータは前回分を引き継ぎます。
+取得範囲は24か月前〜12か月先です（過去分の評価で好み傾向を出すため）（`MONTHS_BACK` / `MONTHS_AHEAD` 環境変数で変更可）。範囲より古いデータは前回分を引き継ぎます。
 
 ## 3. Google Drive に自動保存する（無料）
 OAuthクライアントIDは `index.html` に設定済みです（アニメ手帖と同じIDを使い回し）。公開サイトの「設定」タブで **連携 / 今すぐ同期** を押すだけです。
