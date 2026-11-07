@@ -75,11 +75,15 @@ async function main() {
     if (excluded.has(r.id) || NON_GAME.test(r.title)) { excluded.add(r.id); continue; }
     const old = prevById.get(r.id);
     let genres = old?.genres || [], developer = old?.developer || '', detail_at = old?.detail_at || null;
-    if (!detail_at && detailCount < MAX_DETAIL) {
+    // 個別ページは未取得のとき取得。ジャンルがファミ通側で未登録だったものは、7日ごとに取り直す
+    const stale = detail_at && !genres.length && (Date.now() - Date.parse(detail_at)) / 86400e3 >= 7;
+    if ((!detail_at || stale) && detailCount < MAX_DETAIL) {
       detailCount++;
       try {
         const d = parseDetail(await get(`/game/title/${r.id}/page/1`));
-        if (d.genres.some((g) => /本体|周辺/.test(g))) { excluded.add(r.id); continue; }   // PS5本体・周辺機器
+        // PS5本体・周辺機器: ジャンルが「本体・周辺商品」だけのときのみ除外
+        // （ファミ通側で「本体・周辺商品 / アクションRPG」のようにゲームに混在登録されている場合があるため）
+        if (d.genres.length && d.genres.every((g) => /本体|周辺/.test(g))) { excluded.add(r.id); continue; }
         genres = d.genres; developer = d.maker; detail_at = new Date().toISOString().slice(0, 10);
       } catch (e) { console.warn(`  個別ページ取得失敗 ${r.id} ${r.title}: ${e.message}`); }
     }
