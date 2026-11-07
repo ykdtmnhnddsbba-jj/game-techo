@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ゲーム手帖 — 発売月別・評価・好み分析・オススメ</title>
+<style>
+:root{
+  --bg:#12141c;--panel:#1b1e2a;--panel2:#252938;--line:#2f3447;--text:#ecedf3;--sub:#9da2b8;
+  --accent:#7c8cff;--accent2:#5eead4;--warn:#fbbf24;--bad:#ff8fa3;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic UI",system-ui,sans-serif;line-height:1.6}
+button,input,select,textarea{font:inherit;color:inherit}
+header{position:sticky;top:0;z-index:20;background:rgba(18,20,28,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:1600px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:18px;letter-spacing:.04em}
+.logo b{color:var(--accent)}
+nav{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+nav button{background:none;border:0;padding:8px 14px;border-radius:999px;color:var(--sub);cursor:pointer;font-weight:600}
+nav button.on{background:var(--panel2);color:var(--text)}
+.chip{font-size:12px;padding:4px 10px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);color:var(--sub);cursor:pointer}
+.chip.ok{color:var(--accent2);border-color:#2a5b55}
+.chip.bad{color:var(--warn);border-color:#6b5a1c}
+main{max-width:1600px;margin:0 auto;padding:18px 16px 80px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.toolbar select,.toolbar input[type=text],.field input,.field select,.field textarea{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.toolbar input[type=text]{min-width:200px;flex:1}
+.btn{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:600}
+.btn:hover{border-color:var(--sub)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#0c1030}
+.btn.danger{color:var(--bad)}
+.btn.nav{padding:8px 12px}
+label.chk{display:flex;gap:6px;align-items:center;color:var(--sub);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(var(--cols,2),minmax(0,1fr));gap:12px}
+@media(max-width:1000px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform .12s,border-color .12s}
+.card:hover{transform:translateY(-3px);border-color:#4a5075}
+.cover{position:relative;aspect-ratio:3/4;background:var(--panel2) center/cover no-repeat}
+.cover.nocover::before{content:"🎮";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:42px;opacity:.35}
+.cover .score{z-index:1}
+.cover .cimg,.mc .cimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.mc{position:relative;overflow:hidden}
+.cover .score{position:absolute;top:8px;left:8px;background:var(--accent);color:#0c1030;font-weight:800;border-radius:8px;padding:2px 9px;font-size:15px}
+.badge{font-size:11px;font-weight:700;padding:2px 7px;border-radius:6px;color:#fff}
+.badge.hint{border:1px dashed #aaa;color:#ddd}
+.cbody{padding:9px 10px 11px;display:flex;flex-direction:column;gap:4px}
+.ctitle{font-size:14px;font-weight:700;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.meta{font-size:12px;color:var(--sub)}
+.reason{font-size:11.5px;color:var(--accent2)}
+.empty{padding:50px 10px;text-align:center;color:var(--sub)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:16px}
+.panel h2{margin:0 0 10px;font-size:17px}
+.panel h3{margin:14px 0 6px;font-size:14px;color:var(--sub)}
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.field label{font-size:13px;color:var(--sub)}
+.field textarea{min-height:120px;resize:vertical}
+.hint{font-size:12.5px;color:var(--sub)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bars{display:grid;gap:6px}
+.bar-r{display:grid;grid-template-columns:150px 1fr 52px;gap:8px;align-items:center;font-size:13px}
+.track{height:10px;background:var(--panel2);border-radius:99px;overflow:hidden}
+.fill{height:100%;border-radius:99px}
+.fill.pos{background:var(--accent2)}.fill.neg{background:var(--bad)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.bar-r{grid-template-columns:110px 1fr 44px}}
+/* modal */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:50;display:flex;align-items:flex-start;justify-content:center;padding:24px 12px;overflow:auto}
+.modal{background:var(--panel);border:1px solid var(--line);border-radius:18px;max-width:760px;width:100%;overflow:hidden}
+.mhead{display:flex;gap:16px;padding:18px}
+.mhead .mc{width:140px;aspect-ratio:3/4;background:var(--panel2) center/cover;border-radius:10px;flex:none}
+.mhead h2{margin:0 0 4px;font-size:20px;line-height:1.3}
+.mbody{padding:0 18px 18px}
+.scores{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin:8px 0}
+.scores button{padding:10px 0;border-radius:9px;border:1px solid var(--line);background:var(--panel2);cursor:pointer;font-weight:700}
+.scores button.on{background:var(--accent);border-color:var(--accent);color:#0c1030}
+.desc{font-size:13px;color:var(--sub);max-height:120px;overflow:auto;white-space:pre-wrap}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#000;border:1px solid var(--line);padding:10px 18px;border-radius:999px;z-index:99;font-size:14px}
+.pill{display:inline-block;font-size:11px;padding:1px 8px;border-radius:99px;background:var(--panel2);color:var(--sub);margin:0 4px 4px 0}
+.stick{position:sticky;top:var(--hh,56px);z-index:15;background:var(--bg);padding:12px 0 2px;margin:-12px 0 6px;border-bottom:1px solid var(--line)}
+.stick .toolbar{margin-bottom:10px}
+.gh{grid-column:1/-1;margin:14px 0 0;padding:6px 2px;font-size:18px;border-bottom:2px solid var(--accent);color:var(--text)}
+.gh:first-child{margin-top:0}
+.card.item{flex-direction:row;cursor:default}
+.card.item:hover{transform:none;border-color:#4a5075}
+.item .cover{width:104px;flex:none;aspect-ratio:4/5;align-self:flex-start;cursor:pointer}
+.item .cbody{flex:1;min-width:0;padding:10px 14px 12px;gap:6px}
+.item .ctitle{font-size:15px;cursor:pointer;-webkit-line-clamp:1}
+.item .ctitle:hover{color:var(--accent2)}
+.item .bd{display:flex;gap:6px;flex-wrap:wrap;min-height:0}
+.badge.date{background:#232a55;color:#c4ccff}
+.badge.price{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
+.qc{display:flex;flex-direction:column;gap:7px;margin-top:2px}
+.sbs{display:flex;gap:4px}
+.sb{flex:1;min-width:0;padding:9px 0;border-radius:8px;border:1px solid var(--line);background:var(--panel2);cursor:pointer;font-weight:700;font-size:14px;color:var(--sub)}
+.sb:hover{border-color:var(--accent);color:var(--text)}
+.sb.on{background:var(--accent);border-color:var(--accent);color:#0c1030}
+.qc .r2{display:flex;gap:6px}
+.qc input{flex:1;min-width:0;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13px}
+.qb{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:4px 12px;cursor:pointer;font-size:13px;color:var(--sub);white-space:nowrap}
+.qb:hover{border-color:var(--sub)}
+.qb.on.w{color:var(--accent2);border-color:#2a5b55;background:#16312f}
+.qb.on.f{color:var(--bad);border-color:#7a2f3d;background:#35171e}
+.qb.on.q{color:var(--warn);border-color:#6b5a1c;background:#33290d}
+footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--sub);font-size:12px}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-2px;margin-right:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+@media(max-width:720px){
+  .bar{gap:6px 10px}nav{order:3;flex-basis:100%;gap:2px}nav button{padding:6px 12px}
+  main{padding:12px 12px 80px}
+  .stick{position:static;margin:0 0 6px;padding-top:0;border-bottom:0}
+  .qc .r2{flex-wrap:wrap}.qc .r2 input{flex:1 1 100%}.qc .r2 .qb{flex:1}
+  .sb{padding:8px 0;font-size:13px}
+  .item .cover{width:84px}.item .cbody{padding:8px 10px 10px}
+}
+@media(max-width:720px){.formgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <div class="logo">ゲーム<b>手帖</b></div>
+  <nav id="nav"></nav>
+  <span id="syncChip" class="chip"></span>
+</div></header>
+<main id="main"></main>
+<footer>
+  ゲームデータ: <a href="https://www.famitsu.com/schedule/ps5/" target="_blank" rel="noopener" style="color:inherit">ファミ通.com ゲーム発売日スケジュール</a>（PS5）。発売日は変更されることがあります。購入前にメーカーやPS Storeの公式情報もご確認ください。
+</footer>
+<div id="modalRoot"></div>
+
+<script>
+'use strict';
+/* =============== utils =============== */
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const nowIso=()=>new Date().toISOString();
+function lsGet(k,def){try{const v=localStorage.getItem(k);return v?JSON.parse(v):def}catch(e){return def}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+function toast(msg,ms=2600){const t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),ms)}
+const WD='日月火水木金土';
+const pad2=n=>String(n).padStart(2,'0');
+const ymKey=(y,m)=>y+'-'+pad2(m);
+function fmtDate(s){if(!s)return'発売日未定';const d=new Date(s+'T00:00:00Z');return(d.getUTCMonth()+1)+'/'+d.getUTCDate()+'('+WD[d.getUTCDay()]+')'}
+function fmtFull(s){if(!s)return'未定';const d=new Date(s+'T00:00:00Z');return d.getUTCFullYear()+'年'+(d.getUTCMonth()+1)+'月'+d.getUTCDate()+'日('+WD[d.getUTCDay()]+')'}
+const REGION_JA={JP:'日本',WW:'全世界',NA:'北米',EU:'欧州',AS:'アジア',KR:'韓国',CN:'中国',AU:'豪州',BR:'ブラジル'};
+const regionNote=r=>!r?'':(r==='JP'?'日本の発売日':r==='WW'?'全世界の発売日':(REGION_JA[r]||r)+'の発売日（日本は未確認）');
+const isHintRegion=r=>!!r&&r!=='JP'&&r!=='WW';
+
+/* =============== state =============== */
+const LS_DB='gamedb.v1',LS_SET='gamedb.settings.v1',LS_GAMES='gamedb.gamesimport.v1';
+function emptyDb(){return{schema_version:1,updated_at:null,ratings:{},custom_games:{}}}
+let db=Object.assign(emptyDb(),lsGet(LS_DB,{}));
+let settings=Object.assign({google_client_id:'',drive_linked:false},lsGet(LS_SET,{}));
+// OAuthクライアントIDは公開されても安全（アニメ手帖と同じIDを使い回し）。スマホでも入力不要にする
+const DEFAULT_CLIENT_ID='568813131190-9pb3hf0f3g3rbiglkq4nbk88g4eltk9p.apps.googleusercontent.com';
+if(!settings.google_client_id)settings.google_client_id=DEFAULT_CLIENT_ID;
+const T0={year:new Date().getFullYear(),month:new Date().getMonth()+1};
+const ui={tab:'month',year:T0.year,month:T0.month,sort:'auto',onlyUnrated:false,state:'all',
+  query:'',mySort:'new',mineF:'all',cols:2,promptYM:null};
+
+function saveLocal(){db.updated_at=nowIso();lsSet(LS_DB,db)}
+function save(){saveLocal();scheduleSync()}
+function saveSettings(){lsSet(LS_SET,settings)}
+
+/* =============== game data (games.json + 手動追加) =============== */
+let GAMES={generated_at:null,window:null,games:[]};
+let gamesStatus='loading',gamesMsg='';
+let index=new Map();               // id(string) -> item
+function normGame(g){return{id:String(g.id),name:g.name||'',native:g.native||'',cover:g.cover||'',
+  genres:g.genres||[],tags:g.tags||[],developer:g.developer||'',series:g.series||'',
+  avg:g.avg||null,pop:g.pop||0,desc:(g.desc||'').slice(0,400),release:g.release||'',region:g.region||'',price:g.price||'',
+  url:g.url||'',custom:!!g.custom}}
+function rebuildIndex(){
+  index=new Map();
+  (GAMES.games||[]).forEach(g=>{const n=normGame(g);index.set(n.id,n)});
+  Object.entries(db.custom_games||{}).forEach(([id,g])=>{if(!g.deleted){const n=normGame({...g,id,custom:true});index.set(n.id,n)}});
+}
+const allGames=()=>[...index.values()];
+const titleOf=it=>it.native||it.name||'(無題)';
+const coverImg=u=>u?`<img class="cimg" src="${esc(u)}" referrerpolicy="no-referrer" loading="lazy" alt="" onerror="this.parentNode.classList.add('nocover');this.remove()">`:'';
+async function loadGames(){
+  gamesStatus='loading';
+  try{
+    const r=await fetch('games.json',{cache:'no-cache'});
+    if(!r.ok)throw new Error('games.json を取得できません (HTTP '+r.status+')');
+    const j=await r.json();
+    if(!j||!Array.isArray(j.games))throw new Error('games.json の形式が違います');
+    GAMES=j;gamesStatus='ok';
+  }catch(e){
+    const imp=lsGet(LS_GAMES,null);
+    if(imp&&Array.isArray(imp.games)){GAMES=imp;gamesStatus='imported'}
+    else{gamesStatus='error';gamesMsg=e.message}
+  }
+  rebuildIndex();render();
+}
+
+/* =============== taste / recommend =============== */
+function entries(){return Object.entries(db.ratings).filter(([,r])=>!r.deleted).map(([id,r])=>({id,...r}))}
+function activeRatings(){return entries().filter(r=>r.score>0)}
+function isRated(id){const r=db.ratings[id];return !!(r&&!r.deleted&&r.score>0)}
+function isPlayed(id){const r=db.ratings[id];return !!(r&&!r.deleted&&(r.played||r.score>0))}
+function isWant(id){const r=db.ratings[id];return !!(r&&!r.deleted&&r.want)}
+function isFav(id){const r=db.ratings[id];return !!(r&&!r.deleted&&r.fav)}
+const KIND={g:'ジャンル',t:'テーマ',d:'開発元',s:'シリーズ'};
+function feats(o){
+  const f=[];
+  (o.genres||[]).forEach(g=>f.push(['g:'+g,1]));
+  (o.tags||[]).forEach(t=>f.push(['t:'+t,.6]));
+  if(o.developer)f.push(['d:'+o.developer,.8]);
+  if(o.series)f.push(['s:'+o.series,.8]);
+  return f;
+}
+function buildProfile(){
+  const rs=activeRatings();
+  if(!rs.length)return{n:0,mean:0,w:{}};
+  const mean=rs.reduce((a,r)=>a+r.score,0)/rs.length;
+  const num={},den={};
+  rs.forEach(r=>{const dev=r.score-mean;feats(r).forEach(([k,w])=>{num[k]=(num[k]||0)+w*dev;den[k]=(den[k]||0)+w})});
+  const w={};Object.keys(num).forEach(k=>{w[k]={weight:num[k]/(den[k]+1.5),count:den[k]}});
+  return{n:rs.length,mean,w};
+}
+function recommend(it,prof){
+  const f=feats(it);if(!f.length)return{match:null,reasons:[],cons:[]};
+  let sum=0,wsum=0;const contrib=[];
+  f.forEach(([k,w])=>{const e=prof.w[k];const val=e?e.weight:0;sum+=val*w;wsum+=w;if(e)contrib.push([k,val*w])});
+  let raw=wsum?sum/wsum*2:0;
+  if(it.avg)raw+=(it.avg-70)/20*.4;
+  const match=Math.round(100/(1+Math.exp(-raw*.9)));
+  const label=k=>k.slice(2);
+  const reasons=contrib.filter(c=>c[1]>0.15).sort((a,b)=>b[1]-a[1]).slice(0,3).map(c=>label(c[0]));
+  const cons=contrib.filter(c=>c[1]<-0.15).sort((a,b)=>a[1]-b[1]).slice(0,2).map(c=>label(c[0]));
+  return{match,reasons,cons};
+}
+
+/* =============== data ops =============== */
+function snapshot(it){return{title:titleOf(it),title_native:it.native,cover:it.cover,
+  release:it.release,genres:it.genres,tags:it.tags,developer:it.developer,series:it.series}}
+function upsert(it,patch){
+  const old=db.ratings[it.id];
+  const live=(old&&!old.deleted)?old:null;
+  const wasPlayed=!!(live&&(live.played||live.score>0));
+  const cur=Object.assign({score:0,memo:'',played:false,fav:false,want:false},snapshot(it),live||{},patch);
+  if(cur.score>0)cur.played=true;
+  if(cur.played&&!wasPlayed&&patch.want===undefined)cur.want=false;   // 遊んだら「気になる」は自動で外す
+  cur.rated_at=cur.rated_at||nowIso();cur.updated_at=nowIso();
+  if(!(cur.score>0)&&!cur.played&&!cur.fav&&!cur.want&&!cur.memo){
+    if(old)db.ratings[it.id]={...old,deleted:true,updated_at:nowIso()};
+  }else db.ratings[it.id]=cur;
+  save();
+}
+function ctrlHtml(id){
+  const r=db.ratings[id],ok=r&&!r.deleted,sc=ok?(r.score||0):0;
+  return`<div class="qc" data-id="${esc(id)}"><div class="sbs">${Array.from({length:10},(_,i)=>`<button class="sb ${sc===i+1?'on':''}" data-s="${i+1}" title="${i+1}点（もう一度押すと解除）">${i+1}</button>`).join('')}</div><div class="r2"><input class="qm" maxlength="140" placeholder="一言メモ（Enterで保存）" value="${esc(ok?r.memo:'')}"><button class="qb q ${isWant(id)?'on':''}" data-a="q" title="今後遊びたい（気になる）">☆ 気になる</button><button class="qb w ${isPlayed(id)?'on':''}" data-a="w" title="プレイ済み">✓ プレイ済み</button><button class="qb f ${isFav(id)?'on':''}" data-a="f" title="お気に入り">♥ お気に入り</button></div></div>`;
+}
+function refreshCard(card,id){
+  if(!card)return;
+  const r=db.ratings[id],ok=r&&!r.deleted,sc=ok?(r.score||0):0;
+  const cov=card.querySelector('.cover');let s=cov.querySelector('.score');
+  if(sc>0){if(!s){s=document.createElement('span');s.className='score';cov.prepend(s)}s.textContent=sc}
+  else if(s)s.remove();
+  const rc=card.querySelector('.reason');if(rc&&sc>0)rc.remove();
+  const q=card.querySelector('.qc');
+  q.querySelectorAll('.sb').forEach(x=>x.classList.toggle('on',+x.dataset.s===sc));
+  q.querySelector('.qb.q').classList.toggle('on',isWant(id));
+  q.querySelector('.qb.w').classList.toggle('on',isPlayed(id));
+  q.querySelector('.qb.f').classList.toggle('on',isFav(id));
+}
+function gridClick(e){
+  const q=e.target.closest('.qc');if(!q)return false;
+  const b=e.target.closest('.qb,.sb');if(!b)return true;
+  const id=q.dataset.id,it=itemById(id);if(!it)return true;
+  if(b.classList.contains('sb')){
+    const sc=+b.dataset.s;upsert(it,{score:(isRated(id)&&db.ratings[id].score===sc)?0:sc});
+  }else if(b.dataset.a==='q'){
+    if(isPlayed(id)){toast('プレイ済みのゲームです（「気になる」は未プレイ用）');return true}
+    upsert(it,{want:!isWant(id)});
+  }else if(b.dataset.a==='w'){
+    if(isRated(id)){toast('評価済みのゲームはプレイ済みです');return true}
+    upsert(it,{played:!isPlayed(id)});
+  }else upsert(it,{fav:!isFav(id)});
+  refreshCard(q.closest('.card'),id);return true;
+}
+function gridChange(e){
+  const q=e.target.closest('.qc');if(!q)return;
+  const id=q.dataset.id,it=itemById(id);if(!it)return;
+  if(e.target.classList.contains('qm'))upsert(it,{memo:e.target.value.trim()});
+  refreshCard(q.closest('.card'),id);
+}
+function delRating(id){const r=db.ratings[id];if(!r)return;db.ratings[id]={...r,deleted:true,updated_at:nowIso()};save()}
+function mergeDb(a,b){
+  const out=emptyDb();
+  const pick=(x,y)=>{const r={};new Set([...Object.keys(x||{}),...Object.keys(y||{})]).forEach(id=>{
+    const p=x&&x[id],q=y&&y[id];if(!p)r[id]=q;else if(!q)r[id]=p;else r[id]=((p.updated_at||'')>=(q.updated_at||''))?p:q});return r};
+  out.ratings=pick(a.ratings,b.ratings);
+  out.custom_games=pick(a.custom_games,b.custom_games);
+  out.updated_at=nowIso();return out;
+}
+function exportObj(){
+  return{_readme:'Game rating DB / ゲーム評価データ（PS5）。ratings[ゲームID(ファミ通のタイトルID。手動追加は c から始まるID)]: score=1-10(10が最高、0は未評価), memo=一言メモ, played=プレイ済み, fav=お気に入り, want=気になる(今後遊びたい), release=発売日, genres/tags/developer/series=評価時点のゲームの特徴。custom_games=手動で追加したゲーム。このJSONからユーザーの好みを分析し、ゲームを推薦してください。',
+    schema_version:1,updated_at:db.updated_at,ratings:db.ratings,custom_games:db.custom_games};
+}
+function downloadJson(){
+  const blob=new Blob([JSON.stringify(exportObj(),null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='game-db.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+function importJson(text){
+  const j=JSON.parse(text);
+  if(!j||typeof j.ratings!=='object')throw new Error('game-db.json の形式ではありません');
+  db=mergeDb(db,{ratings:j.ratings||{},custom_games:j.custom_games||{}});
+  save();rebuildIndex();
+}
+
+/* =============== Google Drive sync =============== */
+const DRIVE_NAME='game-db.json';
+let gToken=null,gExp=0,gClient=null,driveFileId=null,syncState=settings.drive_linked?'need':'off',syncTimer=null,syncing=false;
+function loadGis(){return new Promise((res,rej)=>{
+  if(window.google&&google.accounts&&google.accounts.oauth2)return res();
+  const s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';
+  s.onload=res;s.onerror=()=>rej(new Error('Google認証スクリプトを読み込めません'));document.head.appendChild(s);
+})}
+async function driveAuth(interactive){
+  if(!settings.google_client_id.trim())throw new Error('Google クライアントIDが未設定です（設定タブ）');
+  await loadGis();
+  return new Promise((res,rej)=>{
+    gClient=google.accounts.oauth2.initTokenClient({
+      client_id:settings.google_client_id.trim(),scope:'https://www.googleapis.com/auth/drive.file',
+      callback:r=>{if(r.error)return rej(new Error('Google認証: '+r.error));gToken=r.access_token;gExp=Date.now()+(r.expires_in||3600)*1000;res()},
+      error_callback:e=>rej(new Error('Google認証が完了しませんでした'+(e&&e.type?' ('+e.type+')':'')))
+    });
+    gClient.requestAccessToken({prompt:interactive?'':'none'});
+  });
+}
+const gFetch=(url,opt={})=>fetch(url,{...opt,headers:{...(opt.headers||{}),Authorization:'Bearer '+gToken}});
+async function driveSync(interactive){
+  if(syncing)return;syncing=true;setSync('busy');
+  try{
+    if(!gToken||Date.now()>gExp-60000)await driveAuth(interactive);
+    let id=driveFileId;
+    if(!id){
+      const q=encodeURIComponent(`name='${DRIVE_NAME}' and trashed=false`);
+      const r=await gFetch(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)&orderBy=${encodeURIComponent('modifiedTime desc')}&pageSize=1`);
+      if(!r.ok)throw new Error('Drive検索に失敗 ('+r.status+')。Drive APIが有効か確認してください');
+      const j=await r.json();id=j.files&&j.files[0]&&j.files[0].id;
+    }
+    if(id){
+      const r=await gFetch(`https://www.googleapis.com/drive/v3/files/${id}?alt=media`);
+      if(r.ok){const remote=await r.json();db=mergeDb(db,{ratings:remote.ratings||{},custom_games:remote.custom_games||{}});saveLocal();rebuildIndex()}
+    }
+    const body=JSON.stringify(exportObj(),null,1);
+    if(id){
+      const r=await gFetch(`https://www.googleapis.com/upload/drive/v3/files/${id}?uploadType=media`,{method:'PATCH',headers:{'Content-Type':'application/json'},body});
+      if(!r.ok)throw new Error('Drive保存に失敗 ('+r.status+')');
+    }else{
+      const b='gamedb'+Date.now();
+      const meta=JSON.stringify({name:DRIVE_NAME,mimeType:'application/json'});
+      const mp=`--${b}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${meta}\r\n--${b}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${body}\r\n--${b}--`;
+      const r=await gFetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',{method:'POST',headers:{'Content-Type':'multipart/related; boundary='+b},body:mp});
+      if(!r.ok)throw new Error('Drive作成に失敗 ('+r.status+')');
+      id=(await r.json()).id;
+    }
+    driveFileId=id;settings.drive_linked=true;saveSettings();setSync('ok');
+    if(ui.tab!=='settings')render();
+    return true;
+  }catch(e){setSync(interactive?'bad':'need');if(interactive)toast(e.message,5000);console.warn(e);return false}
+  finally{syncing=false}
+}
+function scheduleSync(){
+  if(!settings.drive_linked)return;
+  setSync('dirty');clearTimeout(syncTimer);
+  syncTimer=setTimeout(()=>{
+    if(gToken&&Date.now()<gExp-60000)driveSync(false);else setSync('need');
+  },2500);
+}
+function setSync(s){
+  syncState=s;const c=$('#syncChip');
+  const map={off:['☁ Drive未連携',''],need:['☁ 要再接続（クリック）','bad'],ok:['☁ 同期済み','ok'],dirty:['☁ 未同期…','bad'],busy:['☁ 同期中…',''],bad:['☁ 同期エラー（クリック）','bad']};
+  const [t,cls]=map[s]||map.off;c.textContent=t;c.className='chip '+cls;
+}
+$('#syncChip').onclick=()=>{
+  if(!settings.google_client_id){ui.tab='settings';render();return}
+  driveSync(true);
+};
+
+/* =============== rendering =============== */
+const TABS=[['month','発売月'],['mine','マイ評価'],['taste','好み分析'],['settings','設定']];
+function renderNav(){
+  $('#nav').innerHTML=TABS.map(([k,l])=>`<button data-tab="${k}" class="${ui.tab===k?'on':''}">${l}</button>`).join('');
+}
+$('#nav').onclick=e=>{const b=e.target.closest('button');if(!b)return;ui.tab=b.dataset.tab;render()};
+function render(){
+  renderNav();setSync(syncState);
+  const m=$('#main');
+  if(ui.tab==='month')renderMonth(m);
+  else if(ui.tab==='mine')renderMine(m);
+  else if(ui.tab==='taste')renderTaste(m);
+  else renderSettings(m);
+}
+
+/* ---- month tab ---- */
+function yearOptions(sel,all){const a=all?[`<option value="ALL" ${sel==='ALL'?'selected':''}>全期間</option>`]:[];for(let y=T0.year+2;y>=T0.year-3;y--)a.push(`<option ${y===sel?'selected':''}>${y}</option>`);return a.join('')}
+function shiftMonth(d){let y=ui.year,m=ui.month+d;while(m<1){m+=12;y--}while(m>12){m-=12;y++}ui.year=y;ui.month=m;ui.query=''}
+const isMulti=()=>ui.year==='ALL'||ui.month==='ALL';
+function renderMonth(m){
+  const multi=isMulti();
+  m.innerHTML=`
+  <div class="stick">
+  <div class="toolbar">
+    ${multi?'':'<button class="btn nav" id="prevM" title="前の月">‹</button>'}
+    <select id="selY">${yearOptions(ui.year,true)}</select>
+    <select id="selM"><option value="ALL" ${ui.month==='ALL'?'selected':''}>全月</option>${Array.from({length:12},(_,i)=>`<option value="${i+1}" ${i+1===ui.month?'selected':''}>${i+1}月</option>`).join('')}</select>
+    ${multi?'':'<button class="btn nav" id="nextM" title="次の月">›</button>'}
+    <button class="btn" id="thisM">今月</button>
+    <input type="text" id="q" placeholder="タイトル・メーカー・シリーズで検索（全期間）" value="${esc(ui.query)}">
+    <button class="btn pri" id="goSearch">検索</button>
+    ${ui.query?'<button class="btn" id="backMonth">月表示に戻る</button>':''}
+  </div>
+  <div class="toolbar">
+    <select id="selSort">
+      <option value="auto" ${ui.sort==='auto'?'selected':''}>並び: おすすめ順（評価3件〜）</option>
+      <option value="date" ${ui.sort==='date'?'selected':''}>並び: 発売日順</option>
+    </select>
+    <select id="selState">
+      <option value="all" ${ui.state==='all'?'selected':''}>状態: すべて</option>
+      <option value="unplayed" ${ui.state==='unplayed'?'selected':''}>未プレイのみ</option>
+      <option value="played" ${ui.state==='played'?'selected':''}>プレイ済みのみ</option>
+      <option value="want" ${ui.state==='want'?'selected':''}>気になるのみ</option>
+      <option value="fav" ${ui.state==='fav'?'selected':''}>お気に入りのみ</option>
+    </select>
+    <label class="chk"><input type="checkbox" id="chkUn" ${ui.onlyUnrated?'checked':''}> 未評価のみ</label>
+    <button class="btn" id="colBtn" title="1行に並べるゲーム数">表示: ${ui.cols}列</button>
+    <button class="btn" id="reload">再読込</button>
+    <span class="hint" id="dataNote"></span>
+  </div></div>
+  <div id="note"></div>
+  <div class="grid" id="grid" style="--cols:${ui.cols}"></div>`;
+  const go=()=>{ui.query='';renderMonth(m)};
+  const pv=$('#prevM');if(pv)pv.onclick=()=>{shiftMonth(-1);renderMonth(m)};
+  const nx=$('#nextM');if(nx)nx.onclick=()=>{shiftMonth(1);renderMonth(m)};
+  $('#thisM').onclick=()=>{ui.year=T0.year;ui.month=T0.month;go()};
+  $('#selY').onchange=e=>{ui.year=e.target.value==='ALL'?'ALL':+e.target.value;go()};
+  $('#selM').onchange=e=>{ui.month=e.target.value==='ALL'?'ALL':+e.target.value;go()};
+  $('#selSort').onchange=e=>{ui.sort=e.target.value;renderGrid()};
+  $('#chkUn').onchange=e=>{ui.onlyUnrated=e.target.checked;renderGrid()};
+  $('#selState').onchange=e=>{ui.state=e.target.value;renderGrid()};
+  $('#colBtn').onclick=()=>{ui.cols=ui.cols===2?1:2;$('#colBtn').textContent='表示: '+ui.cols+'列';$('#grid').style.setProperty('--cols',ui.cols)};
+  $('#reload').onclick=()=>loadGames();
+  const doSearch=()=>{ui.query=$('#q').value.trim();renderMonth(m)};
+  $('#goSearch').onclick=doSearch;
+  $('#q').onkeydown=e=>{if(e.key==='Enter')doSearch()};
+  const bm=$('#backMonth');if(bm)bm.onclick=()=>{ui.query='';renderMonth(m)};
+  $('#grid').onclick=e=>{if(gridClick(e))return;if(!e.target.closest('.cover,.ctitle'))return;const c=e.target.closest('.card');if(c)openModal(c.dataset.id)};
+  $('#grid').onchange=gridChange;
+  renderGrid();
+  const dn=$('#dataNote');
+  if(dn&&GAMES.generated_at)dn.textContent='データ更新: '+GAMES.generated_at.slice(0,10)+(GAMES.window?`（${GAMES.window.from.slice(0,7)}〜${GAMES.window.to.slice(0,7)}）`:'');
+}
+const normQ=s=>String(s||'').toLowerCase().replace(/[\s　・:：!！?？\-－ー~〜]/g,'');
+function visibleItems(){
+  const prof=buildProfile();
+  const searching=!!ui.query,multi=isMulti();
+  let items;
+  if(searching){
+    const q=normQ(ui.query);
+    items=allGames().filter(g=>[g.name,g.native,g.developer,g.series].some(s=>normQ(s).includes(q)));
+  }else{
+    items=allGames().filter(g=>g.release&&(ui.year==='ALL'||g.release.startsWith(String(ui.year)))&&(ui.month==='ALL'||g.release.slice(5,7)===pad2(ui.month)));
+  }
+  const rec=new Map(items.map(it=>[it.id,recommend(it,prof)]));
+  if(ui.onlyUnrated)items=items.filter(it=>!isRated(it.id));
+  if(ui.state==='unplayed')items=items.filter(it=>!isPlayed(it.id));
+  else if(ui.state==='played')items=items.filter(it=>isPlayed(it.id));
+  else if(ui.state==='want')items=items.filter(it=>isWant(it.id));
+  else if(ui.state==='fav')items=items.filter(it=>isFav(it.id));
+  const byDate=(a,b)=>(a.release||'9999').localeCompare(b.release||'9999')||b.pop-a.pop;
+  const useMatch=ui.sort==='auto'&&prof.n>=3;
+  const cmp=useMatch?(a,b)=>(rec.get(b.id).match||0)-(rec.get(a.id).match||0)||byDate(a,b):byDate;
+  let mode=null;                                  // 見出しの付け方: 月ごと / 発売日ごと / なし
+  if(searching)items.sort((a,b)=>(b.release||'').localeCompare(a.release||''));
+  else if(multi){items.sort((a,b)=>(a.release||'9999').slice(0,7).localeCompare((b.release||'9999').slice(0,7))||cmp(a,b));mode='month'}
+  else{items.sort(cmp);if(!useMatch)mode='day'}
+  return{items:searching?items.slice(0,80):items,total:items.length,rec,prof,searching,mode};
+}
+function groupHead(it,mode){
+  if(!it.release)return['','発売日未定'];
+  const y=+it.release.slice(0,4),mo=+it.release.slice(5,7),d=+it.release.slice(8,10);
+  return mode==='month'?[it.release.slice(0,7),`${y}年${mo}月発売`]:[it.release,`${mo}月${d}日(${WD[new Date(it.release+'T00:00:00Z').getUTCDay()]})発売`];
+}
+function cardHtml(it,rec,prof){
+  const r=db.ratings[it.id],rated=isRated(it.id);
+  const rc=rec.get(it.id);
+  const showMatch=prof.n>=3&&!rated&&rc&&rc.match!=null;
+  const meta=[it.genres.slice(0,3).join(' / '),it.developer].filter(Boolean).join(' ・ ');
+  return`<div class="card item" data-id="${esc(it.id)}">
+    <div class="cover ${it.cover?'':'nocover'}">${coverImg(it.cover)}${rated?`<span class="score">${r.score}</span>`:''}</div>
+    <div class="cbody">
+      <div class="ctitle">${esc(titleOf(it))}</div>
+      <div class="meta">${esc(meta)}${it.avg?` ・ ★${it.avg}`:''}</div>
+      <div class="bd"><span class="badge date ${isHintRegion(it.region)?'hint':''}" title="${esc(regionNote(it.region))}">${esc(fmtDate(it.release))}</span>${it.price?`<span class="badge price">${esc(it.price)}</span>`:''}</div>
+      ${showMatch?`<div class="reason">相性 ${rc.match}%${rc.reasons.length?'　◎ '+esc(rc.reasons.join('・')):''}</div>`:''}
+      ${ctrlHtml(it.id)}
+    </div></div>`;
+}
+function renderGrid(){
+  const g=$('#grid'),note=$('#note');if(!g)return;
+  if(gamesStatus==='loading'){note.innerHTML='<div class="empty"><span class="spin"></span>読み込み中…</div>';g.innerHTML='';return}
+  if(gamesStatus==='error'){
+    note.innerHTML=`<div class="panel" style="border-color:#6b2a35"><b>ゲームデータ(games.json)を読み込めません。</b><br>${esc(gamesMsg)}<br><span class="hint">ファイルを直接開いている場合（file://）は読み込めません。公開サイト上で開くか、「設定」タブから games.json を手動で読み込んでください。手動追加したゲームは使えます。</span></div>`;
+  }
+  const{items,total,rec,prof,searching,mode}=visibleItems();
+  let msg='';
+  if(searching)msg=`<p class="hint">「${esc(ui.query)}」の検索結果 ${total}件${total>items.length?`（先頭${items.length}件を表示）`:''}</p>`;
+  else if(prof.n<3)msg='<p class="hint">💡 3本以上のゲームに評価をつけると、相性%とおすすめ順が使えるようになります。</p>';
+  if(gamesStatus!=='error')note.innerHTML=msg;else note.insertAdjacentHTML('beforeend',msg);
+  let emptyMsg='表示できるゲームがありません';
+  if(!searching&&gamesStatus!=='error'&&!allGames().length)emptyMsg='まだゲームデータがありません。README の手順でファミ通からの自動取得を設定するか、「設定」タブから手動で追加してください。';
+  else if(!searching&&!items.length&&allGames().length&&ui.state==='all'&&!ui.onlyUnrated)emptyMsg=`${ui.year==='ALL'?'':ui.year+'年'}${ui.month==='ALL'?'':ui.month+'月'}に発売のPS5ゲームは、データ内に見つかりませんでした。`;
+  if(!items.length){g.innerHTML=`<div class="empty" style="grid-column:1/-1">${esc(emptyMsg)}</div>`;return}
+  if(mode){
+    let html='',cur=null;
+    items.forEach(it=>{const[k,label]=groupHead(it,mode);if(k!==cur){cur=k;html+=`<h3 class="gh">${esc(label)}</h3>`}html+=cardHtml(it,rec,prof)});
+    g.innerHTML=html;return;
+  }
+  g.innerHTML=items.map(it=>cardHtml(it,rec,prof)).join('');
+}
+
+/* ---- my ratings ---- */
+function renderMine(m){
+  let rs=entries().filter(r=>ui.mineF==='all'||(ui.mineF==='played'&&(r.played||r.score>0))||(ui.mineF==='fav'&&r.fav)||(ui.mineF==='want'&&r.want)||(ui.mineF==='unrated'&&r.played&&!(r.score>0)));
+  rs.sort((a,b)=>ui.mySort==='high'?b.score-a.score||(b.updated_at||'').localeCompare(a.updated_at||''):(b.updated_at||'').localeCompare(a.updated_at||''));
+  m.innerHTML=`<div class="stick"><div class="toolbar"><select id="mySort"><option value="new" ${ui.mySort==='new'?'selected':''}>新しい順</option><option value="high" ${ui.mySort==='high'?'selected':''}>高評価順</option></select>
+    <select id="mineF"><option value="all">すべて</option><option value="played" ${ui.mineF==='played'?'selected':''}>プレイ済み</option><option value="want" ${ui.mineF==='want'?'selected':''}>気になる（今後遊びたい）</option><option value="fav" ${ui.mineF==='fav'?'selected':''}>お気に入り</option><option value="unrated" ${ui.mineF==='unrated'?'selected':''}>プレイ済み・未評価</option></select>
+    <button class="btn" id="colBtn2">表示: ${ui.cols}列</button>
+    <span class="hint">${rs.length}本</span></div></div>
+    <div class="grid" id="mgrid" style="--cols:${ui.cols}">${rs.length?rs.map(r=>`<div class="card item" data-id="${esc(r.id)}">
+      <div class="cover ${r.cover?'':'nocover'}">${coverImg(r.cover)}${r.score>0?`<span class="score">${r.score}</span>`:''}</div>
+      <div class="cbody"><div class="ctitle">${esc(r.title)}</div><div class="meta">${esc([(r.genres||[]).slice(0,3).join(' / '),r.developer].filter(Boolean).join(' ・ '))}</div><div class="bd">${r.release?`<span class="badge date">${esc(fmtDate(r.release))}</span>`:''}${r.release?`<span class="badge price">${esc(r.release.slice(0,4)+'年'+(+r.release.slice(5,7))+'月発売')}</span>`:''}</div>${ctrlHtml(r.id)}</div></div>`).join(''):'<div class="empty" style="grid-column:1/-1">該当するゲームがありません。「発売月」タブの一覧から評価・気になる・プレイ済み・お気に入りを付けましょう。</div>'}</div>`;
+  $('#mySort').onchange=e=>{ui.mySort=e.target.value;renderMine(m)};
+  $('#mineF').onchange=e=>{ui.mineF=e.target.value;renderMine(m)};
+  $('#colBtn2').onclick=()=>{ui.cols=ui.cols===2?1:2;$('#colBtn2').textContent='表示: '+ui.cols+'列';$('#mgrid').style.setProperty('--cols',ui.cols)};
+  $('#mgrid').onclick=e=>{if(gridClick(e))return;if(!e.target.closest('.cover,.ctitle'))return;const c=e.target.closest('.card');if(c)openModal(c.dataset.id)};
+  $('#mgrid').onchange=gridChange;
+}
+
+/* ---- taste ---- */
+function renderTaste(m){
+  const prof=buildProfile();
+  if(prof.n<3){m.innerHTML=`<div class="panel"><h2>好み分析</h2><p class="hint">評価が${prof.n}件です。3件以上つけると、好きな/苦手なジャンル・メーカーなどを集計します。</p></div>`;return}
+  const ents=Object.entries(prof.w).filter(([,e])=>e.count>=1.2).map(([k,e])=>({k,label:k.slice(2),kind:KIND[k[0]]||'',w:e.weight}));
+  const pos=ents.filter(e=>e.w>0).sort((a,b)=>b.w-a.w).slice(0,8);
+  const neg=ents.filter(e=>e.w<0).sort((a,b)=>a.w-b.w).slice(0,8);
+  const mx=Math.max(.5,...ents.map(e=>Math.abs(e.w)));
+  const bars=(arr,cls)=>arr.length?`<div class="bars">${arr.map(e=>`<div class="bar-r"><span>${esc(e.label)} <span class="hint">${e.kind}</span></span><div class="track"><div class="fill ${cls}" style="width:${Math.min(100,Math.abs(e.w)/mx*100)}%"></div></div><span class="hint">${e.w>0?'+':''}${e.w.toFixed(2)}</span></div>`).join('')}</div>`:'<p class="hint">まだ該当なし</p>';
+  const dist=Array(10).fill(0);activeRatings().forEach(r=>dist[r.score-1]++);
+  const dmax=Math.max(1,...dist);
+  const py=(ui.promptYM||T0);
+  const pm=ui.promptYM?ui.promptYM.month:T0.month;
+  m.innerHTML=`
+  <div class="panel"><h2>あなたの評価サマリー</h2>
+    <p>評価数 <b>${prof.n}</b> 本 ／ 平均 <b>${prof.mean.toFixed(2)}</b></p>
+    <div style="display:flex;gap:6px;align-items:flex-end;height:80px">${dist.map((c,i)=>`<div style="flex:1;text-align:center"><div style="background:var(--accent);height:${c/dmax*60}px;border-radius:4px 4px 0 0;min-height:${c?3:0}px"></div><div class="hint">${i+1}</div></div>`).join('')}</div>
+  </div>
+  <div class="two"><div class="panel"><h2>好きな傾向 👍</h2>${bars(pos,'pos')}</div><div class="panel"><h2>苦手な傾向 👎</h2>${bars(neg,'neg')}</div></div>
+  <div class="panel"><h2>他のAIに分析してもらう</h2>
+    <p class="hint">下のプロンプトをコピーして、ChatGPT・Gemini・Claudeなど好きなAIに貼り付けてください。評価データ込みなので、どのAIでも同じ分析ができます。</p>
+    <div class="row" style="margin-bottom:8px">
+      <select id="pYear">${yearOptions(py.year,false)}</select>
+      <select id="pMonth">${Array.from({length:12},(_,i)=>`<option value="${i+1}" ${i+1===pm?'selected':''}>${i+1}月</option>`).join('')}</select>
+      <button class="btn pri" id="mkPrompt">プロンプトを作る</button>
+      <button class="btn" id="cpPrompt">コピー</button>
+    </div>
+    <div class="field"><textarea id="promptOut" readonly placeholder="「プロンプトを作る」を押してください"></textarea></div>
+  </div>`;
+  $('#mkPrompt').onclick=()=>{
+    const y=+$('#pYear').value,mo=+$('#pMonth').value;ui.promptYM={year:y,month:mo};
+    const items=allGames().filter(g=>g.release.startsWith(ymKey(y,mo)));
+    $('#promptOut').value=items.length?buildPrompt(items,y,mo,pos,neg):`${y}年${mo}月のゲームデータがありません。`;
+  };
+  $('#cpPrompt').onclick=async()=>{
+    const v=$('#promptOut').value;if(!v)return;
+    try{await navigator.clipboard.writeText(v)}catch(e){$('#promptOut').select();document.execCommand('copy')}
+    toast('コピーしました');
+  };
+}
+function buildPrompt(items,y,mo,pos,neg){
+  const rs=activeRatings().map(r=>({title:r.title,score:r.score,memo:r.memo,favorite:!!r.fav,genres:r.genres,tags:r.tags,developer:r.developer||'',series:r.series||''}));
+  const cand=items.filter(it=>!isPlayed(it.id)).sort((a,b)=>a.release.localeCompare(b.release));
+  return`あなたはゲーム（PS5）推薦のアシスタントです。以下の「私の評価データ」から好みを分析し、「候補リスト」から私に合うゲームを選んでください。
+
+# 評価データの読み方
+- score は1〜10（10が最高）、memoは私の一言メモ。genres/tags/developer/series はゲームの特徴。
+- 平均評価: ${buildProfile().mean.toFixed(2)}（これより高いゲームが「好き」、低いゲームが「合わなかった」）
+
+# 集計済みの傾向（参考）
+- 好き: ${pos.map(e=>e.label).join('、')||'なし'}
+- 苦手: ${neg.map(e=>e.label).join('、')||'なし'}
+
+# 私の評価データ（JSON）
+${JSON.stringify(rs)}
+
+# 候補リスト（${y}年${mo}月発売のPS5ゲーム・未プレイのみ）
+${cand.map(it=>`- ${titleOf(it)} | 発売日:${it.release}${isHintRegion(it.region)?'(海外)':''} | ${it.genres.join('/')} | メーカー:${it.developer||'-'}${it.series?' | シリーズ:'+it.series:''} | 価格:${it.price||'未定'}${isWant(it.id)?' | ★気になる(優先して検討)':''}`).join('\n')}
+
+# お願い
+1. 私の好みの特徴を3行で要約してください。
+2. 候補から、合いそうな順に5本を選び、発売日と理由を各1〜2文で書いてください。
+3. 苦手傾向に当たりそうで注意が必要な注目作があれば1〜2本挙げてください。
+4. 知らないタイトルや情報が曖昧なものは、推測せず「不明」と書いてください。`;
+}
+
+/* ---- settings ---- */
+function renderSettings(m){
+  const st={ok:'✅ games.json を読み込み済み',imported:'📥 手動で読み込んだ games.json を使用中',error:'⚠ 読み込めていません',loading:'読み込み中…'}[gamesStatus];
+  const n=(GAMES.games||[]).length;
+  m.innerHTML=`
+  <div class="panel"><h2>🎮 ゲームデータ</h2>
+    <p>${st}${gamesStatus==='error'?`<br><span class="hint">${esc(gamesMsg)}</span>`:''}</p>
+    <p class="hint">${n}本${GAMES.generated_at?' ／ 更新: '+esc(GAMES.generated_at.replace('T',' ').slice(0,16))+' UTC':''}${GAMES.window?' ／ 範囲: '+esc(GAMES.window.from+' 〜 '+GAMES.window.to):''}</p>
+    <div class="row"><button class="btn" id="reloadG">再読込</button>
+    <label class="btn">games.json を手動で読み込む<input type="file" id="impG" accept=".json,application/json" hidden></label></div>
+    <p class="hint">games.json は GitHub Actions がファミ通.comのPS5発売日スケジュールから自動更新します（README 参照）。</p>
+  </div>
+  <div class="panel"><h2>➕ ゲームを手動で追加</h2>
+    <p class="hint">ファミ通の一覧に無いゲーム・シリーズ名を付けたいゲーム等を追加できます（Drive同期・JSON書き出しに含まれます）。</p>
+    <div class="formgrid">
+      <div class="field"><label>タイトル *</label><input id="cgName" maxlength="100"></div>
+      <div class="field"><label>発売日 *</label><input id="cgDate" type="date"></div>
+      <div class="field"><label>ジャンル（カンマ区切り）</label><input id="cgGenres" placeholder="RPG, アクション"></div>
+      <div class="field"><label>開発元</label><input id="cgDev"></div>
+      <div class="field"><label>シリーズ</label><input id="cgSeries"></div>
+      <div class="field"><label>カバー画像URL（任意）</label><input id="cgCover" placeholder="https://..."></div>
+    </div>
+    <div class="row"><button class="btn pri" id="cgAdd">追加</button></div>
+  </div>
+  <div class="panel"><h2>☁ Google Drive 同期</h2>
+    <p class="hint">評価データを Drive の <code>${DRIVE_NAME}</code> に自動保存します（このアプリが作ったファイルだけにアクセスする権限）。デバイス間で同じデータを使えます。</p>
+    <div class="field"><label>Google OAuth クライアントID</label><input id="gcid" placeholder="xxxx.apps.googleusercontent.com" value="${esc(settings.google_client_id)}"></div>
+    <div class="row"><button class="btn pri" id="gConnect">連携 / 今すぐ同期</button>
+    ${settings.drive_linked?'<button class="btn danger" id="gOff">連携を解除</button>':''}</div>
+    <p class="hint">クライアントIDは設定済みなので、そのまま「連携 / 今すぐ同期」を押せます（別のIDを使う場合のみ書き換え）。公開サイト（github.io）で開いたときだけ連携できます。</p>
+  </div>
+  <div class="panel"><h2>💾 データのバックアップ</h2>
+    <div class="row"><button class="btn" id="exp">JSONを書き出す</button>
+    <label class="btn">JSONを読み込む（統合）<input type="file" id="imp" accept=".json,application/json" hidden></label></div>
+    <p class="hint">書き出したJSONはそのまま他のAIに渡せます。読み込みは「新しい方を採用」で統合されます。</p>
+  </div>`;
+  $('#reloadG').onclick=()=>loadGames();
+  $('#impG').onchange=async e=>{const f=e.target.files[0];if(!f)return;
+    try{const j=JSON.parse(await f.text());if(!j||!Array.isArray(j.games))throw new Error('games.json の形式ではありません');
+      lsSet(LS_GAMES,j);GAMES=j;gamesStatus='imported';rebuildIndex();toast(j.games.length+'本を読み込みました');render()}
+    catch(err){toast('読み込み失敗: '+err.message,4500)}};
+  $('#cgAdd').onclick=()=>{
+    const name=$('#cgName').value.trim(),date=$('#cgDate').value;
+    if(!name||!date){toast('タイトルと発売日は必須です');return}
+    const id='c'+Date.now().toString(36);
+    const cover=$('#cgCover').value.trim();
+    db.custom_games[id]={name,release:date,region:'JP',cover:/^https?:\/\//.test(cover)?cover:'',
+      genres:$('#cgGenres').value.split(/[,、，]/).map(s=>s.trim()).filter(Boolean),tags:[],
+      developer:$('#cgDev').value.trim(),series:$('#cgSeries').value.trim(),updated_at:nowIso()};
+    save();rebuildIndex();
+    ui.year=+date.slice(0,4);ui.month=+date.slice(5,7);ui.query='';ui.tab='month';
+    toast('追加しました');render();
+  };
+  $('#gConnect').onclick=async()=>{settings.google_client_id=$('#gcid').value.trim();saveSettings();if(await driveSync(true))toast('Driveと同期しました')};
+  const off=$('#gOff');if(off)off.onclick=()=>{settings.drive_linked=false;saveSettings();gToken=null;driveFileId=null;setSync('off');renderSettings(m)};
+  $('#exp').onclick=downloadJson;
+  $('#imp').onchange=async e=>{const f=e.target.files[0];if(!f)return;
+    try{importJson(await f.text());toast('読み込みました');render()}catch(err){toast('読み込み失敗: '+err.message,4500)}};
+}
+
+/* ---- modal ---- */
+function itemById(id){
+  id=String(id);
+  if(index.has(id))return index.get(id);
+  const r=db.ratings[id];
+  if(!r)return null;
+  return normGame({id,name:r.title,native:r.title_native||'',cover:r.cover,genres:r.genres,tags:r.tags,developer:r.developer,series:r.series,release:r.release});
+}
+function openModal(id){
+  const it=itemById(id);if(!it)return;
+  const r=db.ratings[id];const rated=r&&!r.deleted;
+  let score=rated?(r.score||0):0;
+  const prof=buildProfile(),rc=recommend(it,prof);
+  const root=$('#modalRoot');
+  const sub=[it.name&&it.name!==titleOf(it)?it.name:'',it.developer,it.series?'シリーズ: '+it.series:'',it.price].filter(Boolean).join(' ・ ');
+  root.innerHTML=`<div class="ov" id="ov"><div class="modal">
+    <div class="mhead"><div class="mc">${coverImg(it.cover)}</div>
+      <div style="min-width:0"><h2>${esc(titleOf(it))}</h2>
+        <div class="meta">${esc(sub)}</div>
+        <p style="margin:6px 0 0"><b>${esc(fmtFull(it.release))}</b> <span class="hint">PS5${it.region?' ／ '+esc(regionNote(it.region)):''}</span></p>
+        <div style="margin:8px 0">${it.genres.map(g=>`<span class="pill">${esc(g)}</span>`).join('')}${it.tags.map(t=>`<span class="pill">#${esc(t)}</span>`).join('')}</div>
+        ${prof.n>=3&&rc.match!=null?`<div class="reason">相性 ${rc.match}%${rc.reasons.length?'　◎ '+esc(rc.reasons.join('・')):''}${rc.cons.length?'　△ '+esc(rc.cons.join('・')):''}</div>`:''}
+        ${it.url?`<p><a href="${esc(it.url)}" target="_blank" rel="noopener" style="color:var(--accent2)">ファミ通で開く ↗</a></p>`:''}
+      </div></div>
+    <div class="mbody">
+      ${it.desc?`<div class="desc">${esc(it.desc)}${it.desc.length>=400?'…':''}</div>`:''}
+      <h3>あなたの評価（10段階）</h3>
+      <div class="scores" id="scores">${Array.from({length:10},(_,i)=>`<button data-s="${i+1}" class="${score===i+1?'on':''}">${i+1}</button>`).join('')}</div>
+      <div class="field"><label>一言メモ</label><input id="memo" maxlength="140" placeholder="感想を一言" value="${esc(rated?r.memo:'')}"></div>
+      <div class="row" style="margin-bottom:10px"><label class="chk"><input type="checkbox" id="mQ" ${isWant(id)?'checked':''}> ☆ 気になる</label><label class="chk"><input type="checkbox" id="mW" ${isPlayed(id)?'checked':''}> プレイ済み</label><label class="chk"><input type="checkbox" id="mF" ${isFav(id)?'checked':''}> ♥ お気に入り</label></div>
+      <div class="row"><button class="btn pri" id="mSave">保存</button>${rated?'<button class="btn danger" id="mDel">記録を削除</button>':''}${it.custom?'<button class="btn danger" id="mDelGame">このゲーム自体を削除（手動追加分）</button>':''}<button class="btn" id="mClose">閉じる</button></div>
+    </div></div></div>`;
+  const close=()=>{root.innerHTML='';document.removeEventListener('keydown',onKey)};
+  const onKey=e=>{if(e.key==='Escape')close()};
+  document.addEventListener('keydown',onKey);
+  $('#ov').onclick=e=>{if(e.target.id==='ov')close()};
+  $('#mClose').onclick=close;
+  $('#scores').onclick=e=>{const b=e.target.closest('button');if(!b)return;score=+b.dataset.s;[...$('#scores').children].forEach(x=>x.classList.toggle('on',+x.dataset.s===score))};
+  $('#mSave').onclick=()=>{
+    upsert(it,{score,memo:$('#memo').value.trim(),played:$('#mW').checked||score>0,fav:$('#mF').checked,want:$('#mQ').checked&&!($('#mW').checked||score>0)});
+    toast('保存しました');close();render();
+  };
+  const del=$('#mDel');if(del)del.onclick=()=>{if(confirm('このゲームの記録（評価・メモ・気になる・プレイ済み・お気に入り）を削除しますか？')){delRating(id);close();render()}};
+  const dg=$('#mDelGame');if(dg)dg.onclick=()=>{if(confirm('手動で追加したこのゲームを一覧から削除しますか？（評価の記録は残ります）')){
+    db.custom_games[id]={...db.custom_games[id],deleted:true,updated_at:nowIso()};save();rebuildIndex();close();render()}};
+}
+
+/* =============== boot =============== */
+function setHH(){document.documentElement.style.setProperty('--hh',$('header').offsetHeight+'px')}
+window.addEventListener('resize',setHH);
+render();setHH();
+loadGames();
+if(settings.drive_linked&&settings.google_client_id){
+  driveSync(false);   // 静かに再接続を試みる（失敗しても「要再接続」表示のまま）
+}
+</script>
+</body>
+</html>
