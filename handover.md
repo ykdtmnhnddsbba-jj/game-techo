@@ -36,6 +36,13 @@
 - 取得範囲は24か月前〜12か月先。games.json は約2,300本、ジャンルは約2,290本に入っている（好み分析のため過去分を広げた）。
 - 検証できていない点: スマホ実機での見た目、評価が数百件になったときの動作、games.json（約1MB）の読み込み速度。
 
+## PSN連携（2026-11-08 追加・Actionsでの実動作は未確認）
+- `scripts/fetch-psn.mjs` + `scripts/psn-lib.mjs`（照合・暗号化の純粋関数、テスト済み）。ワークフローで famitsu 取得の後に実行（`continue-on-error`、`PSN_STATE_KEY` Secret があるときだけ）。
+- 出力: `psn-played.json`（`{generated_at, ids:[ファミ通ID]}` のみ）/ `psn-cache.json`（PSN concept→ファミ通ID。見つからなければ id:null で30日再検索しない）/ `psn-state.enc`（暗号化済みリフレッシュトークン）。
+- games.json に無いゲームはファミ通検索で追加（`added_by:'psn'`。fetch-famitsu のマージで保持される）。**ファミ通の検索URL（既定 `/search/?type=game&q={q}`）と結果HTMLは未検証**。サンドボックスからファミ通に繋がらず確認できていない。初回Actionsログで「検索結果0件」が出たら、`FAMITSU_SEARCH` か `parseSearch` を直す。
+- index.html の `applyPsn()` が読み込み時に未プレイ・未削除・`psn_off`なしの記録だけ `played:true, psn:true` にする。手動で外すと `psn_off:true`。
+- 未検証: `psn-api` の `getUserPlayedGames` の実レスポンス（nextOffset 等）、PSN名とファミ通名の照合率。
+
 ## 次の候補
 - Switch 2 / PS4 など他機種の追加（`/schedule/switch2/` などは未確認）。
 - シリーズ名の推定（タイトルの共通プレフィックスから）で好み分析を強化。

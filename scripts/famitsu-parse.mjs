@@ -66,8 +66,26 @@ export function parseDetail(html) {
   const genre = dd('ジャンル');
   const maker = dd('メーカー');
   const none = (v) => !v || /^[-ー－―]+$/.test(v);
+  const rd = dd('発売日').match(/(20\d{2}|19\d{2})年(\d{1,2})月(\d{1,2})日/);
+  const img = (String(html).match(/url=(https:\/\/image\.kagali\.kgl-systems\.io\/item\/[^?&"'\s]+)/) || [])[1] || '';
   return {
     genres: none(genre) ? [] : genre.split(/\s*[\/／]\s*/).map((x) => x.trim()).filter(Boolean),
     maker: none(maker) ? '' : maker,
+    release: rd ? `${rd[1]}-${pad2(rd[2])}-${pad2(rd[3])}` : '',
+    cover: img ? `${img}?w=400&h=400&func=bound` : '',
   };
+}
+
+// 検索結果ページのHTML -> [{id,title}]（/game/title/ID へのリンクを集める。レイアウトに依存しない読み方）
+export function parseSearch(html) {
+  const out = new Map();
+  for (const a of String(html).matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
+    const href = (a[1].match(/href="([^"]+)"/) || [])[1] || '';
+    const m = href.match(/\/game\/title\/(\d+)/);
+    if (!m) continue;
+    const alt = (a[2].match(/<img[^>]*\balt="([^"]*)"/) || [])[1];
+    const title = cleanTitle(decode(alt || '') || stripTags(a[2]));
+    if (title && !out.has(m[1])) out.set(m[1], title);
+  }
+  return [...out].map(([id, title]) => ({ id, title }));
 }

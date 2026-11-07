@@ -194,6 +194,23 @@ async function loadGames(){
     else{gamesStatus='error';gamesMsg=e.message}
   }
   rebuildIndex();render();
+  applyPsn();
+}
+// PSN のプレイ履歴（psn-played.json: ファミ通IDの一覧）から「プレイ済み」を自動チェック。
+// 自分で外したもの(psn_off)・削除したもの・すでにプレイ済みのものは触らない。評価やメモも変えない。
+async function applyPsn(){
+  if(gamesStatus==='error')return;
+  try{
+    const r=await fetch('psn-played.json',{cache:'no-cache'});if(!r.ok)return;
+    const j=await r.json();let n=0;
+    (j.ids||[]).forEach(id=>{
+      id=String(id);const it=index.get(id);if(!it)return;
+      const old=db.ratings[id];
+      if(old&&(old.deleted||old.psn_off||old.played||old.score>0))return;
+      upsert(it,{played:true,psn:true});n++;
+    });
+    if(n){toast('PSNのプレイ履歴から'+n+'本をプレイ済みにしました');render()}
+  }catch(e){/* ファイルが無い・壊れている場合は何もしない */}
 }
 
 /* =============== taste / recommend =============== */
@@ -246,7 +263,7 @@ function upsert(it,patch){
   if(cur.played&&!wasPlayed&&patch.want===undefined)cur.want=false;   // 遊んだら「気になる」は自動で外す
   cur.rated_at=cur.rated_at||nowIso();cur.updated_at=nowIso();
   if(!(cur.score>0)&&!cur.played&&!cur.fav&&!cur.want&&!cur.memo){
-    if(old)db.ratings[it.id]={...old,deleted:true,updated_at:nowIso()};
+    if(old)db.ratings[it.id]={...old,...(cur.psn_off?{psn_off:true}:{}),deleted:true,updated_at:nowIso()};
   }else db.ratings[it.id]=cur;
   save();
 }
@@ -278,7 +295,7 @@ function gridClick(e){
     upsert(it,{want:!isWant(id)});
   }else if(b.dataset.a==='w'){
     if(isRated(id)){toast('評価済みのゲームはプレイ済みです');return true}
-    upsert(it,{played:!isPlayed(id)});
+    upsert(it,isPlayed(id)?{played:false,psn_off:true}:{played:true});   // 自分で外したら PSN の自動チェックで戻さない
   }else upsert(it,{fav:!isFav(id)});
   refreshCard(q.closest('.card'),id);return true;
 }

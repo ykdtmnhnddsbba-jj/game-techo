@@ -98,7 +98,7 @@ async function main() {
   // 3) 前回分とマージ（期間外・取得失敗の月は前回の内容を残す）
   const newIds = new Set(games.map((g) => g.id));
   const kept = (prev.games || []).filter((g) => !newIds.has(g.id) && !excluded.has(g.id)
-    && (g.release < fromIso || g.release >= toIso || !okMonths.has(g.release.slice(0, 7))));
+    && (g.added_by || g.release < fromIso || g.release >= toIso || !okMonths.has(g.release.slice(0, 7))));
   const merged = [...kept, ...games].sort((a, b) => a.release.localeCompare(b.release) || a.name.localeCompare(b.name, 'ja'));
   const excludedIds = [...excluded].sort();
 

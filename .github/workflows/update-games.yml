@@ -12,6 +12,8 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      PSN_STATE_KEY: ${{ secrets.PSN_STATE_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,9 +21,18 @@ jobs:
           node-version: 20
       - name: Fetch PS5 release schedule from Famitsu
         run: node scripts/fetch-famitsu.mjs
+      - name: Mark played games from PSN (optional)
+        if: ${{ env.PSN_STATE_KEY != '' }}
+        continue-on-error: true      # PSN側が失敗しても games.json の更新は続ける
+        env:
+          PSN_STATE_KEY: ${{ secrets.PSN_STATE_KEY }}
+          PSN_NPSSO: ${{ secrets.PSN_NPSSO }}
+        run: |
+          npm install --no-save --no-audit --no-fund psn-api
+          node scripts/fetch-psn.mjs
       - name: Commit if changed
         run: |
-          git add games.json
+          for f in games.json psn-played.json psn-cache.json psn-state.enc; do [ -f "$f" ] && git add "$f"; done
           if git diff --cached --quiet; then
             echo "no changes"
             exit 0
