@@ -99,12 +99,14 @@ label.chk{display:flex;gap:6px;align-items:center;color:var(--sub);font-size:14p
 .tpanel.done{border:2px solid #f0b429}
 .tpanel.done .m{color:#f6d365}.tpanel.done .b i{background:linear-gradient(90deg,#f6d365,#e0a82e)}
 .card.has-tro .ctitle{padding-right:112px}
+.card.has-tro .cbody{min-height:104px}.card.has-plat .cbody{min-height:128px}.card.has-tro .qc{margin-top:auto}
 @media(max-width:560px){
  .tpanel{min-width:0;max-width:96px;padding:4px 7px 5px;top:6px;right:6px;border-radius:9px}
  .tpanel .m{font-size:15px}.tpanel .c{display:none}.tpanel .b{margin-top:3px;height:4px}
  .tpanel .pl{margin-top:4px;font-size:11px;padding:1px 7px}.tpanel .pl.no{display:none}
  .tpanel .pl.got{font-size:13px;padding:2px 8px}.tpanel .pl.got .t{display:none}
  .card.has-tro .ctitle{padding-right:76px}
+ .card.has-tro .cbody{min-height:92px}.card.has-plat .cbody{min-height:100px}
 }
 .badge.date{background:#232a55;color:#c4ccff}
 .badge.price{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
@@ -563,7 +565,7 @@ function trophyChip(id){
   const tot=t.d.reduce((a,b)=>a+b,0),have=t.e.reduce((a,b)=>a+b,0);
   return`<div class="tpanel ${done?'done':''}"><div class="m">🏆 ${t.p}%</div><div class="c">${have}/${tot}個</div><div class="b"><i style="width:${t.p}%"></i></div>${got?'<span class="pl got">💎<span class="t"> プラチナ取得</span></span>':plat?'<span class="pl no">プラチナ未</span>':''}</div>`;
 }
-const troCls=id=>TROPHY[String(id)]?'has-tro':'';
+const troCls=id=>{const t=TROPHY[String(id)];return t?(t.e[3]>0?'has-tro has-plat':'has-tro'):''};
 const isTroDone=id=>{const t=TROPHY[String(id)];return !!t&&t.p>=100};
 function cardHtml(it,rec,prof){
   const r=db.ratings[it.id],rated=isRated(it.id);
