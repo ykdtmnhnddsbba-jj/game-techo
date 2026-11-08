@@ -100,7 +100,14 @@ async function main() {
     searches++;
     try {
       const q = encodeURIComponent(p.names[p.names.length > 1 ? 1 : 0].replace(/[®™©]/g, '').trim());
-      const cands = parseSearch(await famitsu(SEARCH.replace('{q}', q)));
+      const html = await famitsu(SEARCH.replace('{q}', q));
+      const cands = parseSearch(html);
+      if (!cands.length && emptyStreak === 0) {   // 診断: 検索ページの中身を少しだけログに出す
+        const hrefs = [...new Set([...html.matchAll(/href="([^"]*(?:game|title)[^"]*)"/g)].map((m) => m[1]))].slice(0, 8);
+        console.warn(`  [診断] 長さ=${html.length} title=${(html.match(/<title>([^<]*)/) || [])[1]} /game/title出現=${(html.match(/game\/title/g) || []).length} 総リンク=${(html.match(/<a\b/g) || []).length} 例=${JSON.stringify(hrefs)}`);
+        const i = html.indexOf('game/title'); if (i >= 0) console.warn('  [診断] 周辺: ' + html.slice(Math.max(0, i - 200), i + 300).replace(/\s+/g, ' '));
+        else console.warn('  [診断] 本文: ' + html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<[^>]+>/g, ' ').replace(/\s+/g, ' ').slice(0, 300));
+      }
       if (cands.length) { working = true; emptyStreak = 0; } else emptyStreak++;
       if (!cands.length && emptyStreak <= 3) console.warn(`  検索結果0件: ${p.names[0]}`);
       if (emptyStreak >= 5) console.warn('  検索結果が5回連続で0件のため中断します（検索URLかHTML構造の確認が必要な可能性）');
