@@ -138,7 +138,7 @@ async function main() {
     }
   }
 
-  console.log(`照合: ${ids.size}本 / games.json に追加 ${added.length}本 / 見つからず ${unfound}本 / 今回の検索 ${searches}回`);
+  console.log(`照合: ${ids.size}本 / games.json に追加 ${added.length}本 / 見つからず ${unfound}本`);
   if (added.length) {
     games.sort((a, b) => a.release.localeCompare(b.release) || a.name.localeCompare(b.name, 'ja'));
     await fs.writeFile(GAMES, JSON.stringify(gamesFile, null, 1) + '\n');
