@@ -583,8 +583,8 @@ function renderGridRaw(){
 }
 
 /* ---- my ratings ---- */
-function mineCard(r){return`<div class="card item" data-id="${esc(r.id)}">
-      <div class="cover ${r.cover?'':'nocover'}">${coverImg(r.cover)}${r.score>0?`<span class="score">${r.score}</span>`:''}</div>
+function mineCard(r){const cv=r.cover||(index.get(String(r.id))||{}).cover||'';return`<div class="card item" data-id="${esc(r.id)}">
+      <div class="cover ${cv?'':'nocover'}">${coverImg(cv)}${r.score>0?`<span class="score">${r.score}</span>`:''}</div>
       <div class="cbody"><div class="ctitle">${esc(r.title)}</div><div class="meta">${esc([(r.genres||[]).slice(0,3).join(' / '),r.developer].filter(Boolean).join(' ・ '))}</div><div class="bd">${r.release?`<span class="badge date">${esc(fmtDate(r.release))}</span>`:''}${r.release?`<span class="badge price">${esc(r.release.slice(0,4)+'年'+(+r.release.slice(5,7))+'月発売')}</span>`:''}</div>${ctrlHtml(r.id)}</div></div>`}
 function mineHtml(rs){
   if(ui.mySort!=='group')return rs.map(mineCard).join('');
