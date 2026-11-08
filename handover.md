@@ -59,3 +59,4 @@
 - PSN: 153本中144本を照合（残り: プロサッカークラブをつくろう！/龍が如く8外伝/NFS Payback/FIFA 22/ASTRO's PLAYROOM/十三機兵防衛圏/MH:World/DQヒーローズ闇竜）。別名は `psn-aliases.enc`（鍵=PSN_STATE_KEY）。未照合はファミ通の月別スケジュールに載っていない or 名前が大きく違うもの。
 - マイ評価に「点数別（10→1）」表示を追加（既定）。アニメ手帖と同じ作り。
 - ワークフローの push は pull --rebase で3回まで再試行（別セッションの push と競合して失敗した前例あり）。
+- トロフィー進捗(2026-11-08追加): `getUserTitles`（Accept-Language: ja-JP でトロフィータイトル名を日本語に）→ PSNプレイ履歴の名前で紐付け → `psn-trophies.json`。195タイトル中121本を紐付け（残りはPS3/Vita・DB外のゲーム中心）。UIは `trophyHtml()` と マイ評価の絞り込み `trodone`/`tropend`。
