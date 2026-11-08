@@ -89,6 +89,7 @@ label.chk{display:flex;gap:6px;align-items:center;color:var(--sub);font-size:14p
 .item .ctitle{font-size:15px;cursor:pointer;-webkit-line-clamp:1}
 .item .ctitle:hover{color:var(--accent2)}
 .item .bd{display:flex;gap:6px;flex-wrap:wrap;min-height:0}
+.tro{margin:6px 0 2px;font-size:11px;color:var(--sub)}.tro .bar{height:5px;border-radius:3px;background:var(--panel2);overflow:hidden;margin-top:3px}.tro .bar i{display:block;height:100%;background:#7aa2ff}.tro.done .bar i{background:#e0b341}.tro b{color:var(--text)}
 .badge.date{background:#232a55;color:#c4ccff}
 .badge.price{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
 .qc{display:flex;flex-direction:column;gap:7px;margin-top:2px}
@@ -210,6 +211,7 @@ async function applyPsn(){
       upsert(it,{played:true,psn:true});n++;
     });
     if(n){toast('PSNのプレイ履歴から'+n+'本をプレイ済みにしました');render()}
+    try{const tr=await fetch('psn-trophies.json',{cache:'no-cache'});if(tr.ok){TROPHY=(await tr.json()).trophies||{};render()}}catch(e){}
   }catch(e){/* ファイルが無い・壊れている場合は何もしない */}
 }
 
@@ -538,6 +540,14 @@ function groupHead(it,mode){
   const y=+it.release.slice(0,4),mo=+it.release.slice(5,7),d=+it.release.slice(8,10);
   return mode==='month'?[it.release.slice(0,7),`${y}年${mo}月発売`]:[it.release,`${mo}月${d}日(${WD[new Date(it.release+'T00:00:00Z').getUTCDay()]})発売`];
 }
+let TROPHY={};
+function trophyHtml(id){
+  const t=TROPHY[String(id)];if(!t)return'';
+  const done=t.p>=100,plat=t.d[3]>0,got=t.e[3]>0;
+  const tot=t.d.reduce((a,b)=>a+b,0),have=t.e.reduce((a,b)=>a+b,0);
+  return`<div class="tro ${done?'done':''}">🏆 <b>${t.p}%</b>${done?' コンプ！':''}　${have}/${tot}個${plat?(got?'　💎プラチナ取得':'　プラチナ未取得'):''}<div class="bar"><i style="width:${t.p}%"></i></div></div>`;
+}
+const isTroDone=id=>{const t=TROPHY[String(id)];return !!t&&t.p>=100};
 function cardHtml(it,rec,prof){
   const r=db.ratings[it.id],rated=isRated(it.id);
   const rc=rec.get(it.id);
@@ -549,6 +559,7 @@ function cardHtml(it,rec,prof){
       <div class="ctitle">${esc(titleOf(it))}</div>
       <div class="meta">${esc(meta)}${it.avg?` ・ ★${it.avg}`:''}</div>
       <div class="bd"><span class="badge date ${isHintRegion(it.region)?'hint':''}" title="${esc(regionNote(it.region))}">${esc(fmtDate(it.release))}</span>${it.price?`<span class="badge price">${esc(it.price)}</span>`:''}</div>
+      ${isPlayed(it.id)?trophyHtml(it.id):''}
       ${showMatch?`<div class="reason">相性 ${rc.match}%${rc.reasons.length?'　◎ '+esc(rc.reasons.join('・')):''}</div>`:''}
       ${ctrlHtml(it.id)}
     </div></div>`;
@@ -585,17 +596,17 @@ function renderGridRaw(){
 /* ---- my ratings ---- */
 function mineCard(r){const cv=r.cover||(index.get(String(r.id))||{}).cover||'';return`<div class="card item" data-id="${esc(r.id)}">
       <div class="cover ${cv?'':'nocover'}">${coverImg(cv)}${r.score>0?`<span class="score">${r.score}</span>`:''}</div>
-      <div class="cbody"><div class="ctitle">${esc(r.title)}</div><div class="meta">${esc([(r.genres||[]).slice(0,3).join(' / '),r.developer].filter(Boolean).join(' ・ '))}</div><div class="bd">${r.release?`<span class="badge date">${esc(fmtDate(r.release))}</span>`:''}${r.release?`<span class="badge price">${esc(r.release.slice(0,4)+'年'+(+r.release.slice(5,7))+'月発売')}</span>`:''}</div>${ctrlHtml(r.id)}</div></div>`}
+      <div class="cbody"><div class="ctitle">${esc(r.title)}</div><div class="meta">${esc([(r.genres||[]).slice(0,3).join(' / '),r.developer].filter(Boolean).join(' ・ '))}</div><div class="bd">${r.release?`<span class="badge date">${esc(fmtDate(r.release))}</span>`:''}${r.release?`<span class="badge price">${esc(r.release.slice(0,4)+'年'+(+r.release.slice(5,7))+'月発売')}</span>`:''}</div>${trophyHtml(r.id)}${ctrlHtml(r.id)}</div></div>`}
 function mineHtml(rs){
   if(ui.mySort!=='group')return rs.map(mineCard).join('');
   const g={};rs.forEach(r=>{const k=r.score>0?r.score:0;(g[k]=g[k]||[]).push(r)});
   return Object.keys(g).map(Number).sort((a,b)=>b-a).map(k=>`<h3 class="gh">${k>0?k+'点':'評価なし（プレイ済み・気になる・お気に入りのみ）'}　<span class="hint">${g[k].length}本</span></h3>`+g[k].map(mineCard).join('')).join('');
 }
 function renderMine(m){
-  let rs=entries().filter(r=>ui.mineF==='all'||(ui.mineF==='played'&&(r.played||r.score>0))||(ui.mineF==='fav'&&r.fav)||(ui.mineF==='want'&&r.want)||(ui.mineF==='unrated'&&r.played&&!(r.score>0)));
+  let rs=entries().filter(r=>ui.mineF==='all'||(ui.mineF==='played'&&(r.played||r.score>0))||(ui.mineF==='fav'&&r.fav)||(ui.mineF==='want'&&r.want)||(ui.mineF==='unrated'&&r.played&&!(r.score>0))||(ui.mineF==='trodone'&&isTroDone(r.id))||(ui.mineF==='tropend'&&(r.played||r.score>0)&&TROPHY[String(r.id)]&&!isTroDone(r.id)));
   rs.sort((a,b)=>(ui.mySort==='high'||ui.mySort==='group')?b.score-a.score||(b.updated_at||'').localeCompare(a.updated_at||''):(b.updated_at||'').localeCompare(a.updated_at||''));
   m.innerHTML=`<div class="stick"><div class="toolbar"><select id="mySort"><option value="group" ${ui.mySort==='group'?'selected':''}>点数別（10→1）</option><option value="new" ${ui.mySort==='new'?'selected':''}>新しい順</option><option value="high" ${ui.mySort==='high'?'selected':''}>高評価順</option></select>
-    <select id="mineF"><option value="all">すべて</option><option value="played" ${ui.mineF==='played'?'selected':''}>プレイ済み</option><option value="want" ${ui.mineF==='want'?'selected':''}>気になる（今後遊びたい）</option><option value="fav" ${ui.mineF==='fav'?'selected':''}>お気に入り</option><option value="unrated" ${ui.mineF==='unrated'?'selected':''}>プレイ済み・未評価</option></select>
+    <select id="mineF"><option value="all">すべて</option><option value="played" ${ui.mineF==='played'?'selected':''}>プレイ済み</option><option value="want" ${ui.mineF==='want'?'selected':''}>気になる（今後遊びたい）</option><option value="fav" ${ui.mineF==='fav'?'selected':''}>お気に入り</option><option value="unrated" ${ui.mineF==='unrated'?'selected':''}>プレイ済み・未評価</option><option value="trodone" ${ui.mineF==='trodone'?'selected':''}>🏆 トロコン済み</option><option value="tropend" ${ui.mineF==='tropend'?'selected':''}>🏆 トロコン未達（プレイ済み）</option></select>
     <button class="btn" id="colBtn2">表示: ${ui.cols}列</button>
     <span class="hint">${rs.length}本</span></div></div>
     <div class="grid" id="mgrid" style="--cols:${ui.cols}">${rs.length?mineHtml(rs):'<div class="empty" style="grid-column:1/-1">該当するゲームがありません。「発売月」タブの一覧から評価・気になる・プレイ済み・お気に入りを付けましょう。</div>'}</div>`;

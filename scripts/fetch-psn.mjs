@@ -7,11 +7,12 @@
 // 公開ファイルに入れるのは「ファミ通のタイトルID」だけ（プレイ時間・日付は保存しません）。
 import fs from 'node:fs/promises';
 import { parseSchedule, parseDetail, NON_GAME } from './famitsu-parse.mjs';
-import { findGame, pickCandidate, suggest, encryptState, decryptState } from './psn-lib.mjs';
+import { findGame, pickCandidate, suggest, isSameTitle, encryptState, decryptState } from './psn-lib.mjs';
 
 const STATE = process.env.PSN_STATE_FILE || 'psn-state.enc';
 const CACHE = 'psn-cache.json';
 const OUT = 'psn-played.json';
+const TROPHIES = 'psn-trophies.json';
 const ALIASES = 'psn-aliases.enc', UNMATCHED = 'psn-unmatched.enc', SUGGEST = 'psn-suggest.enc';
 const GAMES = process.env.GAMES || 'games.json';
 const BASE = 'https://www.famitsu.com';
@@ -95,6 +96,31 @@ async function scanSchedules(windowFrom) {
   return ok ? rows : null;
 }
 
+// トロフィー進捗: getUserTitles（トロフィーのあるタイトル一覧）→ ファミ通IDに紐付け。公開ファイルには「ID → 進捗%・獲得/全体の数」だけを保存
+async function fetchTrophies(psn, tokens, played, resolved, games) {
+  const titles = [];
+  for (let offset = 0, i = 0; i < 30; i++) {
+    const r = await psn.getUserTitles({ accessToken: tokens.accessToken }, 'me', { limit: 800, offset });
+    titles.push(...(r.trophyTitles || []));
+    if (r.nextOffset == null || !r.trophyTitles?.length || r.nextOffset <= offset) break;
+    offset = r.nextOffset;
+  }
+  const out = {};
+  let nomatch = 0;
+  for (const t of titles) {
+    const name = t.trophyTitleName;
+    const p = played.find((x) => resolved.has(x.key) && x.names.some((n) => isSameTitle(name, n)));
+    const id = p ? resolved.get(p.key) : (findGame([name], games) ? String(findGame([name], games).id) : null);
+    if (!id) { nomatch++; continue; }
+    const e = t.earnedTrophies || {}, d = t.definedTrophies || {};
+    const rec = { p: t.progress ?? 0, e: [e.bronze || 0, e.silver || 0, e.gold || 0, e.platinum || 0], d: [d.bronze || 0, d.silver || 0, d.gold || 0, d.platinum || 0] };
+    const cur = out[id];
+    if (!cur || rec.p > cur.p) out[id] = rec;   // PS4/PS5の両方がある場合は進んでいる方
+  }
+  console.log(`トロフィー: ${titles.length}タイトル中 ${Object.keys(out).length}本を紐付け（未紐付け ${nomatch}）`);
+  return out;
+}
+
 async function main() {
   const psn = await import('psn-api');
   const tokens = await authenticate(psn);
@@ -108,6 +134,7 @@ async function main() {
   let aliases = {};   // 手動で用意した日本語名など: { <PSNのキー>: ['日本語名', ...] }（公開しないよう暗号化して保存）
   try { aliases = decryptState(await fs.readFile(ALIASES, 'utf8'), process.env.PSN_STATE_KEY); } catch { /* 無ければ空 */ }
   const matched = new Set();
+  const resolved = new Map();   // PSNのキー → ファミ通ID（トロフィーの紐付けに使う）
   const ids = new Set(), added = [], todo = [];
   let unfound = 0;
 
@@ -117,9 +144,9 @@ async function main() {
     p.orig = orig; p.pinned = extra.find((a) => /^#\d+$/.test(a))?.slice(1); p.names = [...orig, ...extra.filter((a) => !/^#\d+$/.test(a))];
     const sig = extra.join('|');
     const hit = findGame(p.names, games);
-    if (hit) { ids.add(String(hit.id)); matched.add(p.key); continue; }
+    if (hit) { ids.add(String(hit.id)); matched.add(p.key); resolved.set(p.key, String(hit.id)); continue; }
     const c = cache[p.key];
-    if (c?.id) { ids.add(String(c.id)); matched.add(p.key); continue; }                           // 以前の検索で見つかっている
+    if (c?.id) { ids.add(String(c.id)); matched.add(p.key); resolved.set(p.key, String(c.id)); continue; }                           // 以前の検索で見つかっている
     if (c && (c.alias || '') === sig && (Date.now() - Date.parse(c.checked)) / 86400e3 < RETRY_DAYS) { unfound++; continue; } // 見つからなかった → 30日は再検索しない（別名を足したら再検索）
     todo.push(p);
   }
@@ -142,7 +169,7 @@ async function main() {
           games.push(g); added.push(g);
         }
         cache[p.key] = { id: pick.id, checked: today() };
-        ids.add(pick.id); matched.add(p.key);
+        ids.add(pick.id); matched.add(p.key); resolved.set(p.key, pick.id);
       }
     }
   }
@@ -162,6 +189,11 @@ async function main() {
   }
   await fs.writeFile(CACHE, JSON.stringify(cache, null, 1) + '\n');
   const sorted = [...ids].sort((a, b) => (/^\d+$/.test(a) && /^\d+$/.test(b) ? +a - +b : /^\d+$/.test(a) ? -1 : /^\d+$/.test(b) ? 1 : a.localeCompare(b)));
+  try {
+    const trophies = await fetchTrophies(psn, tokens, played, resolved, games);
+    const prevT = await readJson(TROPHIES, { trophies: {} });
+    if (JSON.stringify(prevT.trophies) !== JSON.stringify(trophies)) await fs.writeFile(TROPHIES, JSON.stringify({ generated_at: new Date().toISOString(), trophies }) + '\n');
+  } catch (e) { console.warn('トロフィー取得に失敗（スキップ）:', e.message); }
   const prev = await readJson(OUT, { ids: [] });
   if (JSON.stringify(prev.ids) !== JSON.stringify(sorted)) await fs.writeFile(OUT, JSON.stringify({ generated_at: new Date().toISOString(), ids: sorted }) + '\n');
 }
