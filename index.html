@@ -157,7 +157,7 @@ let settings=Object.assign({google_client_id:'',drive_linked:false},lsGet(LS_SET
 const DEFAULT_CLIENT_ID='568813131190-9pb3hf0f3g3rbiglkq4nbk88g4eltk9p.apps.googleusercontent.com';
 if(!settings.google_client_id)settings.google_client_id=DEFAULT_CLIENT_ID;
 const T0={year:new Date().getFullYear(),month:new Date().getMonth()+1};
-const ui={tab:'month',year:T0.year,month:T0.month,sort:'auto',onlyUnrated:false,state:'all',
+const ui={viewKey:null,rank:new Map(),shown:new Set(),useMatch:false,tab:'month',year:T0.year,month:T0.month,sort:'auto',onlyUnrated:false,state:'all',
   query:'',mySort:'group',mineF:'all',cols:2,promptYM:null};
 
 function saveLocal(){db.updated_at=nowIso();lsSet(LS_DB,db)}
@@ -193,7 +193,7 @@ async function loadGames(){
     if(imp&&Array.isArray(imp.games)){GAMES=imp;gamesStatus='imported'}
     else{gamesStatus='error';gamesMsg=e.message}
   }
-  rebuildIndex();render();
+  rebuildIndex();ui.viewKey=null;render();
   applyPsn();
 }
 // PSN のプレイ履歴（psn-played.json: ファミ通IDの一覧）から「プレイ済み」を自動チェック。
@@ -279,6 +279,7 @@ function refreshCard(card,id){
   else if(s)s.remove();
   const rc=card.querySelector('.reason');if(rc&&sc>0)rc.remove();
   const q=card.querySelector('.qc');
+  const mi=q.querySelector('.qm');if(mi&&document.activeElement!==mi)mi.value=ok?(r.memo||''):'';
   q.querySelectorAll('.sb').forEach(x=>x.classList.toggle('on',+x.dataset.s===sc));
   q.querySelector('.qb.q').classList.toggle('on',isWant(id));
   q.querySelector('.qb.w').classList.toggle('on',isPlayed(id));
@@ -355,6 +356,7 @@ async function driveSync(interactive){
   if(syncing)return;syncing=true;setSync('busy');
   try{
     if(!gToken||Date.now()>gExp-60000)await driveAuth(interactive);
+    let remoteChanged=false;
     let id=driveFileId;
     if(!id){
       const q=encodeURIComponent(`name='${DRIVE_NAME}' and trashed=false`);
@@ -364,7 +366,13 @@ async function driveSync(interactive){
     }
     if(id){
       const r=await gFetch(`https://www.googleapis.com/drive/v3/files/${id}?alt=media`);
-      if(r.ok){const remote=await r.json();db=mergeDb(db,{ratings:remote.ratings||{},custom_games:remote.custom_games||{}});saveLocal();rebuildIndex()}
+      if(r.ok){
+        const remote=await r.json();
+        const before={r:db.ratings,c:db.custom_games};
+        db=mergeDb(db,{ratings:remote.ratings||{},custom_games:remote.custom_games||{}});saveLocal();rebuildIndex();
+        const diff=(a,b)=>[...new Set([...Object.keys(a),...Object.keys(b)])].some(k=>((a[k]||{}).updated_at||'')!==((b[k]||{}).updated_at||''));
+        remoteChanged=diff(before.r,db.ratings)||diff(before.c,db.custom_games);
+      }
     }
     const body=JSON.stringify(exportObj(),null,1);
     if(id){
@@ -379,7 +387,11 @@ async function driveSync(interactive){
       id=(await r.json()).id;
     }
     driveFileId=id;settings.drive_linked=true;saveSettings();setSync('ok');
-    if(ui.tab!=='settings')render();
+    // 画面は作り直さない（スクロール位置・入力中の文字・並びを保つ）。他端末の変更があったときだけ、表示中のカードをその場で更新する
+    if(remoteChanged){
+      document.querySelectorAll('#main .card[data-id]').forEach(c=>refreshCard(c,c.dataset.id));
+      toast('他の端末の変更を反映しました（並びは再読込・条件変更のときに更新）');
+    }
     return true;
   }catch(e){setSync(interactive?'bad':'need');if(interactive)toast(e.message,5000);console.warn(e);return false}
   finally{syncing=false}
@@ -486,18 +498,39 @@ function visibleItems(){
     items=allGames().filter(g=>g.release&&(ui.year==='ALL'||g.release.startsWith(String(ui.year)))&&(ui.month==='ALL'||g.release.slice(5,7)===pad2(ui.month)));
   }
   const rec=new Map(items.map(it=>[it.id,recommend(it,prof)]));
-  if(ui.onlyUnrated)items=items.filter(it=>!isRated(it.id));
-  if(ui.state==='unplayed')items=items.filter(it=>!isPlayed(it.id));
-  else if(ui.state==='played')items=items.filter(it=>isPlayed(it.id));
-  else if(ui.state==='want')items=items.filter(it=>isWant(it.id));
-  else if(ui.state==='fav')items=items.filter(it=>isFav(it.id));
+  // 並びと絞り込みは「画面を開いた・読み込んだ・条件や月を変えた・検索した」ときだけ作り直す。
+  // 評価やメモの操作、タブの行き来、Drive同期では、いまの並びと表示を保つ（作品が勝手に動かない）
+  const viewKey=JSON.stringify([ui.year,ui.month,ui.query,ui.sort,ui.state,ui.onlyUnrated,allGames().length]);
+  const resort=viewKey!==ui.viewKey||!ui.rank.size;
+  ui.viewKey=viewKey;
+  const passes=it=>{
+    if(ui.onlyUnrated&&isRated(it.id))return false;
+    if(ui.state==='unplayed')return !isPlayed(it.id);
+    if(ui.state==='played')return isPlayed(it.id);
+    if(ui.state==='want')return isWant(it.id);
+    if(ui.state==='fav')return isFav(it.id);
+    return true;
+  };
+  items=items.filter(it=>(!resort&&ui.shown.has(it.id))||passes(it));
   const byDate=(a,b)=>(a.release||'9999').localeCompare(b.release||'9999')||b.pop-a.pop;
-  const useMatch=ui.sort==='auto'&&prof.n>=3;
+  const useMatch=resort?(ui.sort==='auto'&&prof.n>=3):ui.useMatch;
   const cmp=useMatch?(a,b)=>(rec.get(b.id).match||0)-(rec.get(a.id).match||0)||byDate(a,b):byDate;
+  const mk=it=>(it.release||'9999').slice(0,7);
+  const grp=(!searching&&multi)?(a,b)=>mk(a).localeCompare(mk(b)):()=>0;
   let mode=null;                                  // 見出しの付け方: 月ごと / 発売日ごと / なし
-  if(searching)items.sort((a,b)=>(b.release||'').localeCompare(a.release||''));
-  else if(multi){items.sort((a,b)=>(a.release||'9999').slice(0,7).localeCompare((b.release||'9999').slice(0,7))||cmp(a,b));mode='month'}
-  else{items.sort(cmp);if(!useMatch)mode='day'}
+  if(searching)mode=null;
+  else if(multi)mode='month';
+  else if(!useMatch)mode='day';
+  if(resort){
+    if(searching)items.sort((a,b)=>(b.release||'').localeCompare(a.release||''));
+    else items.sort((a,b)=>grp(a,b)||cmp(a,b));
+    ui.rank=new Map(items.map((it,i)=>[it.id,i]));ui.shown=new Set(items.map(it=>it.id));ui.useMatch=useMatch;
+  }else{
+    const nf=items.filter(it=>!ui.rank.has(it.id)).sort((a,b)=>grp(a,b)||cmp(a,b));
+    let n=ui.rank.size;nf.forEach(it=>ui.rank.set(it.id,n++));
+    items.sort((a,b)=>grp(a,b)||ui.rank.get(a.id)-ui.rank.get(b.id));
+    items.forEach(it=>ui.shown.add(it.id));
+  }
   return{items:searching?items.slice(0,80):items,total:items.length,rec,prof,searching,mode};
 }
 function groupHead(it,mode){
@@ -521,6 +554,12 @@ function cardHtml(it,rec,prof){
     </div></div>`;
 }
 function renderGrid(){
+  const g=$('#grid');let keep=null;const ae=document.activeElement;
+  if(g&&ae&&ae.classList&&ae.classList.contains('qm')&&g.contains(ae))keep={id:ae.closest('.qc').dataset.id,v:ae.value,s:ae.selectionStart};
+  renderGridRaw();
+  if(keep&&g){const inp=g.querySelector('.qc[data-id="'+CSS.escape(keep.id)+'"] .qm');if(inp){inp.value=keep.v;inp.focus();try{inp.setSelectionRange(keep.s,keep.s)}catch(e){}}}
+}
+function renderGridRaw(){
   const g=$('#grid'),note=$('#note');if(!g)return;
   if(gamesStatus==='loading'){note.innerHTML='<div class="empty"><span class="spin"></span>読み込み中…</div>';g.innerHTML='';return}
   if(gamesStatus==='error'){
