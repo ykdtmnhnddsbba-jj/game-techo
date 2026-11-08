@@ -74,6 +74,28 @@
    "added_by": "psn"
   },
   {
+   "id": "30012",
+   "name": "チャイルド オブ ライト",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/96747/nmvnl5Rf?w=400&h=400&func=bound",
+   "release": "2014-05-01",
+   "region": "JP",
+   "genres": [
+    "RPG",
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "ユービーアイソフト",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "1980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/30012/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
    "id": "31315",
    "name": "テラリア",
    "native": "",
@@ -112,6 +134,27 @@
    "desc": "",
    "price": "7800円[税抜]",
    "url": "https://www.famitsu.com/game/title/31287/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
+   "id": "32038",
+   "name": "カオスチャイルド",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/100263/qf0Jnp7G?w=400&h=400&func=bound",
+   "release": "2015-06-25",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "5pb.",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7800円[税抜]",
+   "url": "https://www.famitsu.com/game/title/32038/page/1",
    "detail_at": "2026-11-08",
    "added_by": "psn"
   },
@@ -181,6 +224,28 @@
    "added_by": "psn"
   },
   {
+   "id": "32148",
+   "name": "コール オブ デューティ ブラックオプスIII",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/101553/ZpoQubDI?w=400&h=400&func=bound",
+   "release": "2015-11-06",
+   "region": "JP",
+   "genres": [
+    "本体・周辺商品",
+    "FPS・TPS"
+   ],
+   "tags": [],
+   "developer": "ソニー・コンピュータエンタテインメントジャパンアジア",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7900円[税抜]",
+   "url": "https://www.famitsu.com/game/title/32148/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
    "id": "32453",
    "name": "ソフィーのアトリエ 〜不思議な本の錬金術士〜",
    "native": "",
@@ -220,6 +285,49 @@
    "desc": "",
    "price": "5900円[税抜]",
    "url": "https://www.famitsu.com/game/title/32800/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
+   "id": "32414",
+   "name": "シュタインズ・ゲート ゼロ",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/100956/EvYKgCRw?w=400&h=400&func=bound",
+   "release": "2015-12-10",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "5pb.",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7800円[税抜]",
+   "url": "https://www.famitsu.com/game/title/32414/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
+   "id": "32580",
+   "name": "オーディンスフィア レイヴスラシル",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/101307/Upk0p0kP?w=400&h=400&func=bound",
+   "release": "2016-01-14",
+   "region": "JP",
+   "genres": [
+    "RPG",
+    "アクションRPG"
+   ],
+   "tags": [],
+   "developer": "アトラス",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/32580/page/1",
    "detail_at": "2026-11-08",
    "added_by": "psn"
   },
@@ -415,6 +523,27 @@
    "added_by": "psn"
   },
   {
+   "id": "32042",
+   "name": "オカルティック・ナイン",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/106513/DF2ntz4m?w=400&h=400&func=bound",
+   "release": "2017-11-09",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "MAGES.",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7800円[税抜]",
+   "url": "https://www.famitsu.com/game/title/32042/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
    "id": "33162",
    "name": "二ノ国II レヴァナントキングダム",
    "native": "",
@@ -586,6 +715,27 @@
    "added_by": "psn"
   },
   {
+   "id": "36744",
+   "name": "ラスト レムナント リマスタード",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/109682/b_lmXiQw?w=400&h=400&func=bound",
+   "release": "2018-12-06",
+   "region": "JP",
+   "genres": [
+    "RPG"
+   ],
+   "tags": [],
+   "developer": "スクウェア・エニックス",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "3980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/36744/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
    "id": "36739",
    "name": "JUDGE EYES：死神の遺言",
    "native": "",
@@ -603,6 +753,50 @@
    "desc": "",
    "price": "8290円[税抜]",
    "url": "https://www.famitsu.com/game/title/36739/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
+   "id": "29456",
+   "name": "キングダム ハーツIII",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/94341/QFiCf2rK?w=400&h=400&func=bound",
+   "release": "2019-01-25",
+   "region": "JP",
+   "genres": [
+    "本体・周辺商品",
+    "アクションRPG"
+   ],
+   "tags": [],
+   "developer": "スクウェア・エニックス",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "8800円[税抜]",
+   "url": "https://www.famitsu.com/game/title/29456/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
+   "id": "37395",
+   "name": "Apex Legends",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/110944/4MaKkCZl?w=400&h=400&func=bound",
+   "release": "2019-02-05",
+   "region": "JP",
+   "genres": [
+    "シューティング",
+    "FPS・TPS"
+   ],
+   "tags": [],
+   "developer": "エレクトロニック・アーツ",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "",
+   "url": "https://www.famitsu.com/game/title/37395/page/1",
    "detail_at": "2026-11-08",
    "added_by": "psn"
   },
@@ -819,6 +1013,51 @@
    "added_by": "psn"
   },
   {
+   "id": "32384",
+   "name": "ファイナルファンタジーVII リメイク",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/100922/z83SOfq-?w=400&h=400&func=bound",
+   "release": "2020-04-10",
+   "region": "JP",
+   "genres": [
+    "アクション",
+    "本体・周辺商品",
+    "RPG"
+   ],
+   "tags": [],
+   "developer": "スクウェア・エニックス",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "8980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/32384/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
+   "id": "38245",
+   "name": "聖剣伝説3 トライアルズ オブ マナ",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/112294/3r3nOiXk?w=400&h=400&func=bound",
+   "release": "2020-04-24",
+   "region": "JP",
+   "genres": [
+    "アクション",
+    "RPG"
+   ],
+   "tags": [],
+   "developer": "スクウェア・エニックス",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "5980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/38245/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
    "id": "39740",
    "name": "キャプテン翼 RISE OF NEW CHAMPIONS",
    "native": "",
@@ -973,6 +1212,27 @@
    "added_by": "psn"
   },
   {
+   "id": "40629",
+   "name": "It Takes Two",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/115983/QAFGxH18?w=400&h=400&func=bound",
+   "release": "2021-03-26",
+   "region": "JP",
+   "genres": [
+    "アクションアドベンチャー"
+   ],
+   "tags": [],
+   "developer": "エレクトロニック・アーツ",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "3909円[税抜]",
+   "url": "https://www.famitsu.com/game/title/40629/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
    "id": "42761",
    "name": "ファイナルファンタジーXIV",
    "native": "",
@@ -1078,6 +1338,27 @@
    "added_by": "psn"
   },
   {
+   "id": "42840",
+   "name": "テイルズ オブ アライズ",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/119354/AsVAYX_u?w=400&h=400&func=bound",
+   "release": "2021-09-09",
+   "region": "JP",
+   "genres": [
+    "RPG"
+   ],
+   "tags": [],
+   "developer": "バンダイナムコエンターテインメント",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/42840/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
    "id": "43651",
    "name": "NBA 2K22",
    "native": "",
@@ -1142,6 +1423,27 @@
    "added_by": "psn"
   },
   {
+   "id": "43336",
+   "name": "スーパーロボット大戦30",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/120141/8z2uQr2Y?w=400&h=400&func=bound",
+   "release": "2021-10-28",
+   "region": "JP",
+   "genres": [
+    "シミュレーションRPG"
+   ],
+   "tags": [],
+   "developer": "バンダイナムコエンターテインメント",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "8600円[税抜]",
+   "url": "https://www.famitsu.com/game/title/43336/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
    "id": "43254",
    "name": "ELDEN RING",
    "native": "",
@@ -1180,6 +1482,28 @@
    "desc": "",
    "price": "2400円[税抜]",
    "url": "https://www.famitsu.com/game/title/46202/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
+   "id": "45169",
+   "name": "ウイニングポスト9 2022",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/122834/I9VFQeyK?w=400&h=400&func=bound",
+   "release": "2022-04-14",
+   "region": "JP",
+   "genres": [
+    "シミュレーション",
+    "レース"
+   ],
+   "tags": [],
+   "developer": "コーエーテクモゲームス",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7800円[税抜]",
+   "url": "https://www.famitsu.com/game/title/45169/page/1",
    "detail_at": "2026-11-08",
    "added_by": "psn"
   },
@@ -1245,6 +1569,27 @@
    "desc": "",
    "price": "6800円[税抜]",
    "url": "https://www.famitsu.com/game/title/43507/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
+   "id": "33829",
+   "name": "アノニマス・コード",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/103843/rPDyI_Wg?w=400&h=400&func=bound",
+   "release": "2022-07-28",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "5pb.",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7800円[税抜]",
+   "url": "https://www.famitsu.com/game/title/33829/page/1",
    "detail_at": "2026-11-08",
    "added_by": "psn"
   },
@@ -1375,6 +1720,27 @@
    "added_by": "psn"
   },
   {
+   "id": "46028",
+   "name": "ワンピース オデッセイ",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/124059/JBBrUCne?w=400&h=400&func=bound",
+   "release": "2023-01-12",
+   "region": "JP",
+   "genres": [
+    "RPG"
+   ],
+   "tags": [],
+   "developer": "バンダイナムコエンターテインメント",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/46028/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
    "id": "46908",
    "name": "Wo Long: Fallen Dynasty",
    "native": "",
@@ -1481,6 +1847,27 @@
    "added_by": "psn"
   },
   {
+   "id": "53003",
+   "name": "カリギュラ2",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/134036/RhzBQ5hm?w=400&h=400&func=bound",
+   "release": "2023-10-12",
+   "region": "JP",
+   "genres": [
+    "RPG"
+   ],
+   "tags": [],
+   "developer": "フリュー",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/53003/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
    "id": "51705",
    "name": "STAR OCEAN THE SECOND STORY R",
    "native": "",
@@ -1582,6 +1969,28 @@
    "desc": "",
    "price": "7980円[税抜]",
    "url": "https://www.famitsu.com/game/title/41870/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
+   "id": "46935",
+   "name": "ファイナルファンタジーVII リバース",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/125333/u76eujuj?w=400&h=400&func=bound",
+   "release": "2024-02-29",
+   "region": "JP",
+   "genres": [
+    "アクション",
+    "RPG"
+   ],
+   "tags": [],
+   "developer": "スクウェア・エニックス",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "8980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/46935/page/1",
    "detail_at": "2026-11-08",
    "added_by": "psn"
   },
@@ -1708,6 +2117,27 @@
    "desc": "",
    "price": "8980円[税抜]",
    "url": "https://www.famitsu.com/game/title/51648/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
+   "id": "56241",
+   "name": "ロマンシング サガ2 リベンジオブザセブン",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/138487/JwV8leiP?w=400&h=400&func=bound",
+   "release": "2024-10-24",
+   "region": "JP",
+   "genres": [
+    "RPG"
+   ],
+   "tags": [],
+   "developer": "スクウェア・エニックス",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "6200円[税抜]",
+   "url": "https://www.famitsu.com/game/title/56241/page/1",
    "detail_at": "2026-11-08",
    "added_by": "psn"
   },
