@@ -1,10 +1,10 @@
 {
  "source": "ファミ通.com",
  "platform": "PS5",
- "generated_at": "2026-11-07T19:53:32.397Z",
+ "generated_at": "2026-11-08T00:29:59.138Z",
  "window": {
-  "from": "2024-11-01",
-  "to": "2027-12-01"
+  "from": "2026-09-01",
+  "to": "2027-02-01"
  },
  "excluded_ids": [
   "41022"
@@ -26155,27 +26155,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "68207",
-   "name": "Battle of Rebels",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/155176/fEm_lhIV?w=400&h=400&func=bound",
-   "release": "2025-08-29",
-   "region": "JP",
-   "genres": [
-    "FPS・TPS",
-    "アクションシューティング"
-   ],
-   "tags": [],
-   "developer": "Funbox Media",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "5300円[税抜]",
-   "url": "https://www.famitsu.com/game/title/68207/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "68211",
    "name": "Carlos the Taco",
    "native": "",
@@ -26722,26 +26701,6 @@
    "desc": "",
    "price": "3100円[税抜]",
    "url": "https://www.famitsu.com/game/title/61995/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
-   "id": "70428",
-   "name": "Hollow Knight: Silksong",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/156120/wHH2ivMg?w=400&h=400&func=bound",
-   "release": "2025-09-04",
-   "region": "JP",
-   "genres": [
-    "アクションアドベンチャー"
-   ],
-   "tags": [],
-   "developer": "Team Cherry",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "2100円[税抜]",
-   "url": "https://www.famitsu.com/game/title/70428/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -29592,27 +29551,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "57849",
-   "name": "Ghost of Yotei（ゴースト・オブ・ヨウテイ）",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/140575/oF49wt-M?w=400&h=400&func=bound",
-   "release": "2025-10-02",
-   "region": "JP",
-   "genres": [
-    "アクション",
-    "アドベンチャー"
-   ],
-   "tags": [],
-   "developer": "ソニー・インタラクティブエンタテインメント",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "8164円[税抜]",
-   "url": "https://www.famitsu.com/game/title/57849/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "68546",
    "name": "Lorn's Lure",
    "native": "",
@@ -32445,26 +32383,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "62685",
-   "name": "ワンス・アポン・ア・塊魂",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/149119/lbB565h8?w=400&h=400&func=bound",
-   "release": "2025-10-23",
-   "region": "JP",
-   "genres": [
-    "アクション"
-   ],
-   "tags": [],
-   "developer": "バンダイナムコエンターテインメント",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "5400円[税抜]",
-   "url": "https://www.famitsu.com/game/title/62685/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "69090",
    "name": "速攻退職",
    "native": "",
@@ -33358,26 +33276,6 @@
    "desc": "",
    "price": "500円[税抜]",
    "url": "https://www.famitsu.com/game/title/69191/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
-   "id": "72699",
-   "name": "LUMO 2",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/156157/yySnEL8M?w=400&h=400&func=bound",
-   "release": "2025-11-06",
-   "region": "JP",
-   "genres": [
-    "アクションアドベンチャー"
-   ],
-   "tags": [],
-   "developer": "SOFTSOURCE",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "3998円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72699/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -39638,26 +39536,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "68983",
-   "name": "Tides of Tomorrow",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/156183/9fYCvkYt?w=400&h=400&func=bound",
-   "release": "2026-04-22",
-   "region": "JP",
-   "genres": [
-    "アクションアドベンチャー"
-   ],
-   "tags": [],
-   "developer": "THQ Nordic",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "3990円[税抜]",
-   "url": "https://www.famitsu.com/game/title/68983/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "71228",
    "name": "Vampire Crawlers: The Turbo Wildcard from Vampire Survivors",
    "native": "",
@@ -40585,26 +40463,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "71296",
-   "name": "JDM：ジャパニーズドリフトマスター",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/156011/Ui1otXcb?w=400&h=400&func=bound",
-   "release": "2026-04-30",
-   "region": "JP",
-   "genres": [
-    "レース"
-   ],
-   "tags": [],
-   "developer": "テヨンジャパン",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "3500円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71296/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "71307",
    "name": "Magic Twins",
    "native": "",
@@ -41309,26 +41167,6 @@
    "desc": "",
    "price": "900円[税抜]",
    "url": "https://www.famitsu.com/game/title/71420/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
-   "id": "71415",
-   "name": "BAHAMUT AND THE WAQWAQ TREE",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/155358/ackWcUFF?w=400&h=400&func=bound",
-   "release": "2026-05-07",
-   "region": "JP",
-   "genres": [
-    "アドベンチャー"
-   ],
-   "tags": [],
-   "developer": "SOFTSOURCE",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "2699円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71415/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -43055,27 +42893,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "58166",
-   "name": "コーヒートーク トーキョー",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/156132/HDuxbMyU?w=400&h=400&func=bound",
-   "release": "2026-05-21",
-   "region": "JP",
-   "genres": [
-    "アドベンチャー",
-    "シミュレーション"
-   ],
-   "tags": [],
-   "developer": "コーラス・ワールドワイド",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "1800円[税抜]",
-   "url": "https://www.famitsu.com/game/title/58166/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "72106",
    "name": "コンソールアーカイブス 闘人魔境伝 ヘラクレスの栄光",
    "native": "",
@@ -44686,27 +44503,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "72465",
-   "name": "Solarpunk ソーラーパンク：天空の島",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/155627/bu9Y6iyJ?w=400&h=400&func=bound",
-   "release": "2026-06-08",
-   "region": "JP",
-   "genres": [
-    "アドベンチャー",
-    "シミュレーション"
-   ],
-   "tags": [],
-   "developer": "Rokaplay",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "2684円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72465/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "69490",
    "name": "Gothic 1 Remake",
    "native": "",
@@ -45334,27 +45130,6 @@
    "desc": "",
    "price": "4000円[税抜]",
    "url": "https://www.famitsu.com/game/title/69796/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
-   "id": "69446",
-   "name": "RATATAN",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/151660/bv-5x5GL?w=400&h=400&func=bound",
-   "release": "2026-07-16",
-   "region": "JP",
-   "genres": [
-    "アクション",
-    "音楽"
-   ],
-   "tags": [],
-   "developer": "Game Source Entertainment",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "5600円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69446/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -46004,47 +45779,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "72333",
-   "name": "Hell Let Loose： Vietnam",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/155414/X7yJUQ3U?w=400&h=400&func=bound",
-   "release": "2026-08-14",
-   "region": "JP",
-   "genres": [
-    "FPS・TPS",
-    "アクションシューティング"
-   ],
-   "tags": [],
-   "developer": "Team 17",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "4600円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72333/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
-   "id": "72476",
-   "name": "Mortal Shell II",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/155649/3gAypNQd?w=400&h=400&func=bound",
-   "release": "2026-08-20",
-   "region": "JP",
-   "genres": [
-    "アクションRPG"
-   ],
-   "tags": [],
-   "developer": "PlayStack",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "5900円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72476/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "69474",
    "name": "Starsand Island（スターサンド・アイランド）",
    "native": "",
@@ -46103,27 +45837,6 @@
    "desc": "",
    "price": "4800円[税抜]",
    "url": "https://www.famitsu.com/game/title/69088/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
-   "id": "72371",
-   "name": "エイリアン：ファイアーチーム エリート2",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/155489/q0YTv3xL?w=400&h=400&func=bound",
-   "release": "2026-08-26",
-   "region": "JP",
-   "genres": [
-    "FPS・TPS",
-    "アクションシューティング"
-   ],
-   "tags": [],
-   "developer": "3goo",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "5900円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72371/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -46589,6 +46302,47 @@
    "detail_at": "2026-11-07"
   },
   {
+   "id": "68207",
+   "name": "Battle of Rebels",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/155176/fEm_lhIV?w=400&h=400&func=bound",
+   "release": "2026-09-17",
+   "region": "JP",
+   "genres": [
+    "FPS・TPS",
+    "アクションシューティング"
+   ],
+   "tags": [],
+   "developer": "Funbox Media",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "4500円[税抜]",
+   "url": "https://www.famitsu.com/game/title/68207/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
+   "id": "72476",
+   "name": "Mortal Shell II",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/155649/3gAypNQd?w=400&h=400&func=bound",
+   "release": "2026-09-17",
+   "region": "JP",
+   "genres": [
+    "アクションRPG"
+   ],
+   "tags": [],
+   "developer": "PlayStack",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "5891円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72476/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
    "id": "71024",
    "name": "機動警察パトレイバー the Case Files",
    "native": "",
@@ -46831,6 +46585,48 @@
    "detail_at": "2026-11-07"
   },
   {
+   "id": "57849",
+   "name": "Ghost of Yotei（ゴースト・オブ・ヨウテイ） Complete Edition",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/155748/lk84JTGW?w=400&h=400&func=bound",
+   "release": "2026-10-01",
+   "region": "JP",
+   "genres": [
+    "アクション",
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "ソニー・インタラクティブエンタテインメント",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "8164円[税抜]",
+   "url": "https://www.famitsu.com/game/title/57849/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
+   "id": "72465",
+   "name": "Solarpunk ソーラーパンク：天空の島",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/155627/bu9Y6iyJ?w=400&h=400&func=bound",
+   "release": "2026-10-01",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー",
+    "シミュレーション"
+   ],
+   "tags": [],
+   "developer": "Rokaplay",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "3980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72465/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
    "id": "72235",
    "name": "むちむちポーク！＆ピンクスゥイーツ Boosted",
    "native": "",
@@ -47057,6 +46853,26 @@
    "detail_at": "2026-11-07"
   },
   {
+   "id": "62685",
+   "name": "ワンス・アポン・ア・塊魂 ローリングライブハイライツエディション",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/149119/lbB565h8?w=400&h=400&func=bound",
+   "release": "2026-10-08",
+   "region": "JP",
+   "genres": [
+    "アクション"
+   ],
+   "tags": [],
+   "developer": "バンダイナムコエンターテインメント",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "6800円[税抜]",
+   "url": "https://www.famitsu.com/game/title/62685/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
    "id": "46942",
    "name": "ドラゴンズ ドグマ 2：ダークアリズン",
    "native": "",
@@ -47135,6 +46951,27 @@
    "desc": "",
    "price": "価格未定",
    "url": "https://www.famitsu.com/game/title/72377/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
+   "id": "69446",
+   "name": "RATATAN",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/151660/bv-5x5GL?w=400&h=400&func=bound",
+   "release": "2026-10-15",
+   "region": "JP",
+   "genres": [
+    "アクション",
+    "音楽"
+   ],
+   "tags": [],
+   "developer": "Game Source Entertainment",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "6380円[税抜]",
+   "url": "https://www.famitsu.com/game/title/69446/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -47220,6 +47057,26 @@
    "detail_at": "2026-11-07"
   },
   {
+   "id": "71415",
+   "name": "BAHAMUT AND THE WAQWAQ TREE",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/155358/ackWcUFF?w=400&h=400&func=bound",
+   "release": "2026-10-22",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "SOFTSOURCE",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "4500円[税抜]",
+   "url": "https://www.famitsu.com/game/title/71415/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
    "id": "69229",
    "name": "Stupid Never Dies",
    "native": "",
@@ -47237,6 +47094,27 @@
    "desc": "",
    "price": "6990円[税抜]",
    "url": "https://www.famitsu.com/game/title/69229/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
+   "id": "72371",
+   "name": "エイリアン：ファイアーチーム エリート2",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/155489/q0YTv3xL?w=400&h=400&func=bound",
+   "release": "2026-10-22",
+   "region": "JP",
+   "genres": [
+    "FPS・TPS",
+    "アクションシューティング"
+   ],
+   "tags": [],
+   "developer": "3goo",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "5900円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72371/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -47362,6 +47240,27 @@
    "detail_at": "2026-11-07"
   },
   {
+   "id": "72333",
+   "name": "Hell Let Loose： Vietnam",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/155414/X7yJUQ3U?w=400&h=400&func=bound",
+   "release": "2026-10-29",
+   "region": "JP",
+   "genres": [
+    "FPS・TPS",
+    "アクションシューティング"
+   ],
+   "tags": [],
+   "developer": "Team 17",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "5980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72333/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
    "id": "55882",
    "name": "INDIKA",
    "native": "",
@@ -47379,6 +47278,26 @@
    "desc": "",
    "price": "4500円[税抜]",
    "url": "https://www.famitsu.com/game/title/55882/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
+   "id": "71296",
+   "name": "JDM：ジャパニーズドリフトマスター",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/156011/Ui1otXcb?w=400&h=400&func=bound",
+   "release": "2026-10-29",
+   "region": "JP",
+   "genres": [
+    "レース"
+   ],
+   "tags": [],
+   "developer": "テヨンジャパン",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "3500円[税抜]",
+   "url": "https://www.famitsu.com/game/title/71296/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -47705,6 +47624,26 @@
    "detail_at": "2026-11-07"
   },
   {
+   "id": "70428",
+   "name": "Hollow Knight: Silksong",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/156120/wHH2ivMg?w=400&h=400&func=bound",
+   "release": "2026-12-10",
+   "region": "JP",
+   "genres": [
+    "アクションアドベンチャー"
+   ],
+   "tags": [],
+   "developer": "Team Cherry",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "5000円[税抜]",
+   "url": "https://www.famitsu.com/game/title/70428/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
    "id": "57877",
    "name": "PREDATOR HUNTING GROUNDS（プレデター ハンティング グラウンズ）",
    "native": "",
@@ -47831,6 +47770,26 @@
    "detail_at": "2026-11-07"
   },
   {
+   "id": "72699",
+   "name": "LUMO 2",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/156157/yySnEL8M?w=400&h=400&func=bound",
+   "release": "2026-12-17",
+   "region": "JP",
+   "genres": [
+    "アクションアドベンチャー"
+   ],
+   "tags": [],
+   "developer": "SOFTSOURCE",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "4500円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72699/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
    "id": "72695",
    "name": "SUNSOFT is Back！ レトロゲームセレクション2",
    "native": "",
@@ -47870,6 +47829,26 @@
    "desc": "",
    "price": "4500円[税抜]",
    "url": "https://www.famitsu.com/game/title/50657/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
+   "id": "68983",
+   "name": "Tides of Tomorrow",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/156183/9fYCvkYt?w=400&h=400&func=bound",
+   "release": "2026-12-17",
+   "region": "JP",
+   "genres": [
+    "アクションアドベンチャー"
+   ],
+   "tags": [],
+   "developer": "THQ Nordic",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "4000円[税抜]",
+   "url": "https://www.famitsu.com/game/title/68983/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -47931,6 +47910,27 @@
    "desc": "",
    "price": "3891円[税抜]",
    "url": "https://www.famitsu.com/game/title/72692/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
+   "id": "58166",
+   "name": "コーヒートーク トーキョー",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/156132/HDuxbMyU?w=400&h=400&func=bound",
+   "release": "2026-12-17",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー",
+    "シミュレーション"
+   ],
+   "tags": [],
+   "developer": "コーラス・ワールドワイド",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "5436円[税抜]",
+   "url": "https://www.famitsu.com/game/title/58166/page/1",
    "detail_at": "2026-11-07"
   },
   {
