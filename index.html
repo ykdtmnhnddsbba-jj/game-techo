@@ -353,7 +353,7 @@ function importJson(text){
 const DRIVE_NAME='game-db.json';
 let gToken=null,gExp=0,gClient=null,driveFileId=null,syncState=settings.drive_linked?'need':'off',syncTimer=null,syncing=false;
 const G_SCOPE='https://www.googleapis.com/auth/drive.file';
-const G_REDIR=location.origin+location.pathname;
+const G_REDIR=location.origin+location.pathname.replace(/index\.html$/,'');
 const G_TOKKEY='gauth_tok:'+G_REDIR;
 /* 認証はポップアップではなくページ遷移（リダイレクト）方式。Sleipnir等のアプリ内ブラウザでも動く */
 (function(){
