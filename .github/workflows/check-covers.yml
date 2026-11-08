@@ -1,9 +1,0 @@
-name: check-covers
-on: workflow_dispatch
-jobs:
-  c:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          for u in "https://image.api.playstation.com/vulcan/ap/rnd/202502/1908/3d17c33239dab88c7e2f24af50140b3f6fa555e6030d5704.png" "https://image.api.playstation.com/cdn/JP0102/CUSA06027_00/yCxiNvmhD4PjR878WOifsqsac8eRuGFf.png" "https://image.api.playstation.com/vulcan/img/rnd/202010/1520/GoweW4Qr9rEksFCcrT9EM6cu.jpg" "https://image.api.playstation.com/vulcan/img/cfn/11307ckygTmpWM_ILj7IbPt57hzbHSZ8QGOnjbiDk49P_35cuEw9OoJ2X3aVbU6NvEqKblZxjUt8ANexcs5UJ6mQYsEBWlNG.png"; do
-            curl -sS -m 20 -o /tmp/i -w "RESULT %{http_code} %{content_type} %{size_download} %{url_effective}\n" "$u"; done

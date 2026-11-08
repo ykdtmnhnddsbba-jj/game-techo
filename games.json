@@ -120,7 +120,7 @@
    "id": "x2",
    "name": "ドラゴンクエストヒーローズ　闇竜と世界樹の城",
    "native": "",
-   "cover": "",
+   "cover": "https://image.api.playstation.com/vulcan/img/rnd/202010/1520/GoweW4Qr9rEksFCcrT9EM6cu.jpg?w=400",
    "release": "2015-02-26",
    "region": "JP",
    "genres": [
@@ -736,7 +736,7 @@
    "id": "x3",
    "name": "モンスターハンター：ワールド",
    "native": "",
-   "cover": "",
+   "cover": "https://image.api.playstation.com/cdn/JP0102/CUSA06027_00/yCxiNvmhD4PjR878WOifsqsac8eRuGFf.png?w=400",
    "release": "2018-01-26",
    "region": "JP",
    "genres": [
@@ -1182,7 +1182,7 @@
    "id": "x1",
    "name": "十三機兵防衛圏",
    "native": "",
-   "cover": "",
+   "cover": "https://image.api.playstation.com/vulcan/img/cfn/11307ckygTmpWM_ILj7IbPt57hzbHSZ8QGOnjbiDk49P_35cuEw9OoJ2X3aVbU6NvEqKblZxjUt8ANexcs5UJ6mQYsEBWlNG.png?w=400",
    "release": "2019-11-28",
    "region": "JP",
    "genres": [
@@ -1377,7 +1377,7 @@
    "id": "x4",
    "name": "ASTRO's PLAYROOM",
    "native": "",
-   "cover": "",
+   "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202502/1908/3d17c33239dab88c7e2f24af50140b3f6fa555e6030d5704.png?w=400",
    "release": "2020-11-12",
    "region": "JP",
    "genres": [
