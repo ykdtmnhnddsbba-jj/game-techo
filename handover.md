@@ -60,3 +60,11 @@
 - マイ評価に「点数別（10→1）」表示を追加（既定）。アニメ手帖と同じ作り。
 - ワークフローの push は pull --rebase で3回まで再試行（別セッションの push と競合して失敗した前例あり）。
 - トロフィー進捗(2026-11-08追加): `getUserTitles`（Accept-Language: ja-JP でトロフィータイトル名を日本語に）→ PSNプレイ履歴の名前で紐付け → `psn-trophies.json`。195タイトル中121本を紐付け（残りはPS3/Vita・DB外のゲーム中心）。UIは `trophyHtml()` と マイ評価の絞り込み `trodone`/`tropend`。
+
+
+## 攻略手帖（kouryaku/）— 2026-11-08 追加
+- ゲーム手帖とは別の静的サイト。同じリポジトリの `kouryaku/` にあり、公開URLは `https://ykdtmnhnddsbba-jj.github.io/game-techo/kouryaku/`。ゲーム手帖へのリンクは入れない方針（本人の指示）。
+- 構成: `kouryaku/index.html`（共通ビューア）、`kouryaku/games/index.json`（ゲーム一覧）、`kouryaku/games/<slug>.json`（トロフィー一覧＋チャート。id=ファミ通ID）。ゲームを足すときは JSON を1つ作って index.json に追記する。
+- 取得状況: `scripts/fetch-psn.mjs` の `fetchKouryaku` が、index.json のゲームについて PSN の定義と取得状況を取り、`psn-lib.mjs` の `mapTrophies` で攻略データのID（t01…）に対応づけて `kouryaku/psn-earned.json` に保存する（IDだけ。トロフィー名・日時は書かない）。名前一致が基本で、取れないときだけトロフィー種別の並びが完全一致する場合に限り並び順で対応づける（`how` に記録）。ワークフローの commit 対象にも追加済み。毎日の Actions で更新される。
+- サイト側: 手動チェックは localStorage キー `kouryaku.v1`（バックアップはJSON書き出し/読み込み）。PSN取得済みは自動でチェック済みになり、チャートのステップも関連トロフィーが全部取得済みなら自動完了する。
+- 検証済み: 2026-11-08 の実行で タクティクスオウガ リボーン 28/34 を対応づけ（個数が psn-trophies.json の 16/9/3/0 と一致）。

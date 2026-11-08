@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>攻略手帖</title>
+<style>
+:root{
+  --bg:#f6f5f1; --card:#fff; --ink:#1f2328; --sub:#6b7280; --line:#e4e1d8; --accent:#2f5d8a; --accent-bg:#e8f0f8;
+  --warn:#9a5b00; --warn-bg:#fff4dc; --ok:#2e7d4f; --ok-bg:#e6f4ec;
+  --plat:#6c7a89; --gold:#b8860b; --silver:#7f8c97; --bronze:#a0622d;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#16181b; --card:#1f2327; --ink:#e8e8e6; --sub:#9aa1a9; --line:#31363c; --accent:#7fb0e0; --accent-bg:#22303d;
+    --warn:#f0b255; --warn-bg:#35291a; --ok:#6fd09a; --ok-bg:#1b2e24; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI","Meiryo",sans-serif}
+header{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line);padding:10px 14px 0}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+h1{font-size:16px;margin:0}
+select{font:inherit;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);max-width:60vw}
+.prog{margin:8px 0 6px}
+.prog .bar{height:8px;background:var(--line);border-radius:5px;overflow:hidden}
+.prog .bar>i{display:block;height:100%;background:var(--ok);width:0}
+.prog .meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--sub);margin-top:4px}
+.tabs{display:flex;gap:2px;margin-top:6px;overflow-x:auto}
+.tabs button{flex:1;min-width:max-content;padding:8px 10px;border:0;background:none;color:var(--sub);font:inherit;border-bottom:3px solid transparent;cursor:pointer}
+.tabs button.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+main{max-width:860px;margin:0 auto;padding:12px 12px 80px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0}
+.next{background:var(--accent-bg);border-color:var(--accent)}
+.next b{color:var(--accent)}
+.phase>summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:8px}
+.phase>summary::-webkit-details-marker{display:none}
+.phase .cnt{font-weight:400;color:var(--sub);font-size:13px;white-space:nowrap}
+.phase .sum{color:var(--sub);font-size:13.5px;margin:6px 0 4px}
+.step{display:flex;gap:10px;padding:9px 0;border-top:1px dashed var(--line)}
+.step:first-of-type{border-top:0}
+.step input{margin-top:5px;width:18px;height:18px;flex:none}
+.step.done .tx{color:var(--sub);text-decoration:line-through}
+.step.warn .tx{background:var(--warn-bg);border-left:3px solid var(--warn);padding:4px 8px;border-radius:4px}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.chip{font-size:12px;padding:1px 8px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.chip.got{background:var(--ok-bg);border-color:var(--ok);color:var(--ok);text-decoration:line-through}
+.g{display:inline-block;font-size:11px;font-weight:700;color:#fff;border-radius:4px;padding:0 6px;margin-right:4px}
+.g.platinum{background:var(--plat)}.g.gold{background:var(--gold)}.g.silver{background:var(--silver)}.g.bronze{background:var(--bronze)}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.filters button{font:inherit;font-size:13px;padding:3px 10px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);cursor:pointer}
+.filters button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.tr{display:flex;gap:10px}
+.tr input{margin-top:5px;width:20px;height:20px;flex:none}
+.tr .nm{font-weight:600}
+.tr.done .nm{color:var(--sub);text-decoration:line-through}
+.rt{font-size:11.5px;border:1px solid var(--line);border-radius:4px;padding:0 5px;color:var(--sub);margin-left:4px}
+.rt.miss{border-color:var(--warn);color:var(--warn)}
+.cond{font-size:13.5px;color:var(--sub);margin-top:2px}
+details.tip>summary{cursor:pointer;color:var(--accent);font-size:13px;margin-top:3px}
+details.tip>div{font-size:13.5px;margin-top:3px}
+.btn{font:inherit;padding:7px 14px;border:1px solid var(--accent);background:var(--card);color:var(--accent);border-radius:8px;cursor:pointer;margin:4px 6px 4px 0}
+.btn.pri{background:var(--accent);color:#fff}
+.btn.dng{border-color:var(--warn);color:var(--warn)}
+.small{font-size:12.5px;color:var(--sub)}
+ul.cv{padding-left:18px;margin:6px 0}
+a{color:var(--accent)}
+.err{color:var(--warn);background:var(--warn-bg);padding:10px;border-radius:8px}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:8px 14px;border-radius:8px;font-size:13px;opacity:0;transition:.25s;pointer-events:none;z-index:50}
+.toast.on{opacity:.95}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <h1>攻略手帖</h1>
+    <select id="gameSel" aria-label="ゲームを選ぶ"></select>
+    <a id="backLink" class="small" href="../" style="margin-left:auto">← ゲーム手帖へ</a>
+  </div>
+  <div class="prog">
+    <div class="bar"><i id="barFill"></i></div>
+    <div class="meta" id="progMeta"></div>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button data-tab="chart" class="on">チャート</button>
+    <button data-tab="trophy">トロフィー</button>
+    <button data-tab="route">ルート</button>
+    <button data-tab="data">データ</button>
+  </nav>
+</header>
+<main id="main"><div class="card">読み込み中…</div></main>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+var KEY = 'kouryaku.v1';          // 他サイトと localStorage を共有しても衝突しないよう固有の接頭辞
+var GRADE = {platinum:'プラチナ', gold:'ゴールド', silver:'シルバー', bronze:'ブロンズ'};
+var ROUTE_LABEL = {all:'共通', L:'Lルート', C:'Cルート', N:'Nルート', CN:'C/Nルート'};
+var game = null, manifest = null, tab = 'chart';
+var psn = {at:null, earned:{}, how:''};   // PSNから自動取得した取得済み（psn-earned.json）
+var filt = {grade:'', route:'', status:'todo', miss:false};
+
+/* ---------- 保存 ---------- */
+function loadDB(){
+  try { var v = JSON.parse(localStorage.getItem(KEY) || 'null'); if (v && v.games) return v; } catch(e){}
+  return {schema_version:1, updated_at:null, games:{}, last_game:null};
+}
+var DB = loadDB();
+function saveDB(){
+  DB.updated_at = new Date().toISOString();
+  try { localStorage.setItem(KEY, JSON.stringify(DB)); } catch(e){ toast('保存できませんでした（ブラウザの設定を確認）'); }
+}
+function gs(){ // 現在のゲームの状態
+  var id = game.id;
+  if (!DB.games[id]) DB.games[id] = {trophies:{}, steps:{}};
+  return DB.games[id];
+}
+function toast(t){ var e=document.getElementById('toast'); e.textContent=t; e.classList.add('on'); setTimeout(function(){e.classList.remove('on')},1800); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]}); }
+
+/* ---------- 集計 ---------- */
+function tById(id){ return game.trophies.find(function(t){return t.id===id}); }
+function isPsn(id){ return !!psn.earned[id]; }
+function isGot(id){ if (isPsn(id)) return true; var s=gs().trophies[id]; return !!(s && s.done); }
+function setGot(id, v){
+  var s = gs().trophies;
+  s[id] = {done:!!v, updated_at:new Date().toISOString()};
+  saveDB();
+}
+function counts(){
+  var c = {total:game.trophies.length, done:0, g:{platinum:[0,0], gold:[0,0], silver:[0,0], bronze:[0,0]}};
+  game.trophies.forEach(function(t){
+    c.g[t.grade][1]++;
+    if (isGot(t.id)) { c.done++; c.g[t.grade][0]++; }
+  });
+  return c;
+}
+function renderProgress(){
+  var c = counts();
+  document.getElementById('barFill').style.width = (c.total ? c.done/c.total*100 : 0) + '%';
+  var parts = ['<b>' + c.done + ' / ' + c.total + '</b>'];
+  ['platinum','gold','silver','bronze'].forEach(function(g){
+    parts.push('<span><span class="g ' + g + '">' + GRADE[g] + '</span>' + c.g[g][0] + '/' + c.g[g][1] + '</span>');
+  });
+  if (psn.at) { var d = new Date(psn.at); parts.push('<span>PSN反映 ' + (d.getMonth()+1) + '/' + d.getDate() + ' ' + ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2) + '</span>'); }
+  document.getElementById('progMeta').innerHTML = parts.join('');
+}
+
+/* ---------- チャート ---------- */
+function stepObj(id){ for (var i=0;i<game.phases.length;i++){ var st=game.phases[i].steps; for (var j=0;j<st.length;j++) if (st[j].id===id) return st[j]; } return null; }
+function stepAuto(s){ return !!(s && s.t && s.t.length && s.t.every(isPsn)); }
+function stepDone(id){ return !!gs().steps[id] || stepAuto(stepObj(id)); }
+function firstTodoStep(){
+  for (var i=0;i<game.phases.length;i++){
+    var st = game.phases[i].steps;
+    for (var j=0;j<st.length;j++) if (!stepDone(st[j].id)) return {phase:game.phases[i], step:st[j]};
+  }
+  return null;
+}
+function chipHtml(ids){
+  if (!ids || !ids.length) return '';
+  return '<div class="chips">' + ids.map(function(id){
+    var t = tById(id); if (!t) return '';
+    return '<span class="chip' + (isGot(id) ? ' got' : '') + '" data-goto="' + id + '"><span class="g ' + t.grade + '">' + GRADE[t.grade][0] + '</span>' + esc(t.name) + '</span>';
+  }).join('') + '</div>';
+}
+function renderChart(){
+  var nx = firstTodoStep();
+  var h = '';
+  if (nx){
+    h += '<div class="card next"><b>次にやること</b><div style="margin-top:4px">' + esc(nx.step.text) + '</div>' + chipHtml(nx.step.t) + '<div class="small" style="margin-top:4px">（' + esc(nx.phase.title) + '）</div></div>';
+  } else {
+    h += '<div class="card next"><b>チャートはすべて完了しました。</b> 「トロフィー」タブで未取得を確認しましょう。</div>';
+  }
+  game.phases.forEach(function(p, i){
+    var done = p.steps.filter(function(s){return stepDone(s.id)}).length;
+    var open = nx && nx.phase.id === p.id;
+    h += '<details class="card phase" data-ph="' + p.id + '"' + (open ? ' open' : '') + '><summary><span>' + esc(p.title) + '</span><span class="cnt">' + done + '/' + p.steps.length + '</span></summary>';
+    h += '<div class="sum">' + esc(p.summary) + '</div>';
+    p.steps.forEach(function(s){
+      h += '<div class="step' + (stepDone(s.id) ? ' done' : '') + (s.warn ? ' warn' : '') + '"><input type="checkbox" data-step="' + s.id + '"' + (stepDone(s.id) ? ' checked' : '') + (stepAuto(s) ? ' disabled title="PSNの取得状況から自動で完了"' : '') + ' aria-label="完了"><div style="flex:1"><div class="tx">' + esc(s.text) + '</div>' + chipHtml(s.t) + '</div></div>';
+    });
+    h += '</details>';
+  });
+  return h;
+}
+
+/* ---------- トロフィー ---------- */
+function btn(label, group, val){
+  var on = (group==='miss') ? filt.miss===val : filt[group]===val;
+  return '<button class="' + (on?'on':'') + '" data-f="' + group + '" data-v="' + esc(val) + '">' + label + '</button>';
+}
+function routeMatch(t, r){
+  if (!r) return true;
+  if (t.route==='all') return r==='all';
+  return t.route.indexOf(r) >= 0;
+}
+function renderTrophy(){
+  var h = '<div class="filters">' +
+    btn('すべて','status','') + btn('未取得','status','todo') + btn('取得済み','status','done') + '</div>' +
+    '<div class="filters">' +
+    btn('全ランク','grade','') + btn('ブロンズ','grade','bronze') + btn('シルバー','grade','silver') + btn('ゴールド','grade','gold') + btn('プラチナ','grade','platinum') + '</div>' +
+    '<div class="filters">' +
+    btn('全ルート','route','') + btn('共通','route','all') + btn('L','route','L') + btn('C','route','C') + btn('N','route','N') +
+    '<button class="' + (filt.miss?'on':'') + '" data-f="miss" data-v="1">取り逃し注意</button></div>';
+  var list = game.trophies.filter(function(t){
+    if (filt.status==='todo' && isGot(t.id)) return false;
+    if (filt.status==='done' && !isGot(t.id)) return false;
+    if (filt.grade && t.grade!==filt.grade) return false;
+    if (filt.route && !routeMatch(t, filt.route)) return false;
+    if (filt.miss && !t.missable) return false;
+    return true;
+  });
+  h += '<div class="small">' + list.length + '件</div>';
+  list.forEach(function(t){
+    var got = isGot(t.id);
+    h += '<div class="card tr' + (got?' done':'') + '" id="tr-' + t.id + '"><input type="checkbox" data-tr="' + t.id + '"' + (got?' checked':'') + (isPsn(t.id)?' disabled title="PSNから自動取得"':'') + ' aria-label="取得済み"><div style="flex:1">' +
+      '<div><span class="g ' + t.grade + '">' + GRADE[t.grade] + '</span><span class="nm">' + esc(t.name) + '</span><span class="rt">' + (ROUTE_LABEL[t.route]||t.route) + '</span><span class="rt">' + esc(t.chapter) + '</span>' + (t.missable ? '<span class="rt miss">取り逃し注意</span>' : '') + (isPsn(t.id) ? '<span class="rt" style="border-color:var(--ok);color:var(--ok)">PSN</span>' : '') + '</div>' +
+      '<div class="cond">' + esc(t.cond) + '</div>' +
+      (t.tip ? '<details class="tip"><summary>取り方（ネタバレ）</summary><div>' + esc(t.tip) + '</div></details>' : '') +
+      '</div></div>';
+  });
+  if (!list.length) h += '<div class="card">該当するトロフィーはありません。</div>';
+  return h;
+}
+
+/* ---------- ルート ---------- */
+function renderRoute(){
+  var h = '<div class="card"><b>ルート分岐</b><ul class="cv">';
+  game.routes.forEach(function(r){
+    h += '<li><b>' + esc(r.name) + '</b>：' + esc(r.how) + '<br><span class="small">' + esc(r.note) + '</span></li>';
+  });
+  h += '</ul></div>';
+  h += '<div class="card"><b>注意（W.O.R.L.D. など）</b><ul class="cv">';
+  game.caveats.forEach(function(c){ h += '<li>' + esc(c) + '</li>'; });
+  h += '</ul></div>';
+  h += '<div class="card"><b>ルート別トロフィー数</b><ul class="cv">';
+  ['all','L','C','N'].forEach(function(r){
+    var ts = game.trophies.filter(function(t){ return r==='all' ? t.route==='all' : t.route.indexOf(r)>=0; });
+    var got = ts.filter(function(t){return isGot(t.id)}).length;
+    h += '<li>' + (r==='all' ? '共通（プラチナ含む）' : r + 'ルート（C/N共通を含む）') + '：' + got + ' / ' + ts.length + '</li>';
+  });
+  h += '</ul></div>';
+  h += '<div class="card"><b>参考にしたページ</b><ul class="cv">';
+  game.sources.forEach(function(s){ h += '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">' + esc(s.title) + '</a></li>'; });
+  h += '</ul><div class="small">更新日：' + esc(game.updated) + '。攻略情報はウェブ上の情報をもとにしています。ゲーム内の表示と違う場合はゲーム内を優先してください。</div></div>';
+  return h;
+}
+
+/* ---------- データ ---------- */
+function renderData(){
+  var h = '';
+  if (psn.at) {
+    h += '<div class="card"><b>PSN連携</b><div class="small" style="margin:4px 0">取得済みトロフィーを毎日自動で読み込んでいます（' + Object.keys(psn.earned).length + '個）。最終更新：' + esc(new Date(psn.at).toLocaleString('ja-JP')) + '。PSN側が更新されるのはゲーム手帖と同じ毎日の自動実行のタイミングです（直後に取ったトロフィーは、手動でチェックすると先に反映できます）。</div>' +
+      (psn.how.indexOf('order') >= 0 ? '<div class="err" style="margin-top:6px">トロフィー名ではなく並び順で対応づけています。内容を確認してください。</div>' : '') + '</div>';
+  } else {
+    h += '<div class="card"><b>PSN連携</b><div class="small" style="margin:4px 0">このゲームのPSNデータはまだありません。手動でチェックしてください。</div></div>';
+  }
+  if (!psn.at) h += '<div class="card"><b>推定で一括チェック</b><div class="small" style="margin:4px 0">' + esc(game.profile_note || '') + ' 条件が確定しているものだけを取得済みにします（生存条件つきのものは含みません）。PS5の実際の一覧と照らして直してください。</div>' +
+    '<button class="btn pri" id="bulkLikely">推定分をチェックする（' + (game.likely||[]).length + '件）</button></div>';
+  h += '<div class="card"><b>バックアップ</b><div class="small" style="margin:4px 0">このブラウザにだけ保存されています。機種変更やブラウザの掃除の前に書き出してください。</div>' +
+    '<button class="btn" id="exp">JSONを書き出す</button><button class="btn" id="imp">JSONを読み込む</button><input type="file" id="impFile" accept="application/json,.json" style="display:none"></div>';
+  h += '<div class="card"><b>リセット</b><div class="small" style="margin:4px 0">このゲームのチェックをすべて外します。</div><button class="btn dng" id="reset">このゲームの記録を消す</button></div>';
+  return h;
+}
+
+/* ---------- 描画と操作 ---------- */
+function render(){
+  var m = document.getElementById('main');
+  m.innerHTML = tab==='chart' ? renderChart() : tab==='trophy' ? renderTrophy() : tab==='route' ? renderRoute() : renderData();
+  renderProgress();
+  Array.prototype.forEach.call(document.querySelectorAll('#tabs button'), function(b){ b.classList.toggle('on', b.getAttribute('data-tab')===tab); });
+}
+document.getElementById('tabs').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-tab]'); if (!b) return;
+  tab = b.getAttribute('data-tab'); render(); window.scrollTo(0,0);
+});
+document.getElementById('main').addEventListener('change', function(e){
+  var el = e.target;
+  if (el.hasAttribute('data-step')){
+    var id = el.getAttribute('data-step');
+    if (el.checked) gs().steps[id] = true; else delete gs().steps[id];
+    saveDB();
+    var openIds = Array.prototype.map.call(document.querySelectorAll('details.phase[open]'), function(d){return d.getAttribute('data-ph')});
+    render();
+    openIds.forEach(function(pid){ var d=document.querySelector('details.phase[data-ph="'+pid+'"]'); if(d) d.open=true; });
+  } else if (el.hasAttribute('data-tr')){
+    setGot(el.getAttribute('data-tr'), el.checked);
+    var scroll = window.scrollY; render(); window.scrollTo(0, scroll);
+  } else if (el.id==='impFile'){
+    var f = el.files && el.files[0]; if (!f) return;
+    var rd = new FileReader();
+    rd.onload = function(){
+      try {
+        var v = JSON.parse(rd.result);
+        if (!v || !v.games) throw new Error('形式が違います');
+        // 新しい方を採用してマージ（ゲーム単位・トロフィー単位）
+        Object.keys(v.games).forEach(function(gid){
+          var cur = DB.games[gid] || {trophies:{}, steps:{}};
+          var inc = v.games[gid] || {};
+          Object.keys(inc.trophies||{}).forEach(function(tid){
+            var a = cur.trophies[tid], b = inc.trophies[tid];
+            if (!a || (b.updated_at||'') > (a.updated_at||'')) cur.trophies[tid] = b;
+          });
+          Object.keys(inc.steps||{}).forEach(function(sid){ if (inc.steps[sid]) cur.steps[sid] = true; });
+          DB.games[gid] = cur;
+        });
+        saveDB(); render(); toast('読み込みました');
+      } catch(err){ toast('読み込めませんでした：' + err.message); }
+    };
+    rd.readAsText(f);
+  }
+});
+document.getElementById('main').addEventListener('click', function(e){
+  var t = e.target;
+  var chip = t.closest('.chip[data-goto]');
+  if (chip){
+    var id = chip.getAttribute('data-goto');
+    tab = 'trophy'; filt = {grade:'', route:'', status:'', miss:false}; render();
+    var el = document.getElementById('tr-' + id); if (el){ el.scrollIntoView({block:'center'}); el.style.outline='2px solid var(--accent)'; }
+    return;
+  }
+  var fb = t.closest('button[data-f]');
+  if (fb){
+    var g = fb.getAttribute('data-f'), v = fb.getAttribute('data-v');
+    if (g==='miss') filt.miss = !filt.miss; else filt[g] = (filt[g]===v && v!=='') ? '' : v;
+    render(); return;
+  }
+  if (t.id==='bulkLikely'){
+    (game.likely||[]).forEach(function(id){ if (!isGot(id)) setGot(id, true); });
+    toast('推定分をチェックしました'); render(); return;
+  }
+  if (t.id==='exp'){
+    var blob = new Blob([JSON.stringify({_readme:'攻略手帖の記録。games.<ゲームID>.trophies/steps。', schema_version:1, updated_at:new Date().toISOString(), games:DB.games}, null, 2)], {type:'application/json'});
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'kouryaku-data.json'; document.body.appendChild(a); a.click(); a.remove();
+    return;
+  }
+  if (t.id==='imp'){ document.getElementById('impFile').click(); return; }
+  if (t.id==='reset'){
+    if (confirm('このゲームのチェックをすべて消します。元に戻せません。よろしいですか？')){
+      DB.games[game.id] = {trophies:{}, steps:{}}; saveDB(); render(); toast('消しました');
+    }
+  }
+});
+
+/* ---------- 起動 ---------- */
+function fetchJSON(u){
+  return fetch(u, {cache:'no-cache'}).then(function(r){ if(!r.ok) throw new Error(u + ' ' + r.status); return r.json(); });
+}
+function loadGame(entry){
+  var p = window.KOURYAKU_INLINE ? Promise.resolve(window.KOURYAKU_INLINE.data[entry.id]) : fetchJSON(entry.file);
+  return p.then(function(g){
+    game = g; DB.last_game = g.id; saveDB();
+    document.title = g.title + '｜攻略手帖';
+    psn = {at:null, earned:{}, how:''};
+    var q = window.KOURYAKU_INLINE ? Promise.resolve(window.KOURYAKU_INLINE.psn) : fetchJSON('psn-earned.json').catch(function(){ return null; });
+    return q.then(function(pd){
+      var rec = pd && pd.games && pd.games[g.id];
+      if (rec) { psn.at = pd.generated_at; psn.how = rec.how || ''; (rec.earned||[]).forEach(function(i){ psn.earned[i] = true; }); }
+      render();
+    });
+  });
+}
+function boot(){
+  var p = window.KOURYAKU_INLINE ? Promise.resolve(window.KOURYAKU_INLINE.index) : fetchJSON('games/index.json');
+  p.then(function(idx){
+    manifest = idx;
+    var sel = document.getElementById('gameSel');
+    sel.innerHTML = idx.games.map(function(g){ return '<option value="' + esc(g.id) + '">' + esc(g.title) + '（' + esc(g.platform) + '）</option>'; }).join('');
+    var want = (location.hash||'').replace('#','') || DB.last_game || idx.games[0].id;
+    var entry = idx.games.find(function(g){ return g.id===want || g.slug===want; }) || idx.games[0];
+    sel.value = entry.id;
+    sel.addEventListener('change', function(){
+      var en = idx.games.find(function(g){ return g.id===sel.value; });
+      history.replaceState(null,'','#'+en.slug); loadGame(en);
+    });
+    return loadGame(entry);
+  }).catch(function(err){
+    document.getElementById('main').innerHTML = '<div class="err">データを読み込めませんでした：' + esc(err.message) + '<br>ファイルを直接開かず、公開サイト（GitHub Pages）から開いてください。</div>';
+  });
+}
+boot();
+})();
+</script>
+</body>
+</html>
