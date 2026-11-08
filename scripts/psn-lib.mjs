@@ -14,13 +14,22 @@ export function norm(s) {
     .replace(/[\s\-–—―~〜～:：・!！?？'"“”‘’`´()（）\[\]【】「」『』<>＜＞,.，。、/／\\&＆+＋*★☆♪_]/g, '');
 }
 
-// 照合: 完全一致 > 一方が他方を含み、長さが近い（80%以上）。曖昧なものは採用しない。
-export function isSameTitle(a, b) {
-  const x = norm(a), y = norm(b);
+// ファミ通のタイトルは「【海外】 」の接頭辞や「（読み仮名）」が付くことがあるので、それらを除いた形も比べる
+const variants = (s) => {
+  const t = String(s || '');
+  const noPre = t.replace(/^\s*【[^】]*】\s*/, '');
+  return [...new Set([t, noPre, noPre.replace(/[（(][^）)]*[）)]/g, ' ')])];
+};
+const same = (x, y) => {
   if (!x || !y) return false;
   if (x === y) return true;
   const [short, long] = x.length <= y.length ? [x, y] : [y, x];
   return short.length >= 5 && long.includes(short) && short.length / long.length >= 0.8;
+};
+// 照合: 完全一致 > 一方が他方を含み、長さが近い（80%以上）。曖昧なものは採用しない。
+export function isSameTitle(a, b) {
+  const vb = variants(b).map(norm);
+  return variants(a).some((va) => { const x = norm(va); return vb.some((y) => same(x, y)); });
 }
 
 // 名前候補（PSNの name / localizedName）のどれかが games の名前と同じものを探す
