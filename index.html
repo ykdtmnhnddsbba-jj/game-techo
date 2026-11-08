@@ -89,21 +89,23 @@ label.chk{display:flex;gap:6px;align-items:center;color:var(--sub);font-size:14p
 .item .ctitle{font-size:15px;cursor:pointer;-webkit-line-clamp:1}
 .item .ctitle:hover{color:var(--accent2)}
 .item .bd{display:flex;gap:6px;flex-wrap:wrap;min-height:0}
-.tro{margin:8px 0 4px;padding:7px 9px;border-radius:9px;background:var(--panel2);border:1px solid var(--line);font-size:12px;color:var(--sub)}
-.tro .trow{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-.tro .tp{font-size:20px;font-weight:800;color:#8fb0ff;line-height:1}
-.tro .tn{font-size:12px}
-.tro .tpl{margin-left:auto;font-weight:800;font-size:12px;padding:2px 8px;border-radius:999px;background:#2a2f3f;color:#aab}
-.tro .tpl.got{background:linear-gradient(135deg,#fff1b0,#f0b429 55%,#d89a12);color:#3a2400;font-size:15px;padding:4px 12px;box-shadow:0 0 0 2px rgba(240,180,41,.3)}
-.tro .tbar{height:9px;border-radius:5px;background:#10131c;overflow:hidden;margin-top:6px}
-.tro .tbar i{display:block;height:100%;background:linear-gradient(90deg,#5b8cff,#8fb0ff)}
-.tro.done{border-color:#e0b341;background:linear-gradient(135deg,rgba(246,211,101,.16),rgba(224,168,46,.08))}
-.tro.done .tp{color:#f6d365}.tro.done .tbar i{background:linear-gradient(90deg,#f6d365,#e0a82e)}
-.tcorner{position:absolute;top:7px;right:7px;z-index:3;display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(18,22,38,.92);color:#cfe0ff;border:1px solid #5b8cff;box-shadow:0 2px 6px rgba(0,0,0,.55)}
-.tcorner.done{background:linear-gradient(135deg,#f6d365,#e0a82e);color:#3a2a00;border-color:#fff3c2}
-.tcorner.plat{font-size:16px;padding:6px 14px;background:linear-gradient(135deg,#fff1b0,#f0b429 55%,#d89a12);color:#3a2400;border:2px solid #fff6d0;box-shadow:0 0 0 2px rgba(240,180,41,.35),0 3px 10px rgba(0,0,0,.6)}
-.card.has-tro .ctitle{padding-right:104px}
-.card.has-plat .ctitle{padding-right:140px}
+.tpanel{position:absolute;top:7px;right:7px;z-index:3;min-width:92px;max-width:132px;padding:6px 9px 7px;border-radius:11px;background:rgba(18,22,38,.94);border:1px solid #5b8cff;color:#cfe0ff;text-align:right;box-shadow:0 2px 8px rgba(0,0,0,.55)}
+.tpanel .m{font-size:19px;font-weight:800;line-height:1.1;color:#9dbaff}
+.tpanel .c{font-size:11px;color:#9fb0d8;margin-top:1px}
+.tpanel .b{height:5px;border-radius:3px;background:#0b0e18;margin-top:5px;overflow:hidden}
+.tpanel .b i{display:block;height:100%;background:linear-gradient(90deg,#5b8cff,#9dbaff)}
+.tpanel .pl{display:inline-block;margin-top:6px;font-size:12px;font-weight:800;padding:2px 9px;border-radius:999px;background:#2a2f3f;color:#9aa3bb;white-space:nowrap}
+.tpanel .pl.got{font-size:14px;padding:4px 11px;background:linear-gradient(135deg,#fff1b0,#f0b429 55%,#d89a12);color:#3a2400;box-shadow:0 0 0 2px rgba(240,180,41,.35)}
+.tpanel.done{border:2px solid #f0b429}
+.tpanel.done .m{color:#f6d365}.tpanel.done .b i{background:linear-gradient(90deg,#f6d365,#e0a82e)}
+.card.has-tro .ctitle{padding-right:112px}
+@media(max-width:560px){
+ .tpanel{min-width:0;max-width:96px;padding:4px 7px 5px;top:6px;right:6px;border-radius:9px}
+ .tpanel .m{font-size:15px}.tpanel .c{display:none}.tpanel .b{margin-top:3px;height:4px}
+ .tpanel .pl{margin-top:4px;font-size:11px;padding:1px 7px}.tpanel .pl.no{display:none}
+ .tpanel .pl.got{font-size:13px;padding:2px 8px}.tpanel .pl.got .t{display:none}
+ .card.has-tro .ctitle{padding-right:76px}
+}
 .badge.date{background:#232a55;color:#c4ccff}
 .badge.price{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
 .qc{display:flex;flex-direction:column;gap:7px;margin-top:2px}
@@ -555,19 +557,13 @@ function groupHead(it,mode){
   return mode==='month'?[it.release.slice(0,7),`${y}年${mo}月発売`]:[it.release,`${mo}月${d}日(${WD[new Date(it.release+'T00:00:00Z').getUTCDay()]})発売`];
 }
 let TROPHY={};
-function trophyHtml(id){
+function trophyChip(id){
   const t=TROPHY[String(id)];if(!t)return'';
   const done=t.p>=100,plat=t.d[3]>0,got=t.e[3]>0;
   const tot=t.d.reduce((a,b)=>a+b,0),have=t.e.reduce((a,b)=>a+b,0);
-  return`<div class="tro ${done?'done':''}"><div class="trow"><span class="tp">🏆 ${t.p}%</span><span class="tn">${done?'コンプリート！ ':''}${have}/${tot}個</span>${plat?`<span class="tpl ${got?'got':''}">${got?'💎 プラチナ取得':'プラチナ未取得'}</span>`:''}</div><div class="tbar"><i style="width:${t.p}%"></i></div></div>`;
+  return`<div class="tpanel ${done?'done':''}"><div class="m">🏆 ${t.p}%</div><div class="c">${have}/${tot}個</div><div class="b"><i style="width:${t.p}%"></i></div>${got?'<span class="pl got">💎<span class="t"> プラチナ取得</span></span>':plat?'<span class="pl no">プラチナ未</span>':''}</div>`;
 }
-function trophyChip(id){
-  const t=TROPHY[String(id)];if(!t)return'';
-  const done=t.p>=100,got=t.e[3]>0;
-  if(got)return`<span class="tcorner plat">💎 プラチナ取得</span>`;
-  return`<span class="tcorner ${done?'done':''}">🏆 ${done?'コンプ':t.p+'%'}</span>`;
-}
-const troCls=id=>{const t=TROPHY[String(id)];return t?(t.e[3]>0?'has-tro has-plat':'has-tro'):''};
+const troCls=id=>TROPHY[String(id)]?'has-tro':'';
 const isTroDone=id=>{const t=TROPHY[String(id)];return !!t&&t.p>=100};
 function cardHtml(it,rec,prof){
   const r=db.ratings[it.id],rated=isRated(it.id);
@@ -580,7 +576,6 @@ function cardHtml(it,rec,prof){
       <div class="ctitle">${esc(titleOf(it))}</div>
       <div class="meta">${esc(meta)}${it.avg?` ・ ★${it.avg}`:''}</div>
       <div class="bd"><span class="badge date ${isHintRegion(it.region)?'hint':''}" title="${esc(regionNote(it.region))}">${esc(fmtDate(it.release))}</span>${it.price?`<span class="badge price">${esc(it.price)}</span>`:''}</div>
-      ${isPlayed(it.id)?trophyHtml(it.id):''}
       ${showMatch?`<div class="reason">相性 ${rc.match}%${rc.reasons.length?'　◎ '+esc(rc.reasons.join('・')):''}</div>`:''}
       ${ctrlHtml(it.id)}
     </div></div>`;
@@ -617,7 +612,7 @@ function renderGridRaw(){
 /* ---- my ratings ---- */
 function mineCard(r){const cv=r.cover||(index.get(String(r.id))||{}).cover||'';return`<div class="card item ${troCls(r.id)}" data-id="${esc(r.id)}">${trophyChip(r.id)}
       <div class="cover ${cv?'':'nocover'}">${coverImg(cv)}${r.score>0?`<span class="score">${r.score}</span>`:''}</div>
-      <div class="cbody"><div class="ctitle">${esc(r.title)}</div><div class="meta">${esc([(r.genres||[]).slice(0,3).join(' / '),r.developer].filter(Boolean).join(' ・ '))}</div><div class="bd">${r.release?`<span class="badge date">${esc(fmtDate(r.release))}</span>`:''}${r.release?`<span class="badge price">${esc(r.release.slice(0,4)+'年'+(+r.release.slice(5,7))+'月発売')}</span>`:''}</div>${trophyHtml(r.id)}${ctrlHtml(r.id)}</div></div>`}
+      <div class="cbody"><div class="ctitle">${esc(r.title)}</div><div class="meta">${esc([(r.genres||[]).slice(0,3).join(' / '),r.developer].filter(Boolean).join(' ・ '))}</div><div class="bd">${r.release?`<span class="badge date">${esc(fmtDate(r.release))}</span>`:''}${r.release?`<span class="badge price">${esc(r.release.slice(0,4)+'年'+(+r.release.slice(5,7))+'月発売')}</span>`:''}</div>${ctrlHtml(r.id)}</div></div>`}
 function mineHtml(rs){
   if(ui.mySort!=='group')return rs.map(mineCard).join('');
   const g={};rs.forEach(r=>{const k=r.score>0?r.score:0;(g[k]=g[k]||[]).push(r)});
