@@ -352,23 +352,48 @@ function importJson(text){
 /* =============== Google Drive sync =============== */
 const DRIVE_NAME='game-db.json';
 let gToken=null,gExp=0,gClient=null,driveFileId=null,syncState=settings.drive_linked?'need':'off',syncTimer=null,syncing=false;
-function loadGis(){return new Promise((res,rej)=>{
-  if(window.google&&google.accounts&&google.accounts.oauth2)return res();
-  const s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';
-  s.onload=res;s.onerror=()=>rej(new Error('Google認証スクリプトを読み込めません'));document.head.appendChild(s);
-})}
+const G_SCOPE='https://www.googleapis.com/auth/drive.file';
+const G_REDIR=location.origin+location.pathname;
+const G_TOKKEY='gauth_tok:'+G_REDIR;
+/* 認証はポップアップではなくページ遷移（リダイレクト）方式。Sleipnir等のアプリ内ブラウザでも動く */
+(function(){
+  try{
+    if(/access_token=|error=/.test(location.hash)){
+      const p=new URLSearchParams(location.hash.slice(1));
+      if(p.get('state')&&p.get('state')===sessionStorage.getItem('gauth_state')){
+        if(p.get('access_token'))sessionStorage.setItem(G_TOKKEY,JSON.stringify({t:p.get('access_token'),e:Date.now()+(+p.get('expires_in')||3600)*1000}));
+        sessionStorage.removeItem('gauth_state');
+        history.replaceState(null,'',location.pathname+location.search);
+      }
+    }
+    const s=JSON.parse(sessionStorage.getItem(G_TOKKEY)||'null');
+    if(s&&s.e>Date.now()){gToken=s.t;gExp=s.e}
+  }catch(e){}
+})();
+function gRedirect(prompt){
+  const st=Math.random().toString(36).slice(2)+Date.now().toString(36);
+  try{sessionStorage.setItem('gauth_state',st)}catch(e){}
+  const q=new URLSearchParams({client_id:settings.google_client_id.trim(),redirect_uri:G_REDIR,response_type:'token',scope:G_SCOPE,state:st,include_granted_scopes:'true'});
+  if(prompt)q.set('prompt',prompt);
+  location.href='https://accounts.google.com/o/oauth2/v2/auth?'+q.toString();
+  return new Promise(()=>{});   // 遷移するので戻らない
+}
 async function driveAuth(interactive){
   if(!settings.google_client_id.trim())throw new Error('Google クライアントIDが未設定です（設定タブ）');
-  await loadGis();
-  return new Promise((res,rej)=>{
-    gClient=google.accounts.oauth2.initTokenClient({
-      client_id:settings.google_client_id.trim(),scope:'https://www.googleapis.com/auth/drive.file',
-      callback:r=>{if(r.error)return rej(new Error('Google認証: '+r.error));gToken=r.access_token;gExp=Date.now()+(r.expires_in||3600)*1000;res()},
-      error_callback:e=>rej(new Error('Google認証が完了しませんでした'+(e&&e.type?' ('+e.type+')':'')))
-    });
-    gClient.requestAccessToken({prompt:interactive?'':'none'});
-  });
+  if(interactive)return gRedirect('');
+  throw new Error('再接続が必要です');
 }
+/* 起動時：トークンがあれば同期、無ければ1回だけ無言で再認証を試す（ループ防止つき） */
+function gStartup(){
+  if(!settings.google_client_id)return;
+  if(gToken){driveSync(false);return}
+  if(!settings.drive_linked)return;
+  let last=0;try{last=+sessionStorage.getItem('gauth_silent')||0}catch(e){}
+  if(Date.now()-last<300000){setSync('need');return}
+  try{sessionStorage.setItem('gauth_silent',String(Date.now()))}catch(e){}
+  gRedirect('none');
+}
+window.addEventListener('pageshow',e=>{if(e.persisted){syncing=false;setSync('need')}});
 const gFetch=(url,opt={})=>fetch(url,{...opt,headers:{...(opt.headers||{}),Authorization:'Bearer '+gToken}});
 async function driveSync(interactive){
   if(syncing)return;syncing=true;setSync('busy');
@@ -811,9 +836,7 @@ function setHH(){document.documentElement.style.setProperty('--hh',$('header').o
 window.addEventListener('resize',setHH);
 render();setHH();
 loadGames();
-if(settings.drive_linked&&settings.google_client_id){
-  driveSync(false);   // 静かに再接続を試みる（失敗しても「要再接続」表示のまま）
-}
+gStartup();
 </script>
 </body>
 </html>
