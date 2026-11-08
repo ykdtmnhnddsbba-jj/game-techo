@@ -32,7 +32,7 @@ jobs:
           node scripts/fetch-psn.mjs
       - name: Commit if changed
         run: |
-          for f in games.json psn-played.json psn-trophies.json psn-cache.json psn-state.enc psn-aliases.enc psn-unmatched.enc psn-suggest.enc psn-trophy-unmatched.enc; do [ -f "$f" ] && git add "$f"; done
+          for f in games.json psn-played.json psn-trophies.json psn-cache.json psn-state.enc psn-aliases.enc psn-unmatched.enc psn-suggest.enc psn-trophy-unmatched.enc kouryaku/psn-earned.json; do [ -f "$f" ] && git add "$f"; done
           if git diff --cached --quiet; then
             echo "no changes"
             exit 0

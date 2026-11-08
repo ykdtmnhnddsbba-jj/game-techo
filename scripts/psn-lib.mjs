@@ -73,3 +73,33 @@ export function suggest(names, rows, n = 4, min = 0.3) {
     .filter((x) => x.sc >= min).sort((a, b) => b.sc - a.sc).slice(0, n)
     .map((x) => ({ id: String(x.r.id), title: x.r.title, date: x.r.date || x.r.release, plat: x.r.plat || '', score: +x.sc.toFixed(2) }));
 }
+
+// 攻略手帖: PSNのトロフィー定義(defs)と取得状況(earned)を、攻略データ(mine)のトロフィーIDに対応づける。
+//   defs:   [{trophyId, trophyType, trophyName}]   earned: [{trophyId, earned}]   mine: [{id, name, grade}]
+// 1) トロフィー名の一致 2) 名前が取れないときは並び順（トロフィー種別の並びが完全に一致する場合だけ）で対応づける。
+// 戻り値: {how:'name'|'order'|'name+order'|'none', named, total, earned:[攻略データのID]}  ※公開ファイルにはこのIDだけを書く
+export function mapTrophies(defs, earned, mine) {
+  const byName = new Map(mine.map((m) => [norm(m.name), m.id]));
+  const got = new Map((earned || []).map((e) => [e.trophyId, !!e.earned]));
+  const sorted = [...defs].sort((a, b) => a.trophyId - b.trophyId);
+  const assign = new Map();   // trophyId → 攻略データID
+  let named = 0;
+  for (const d of sorted) {
+    const id = byName.get(norm(d.trophyName));
+    if (id && ![...assign.values()].includes(id)) { assign.set(d.trophyId, id); named++; }
+  }
+  const orderOk = sorted.length >= mine.length && mine.every((m, i) => sorted[i].trophyType === m.grade);
+  let usedOrder = false;
+  if (orderOk) {
+    mine.forEach((m, i) => {
+      const d = sorted[i];
+      if (!assign.has(d.trophyId) && ![...assign.values()].includes(m.id)) { assign.set(d.trophyId, m.id); usedOrder = true; }
+    });
+  }
+  const how = named && usedOrder ? 'name+order' : named ? 'name' : usedOrder ? 'order' : 'none';
+  // 名前が一部しか合わず順序も使えないときは、確実でないので採用しない
+  if (how === 'name' && named < Math.ceil(mine.length * 0.8)) return { how: 'none', named, total: mine.length, earned: [] };
+  const ids = [...assign].filter(([tid]) => got.get(tid)).map(([, id]) => id);
+  const order = new Map(mine.map((m, i) => [m.id, i]));
+  return { how, named, total: mine.length, earned: ids.sort((a, b) => order.get(a) - order.get(b)) };
+}

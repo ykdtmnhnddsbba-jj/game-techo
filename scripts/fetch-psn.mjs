@@ -7,7 +7,7 @@
 // 公開ファイルに入れるのは「ファミ通のタイトルID」だけ（プレイ時間・日付は保存しません）。
 import fs from 'node:fs/promises';
 import { parseSchedule, parseDetail, NON_GAME } from './famitsu-parse.mjs';
-import { findGame, pickCandidate, suggest, isSameTitle, encryptState, decryptState } from './psn-lib.mjs';
+import { findGame, pickCandidate, suggest, isSameTitle, encryptState, decryptState, mapTrophies } from './psn-lib.mjs';
 
 const STATE = process.env.PSN_STATE_FILE || 'psn-state.enc';
 const CACHE = 'psn-cache.json';
@@ -97,7 +97,7 @@ async function scanSchedules(windowFrom) {
 }
 
 // トロフィー進捗: getUserTitles（トロフィーのあるタイトル一覧）→ ファミ通IDに紐付け。公開ファイルには「ID → 進捗%・獲得/全体の数」だけを保存
-async function fetchTrophies(psn, tokens, played, resolved, games) {
+async function fetchTrophies(psn, tokens, played, resolved, games, refs = new Map()) {
   const titles = [];
   for (let offset = 0, i = 0; i < 30; i++) {
     const r = await psn.getUserTitles({ accessToken: tokens.accessToken }, 'me', { limit: 800, offset, headerOverrides: { 'Accept-Language': 'ja-JP' } });
@@ -116,11 +116,42 @@ async function fetchTrophies(psn, tokens, played, resolved, games) {
     const e = t.earnedTrophies || {}, d = t.definedTrophies || {};
     const rec = { p: t.progress ?? 0, e: [e.bronze || 0, e.silver || 0, e.gold || 0, e.platinum || 0], d: [d.bronze || 0, d.silver || 0, d.gold || 0, d.platinum || 0] };
     const cur = out[id];
-    if (!cur || rec.p > cur.p) out[id] = rec;   // PS4/PS5の両方がある場合は進んでいる方
+    if (!cur || rec.p > cur.p) { out[id] = rec; refs.set(id, { np: t.npCommunicationId, svc: t.npServiceName }); }   // PS4/PS5の両方がある場合は進んでいる方
   }
   console.log(`トロフィー: ${titles.length}タイトル中 ${Object.keys(out).length}本を紐付け（未紐付け ${nomatch}）`);
   await fs.writeFile('psn-trophy-unmatched.enc', encryptState(miss, process.env.PSN_STATE_KEY) + '\n');
   return out;
+}
+
+// 攻略手帖: kouryaku/games/index.json に載っているゲームについて、トロフィー1個ずつの取得状況を取る。
+// 公開ファイル kouryaku/psn-earned.json には「取得済みの攻略データID（t01 など）」だけを保存（トロフィー名・日時は書かない）
+const KOURYAKU_DIR = process.env.KOURYAKU_DIR || 'kouryaku';
+async function fetchKouryaku(psn, tokens, refs) {
+  const idx = await readJson(`${KOURYAKU_DIR}/games/index.json`, null);
+  if (!idx?.games?.length) return;
+  const auth = { accessToken: tokens.accessToken };
+  const hdr = { 'Accept-Language': 'ja-JP' };
+  const prev = await readJson(`${KOURYAKU_DIR}/psn-earned.json`, { games: {} });
+  const games = { ...(prev.games || {}) };
+  for (const g of idx.games) {
+    try {
+      const ref = refs.get(String(g.id));
+      if (!ref?.np) { console.warn(`攻略手帖: ${g.slug} はPSNのトロフィー一覧と紐付いていません（スキップ）`); continue; }
+      const data = await readJson(`${KOURYAKU_DIR}/${g.file}`, null);
+      if (!data?.trophies?.length) continue;
+      const opt = { npServiceName: ref.svc, limit: 800, headerOverrides: hdr };
+      const defs = (await psn.getTitleTrophies(auth, ref.np, 'all', opt)).trophies || [];
+      const earned = (await psn.getUserTrophiesEarnedForTitle(auth, 'me', ref.np, 'all', { npServiceName: ref.svc, limit: 800, headerOverrides: hdr })).trophies || [];
+      const r = mapTrophies(defs, earned, data.trophies);
+      console.log(`攻略手帖: ${g.slug} 定義${defs.length}件 対応づけ=${r.how}（名前一致${r.named}/${r.total}） 取得済み${r.earned.length}`);
+      if (r.how === 'none') { console.warn('  対応づけできないためスキップ（トロフィー名・種別の並びを確認）'); continue; }
+      games[String(g.id)] = { earned: r.earned, total: r.total, how: r.how };
+    } catch (e) { console.warn(`攻略手帖: ${g.slug} の取得に失敗（スキップ）:`, e.message); }
+  }
+  if (JSON.stringify(prev.games) !== JSON.stringify(games)) {
+    await fs.mkdir(KOURYAKU_DIR, { recursive: true });
+    await fs.writeFile(`${KOURYAKU_DIR}/psn-earned.json`, JSON.stringify({ generated_at: new Date().toISOString(), games }) + '\n');
+  }
 }
 
 async function main() {
@@ -192,7 +223,9 @@ async function main() {
   await fs.writeFile(CACHE, JSON.stringify(cache, null, 1) + '\n');
   const sorted = [...ids].sort((a, b) => (/^\d+$/.test(a) && /^\d+$/.test(b) ? +a - +b : /^\d+$/.test(a) ? -1 : /^\d+$/.test(b) ? 1 : a.localeCompare(b)));
   try {
-    const trophies = await fetchTrophies(psn, tokens, played, resolved, games);
+    const refs = new Map();
+    const trophies = await fetchTrophies(psn, tokens, played, resolved, games, refs);
+    await fetchKouryaku(psn, tokens, refs);
     const prevT = await readJson(TROPHIES, { trophies: {} });
     if (JSON.stringify(prevT.trophies) !== JSON.stringify(trophies)) await fs.writeFile(TROPHIES, JSON.stringify({ generated_at: new Date().toISOString(), trophies }) + '\n');
   } catch (e) { console.warn('トロフィー取得に失敗（スキップ）:', e.message); }
