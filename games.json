@@ -1,7 +1,7 @@
 {
  "source": "ファミ通.com",
  "platform": "PS5",
- "generated_at": "2026-11-08T00:29:59.138Z",
+ "generated_at": "2026-11-08T01:18:06.022Z",
  "window": {
   "from": "2026-09-01",
   "to": "2027-02-01"
@@ -1526,27 +1526,6 @@
    "added_by": "psn"
   },
   {
-   "id": "41683",
-   "name": "void tRrLM();++ver; //ボイド・テラリウム・プラス",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/117674/i7qhsWM-?w=400&h=400&func=bound",
-   "release": "2021-02-18",
-   "region": "JP",
-   "genres": [
-    "RPG"
-   ],
-   "tags": [],
-   "developer": "日本一ソフトウェア",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "6980円[税抜]",
-   "url": "https://www.famitsu.com/game/title/41683/page/1",
-   "detail_at": "2026-11-08",
-   "added_by": "psn"
-  },
-  {
    "id": "41112",
    "name": "【海外】 Horizon Forbidden West",
    "native": "",
@@ -1565,6 +1544,27 @@
    "desc": "",
    "price": "",
    "url": "https://www.famitsu.com/game/title/41112/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
+   "id": "41683",
+   "name": "void tRrLM();++ver; //ボイド・テラリウム・プラス",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/117674/i7qhsWM-?w=400&h=400&func=bound",
+   "release": "2021-02-18",
+   "region": "JP",
+   "genres": [
+    "RPG"
+   ],
+   "tags": [],
+   "developer": "日本一ソフトウェア",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "6980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/41683/page/1",
    "detail_at": "2026-11-08",
    "added_by": "psn"
   },
@@ -1737,6 +1737,27 @@
    "added_by": "psn"
   },
   {
+   "id": "43719",
+   "name": "eFootball",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/120716/M_1WugvA?w=400&h=400&func=bound",
+   "release": "2021-09-30",
+   "region": "JP",
+   "genres": [
+    "スポーツ"
+   ],
+   "tags": [],
+   "developer": "KONAMI",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "",
+   "url": "https://www.famitsu.com/game/title/43719/page/1",
+   "detail_at": "2026-11-08",
+   "added_by": "psn"
+  },
+  {
    "id": "43302",
    "name": "Hades",
    "native": "",
@@ -1755,27 +1776,6 @@
    "desc": "",
    "price": "3000円[税抜]",
    "url": "https://www.famitsu.com/game/title/43302/page/1",
-   "detail_at": "2026-11-08",
-   "added_by": "psn"
-  },
-  {
-   "id": "43719",
-   "name": "eFootball",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/120716/M_1WugvA?w=400&h=400&func=bound",
-   "release": "2021-09-30",
-   "region": "JP",
-   "genres": [
-    "スポーツ"
-   ],
-   "tags": [],
-   "developer": "KONAMI",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "",
-   "url": "https://www.famitsu.com/game/title/43719/page/1",
    "detail_at": "2026-11-08",
    "added_by": "psn"
   },
@@ -3535,26 +3535,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "71019",
-   "name": "創神のアルスマグナ The Alchemist of Ars Magna",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/153730/fiQROGu3?w=400&h=400&func=bound",
-   "release": "2026-09-17",
-   "region": "JP",
-   "genres": [
-    "RPG"
-   ],
-   "tags": [],
-   "developer": "賈船",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "7000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71019/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "71024",
    "name": "機動警察パトレイバー the Case Files",
    "native": "",
@@ -3592,6 +3572,26 @@
    "desc": "",
    "price": "8000円[税抜]",
    "url": "https://www.famitsu.com/game/title/69403/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
+   "id": "71019",
+   "name": "創神のアルスマグナ The Alchemist of Ars Magna",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/153730/fiQROGu3?w=400&h=400&func=bound",
+   "release": "2026-09-17",
+   "region": "JP",
+   "genres": [
+    "RPG"
+   ],
+   "tags": [],
+   "developer": "賈船",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7000円[税抜]",
+   "url": "https://www.famitsu.com/game/title/71019/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -4228,26 +4228,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "71415",
-   "name": "BAHAMUT AND THE WAQWAQ TREE",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/155358/ackWcUFF?w=400&h=400&func=bound",
-   "release": "2026-10-22",
-   "region": "JP",
-   "genres": [
-    "アドベンチャー"
-   ],
-   "tags": [],
-   "developer": "SOFTSOURCE",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "4500円[税抜]",
-   "url": "https://www.famitsu.com/game/title/71415/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "69012",
    "name": "Back to the Dawn ～ブレイク･ザ･アニマル･プリズン～",
    "native": "",
@@ -4266,6 +4246,26 @@
    "desc": "",
    "price": "4480円[税抜]",
    "url": "https://www.famitsu.com/game/title/69012/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
+   "id": "71415",
+   "name": "BAHAMUT AND THE WAQWAQ TREE",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/155358/ackWcUFF?w=400&h=400&func=bound",
+   "release": "2026-10-22",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "SOFTSOURCE",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "4500円[税抜]",
+   "url": "https://www.famitsu.com/game/title/71415/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -4350,26 +4350,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "72137",
-   "name": "ファイナルファンタジー レゾナンス",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/154987/gxHdcltL?w=400&h=400&func=bound",
-   "release": "2026-10-22",
-   "region": "JP",
-   "genres": [
-    "RPG"
-   ],
-   "tags": [],
-   "developer": "スクウェア・エニックス",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "6980円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72137/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "72360",
    "name": "ファーミング・キャンプ",
    "native": "",
@@ -4388,6 +4368,26 @@
    "desc": "",
    "price": "3500円[税抜]",
    "url": "https://www.famitsu.com/game/title/72360/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
+   "id": "72137",
+   "name": "ファイナルファンタジー レゾナンス",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/154987/gxHdcltL?w=400&h=400&func=bound",
+   "release": "2026-10-22",
+   "region": "JP",
+   "genres": [
+    "RPG"
+   ],
+   "tags": [],
+   "developer": "スクウェア・エニックス",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "6980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72137/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -5529,26 +5529,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "44343",
-   "name": "地球防衛軍6.2 INVADERS FROM ANOTHER WORLD",
-   "native": "",
-   "cover": "",
-   "release": "2027-03-18",
-   "region": "JP",
-   "genres": [
-    "アクションシューティング"
-   ],
-   "tags": [],
-   "developer": "ディースリー・パブリッシャー",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "7000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/44343/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "72719",
    "name": "戦刃アレスタ",
    "native": "",
@@ -5566,6 +5546,26 @@
    "desc": "",
    "price": "6800円[税抜]",
    "url": "https://www.famitsu.com/game/title/72719/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
+   "id": "44343",
+   "name": "地球防衛軍6.2 INVADERS FROM ANOTHER WORLD",
+   "native": "",
+   "cover": "",
+   "release": "2027-03-18",
+   "region": "JP",
+   "genres": [
+    "アクションシューティング"
+   ],
+   "tags": [],
+   "developer": "ディースリー・パブリッシャー",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "7000円[税抜]",
+   "url": "https://www.famitsu.com/game/title/44343/page/1",
    "detail_at": "2026-11-07"
   },
   {
