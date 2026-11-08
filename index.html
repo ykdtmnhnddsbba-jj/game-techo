@@ -328,7 +328,12 @@ function delRating(id){const r=db.ratings[id];if(!r)return;db.ratings[id]={...r,
 function mergeDb(a,b){
   const out=emptyDb();
   const pick=(x,y)=>{const r={};new Set([...Object.keys(x||{}),...Object.keys(y||{})]).forEach(id=>{
-    const p=x&&x[id],q=y&&y[id];if(!p)r[id]=q;else if(!q)r[id]=p;else r[id]=((p.updated_at||'')>=(q.updated_at||''))?p:q});return r};
+    const p=x&&x[id],q=y&&y[id];if(!p)r[id]=q;else if(!q)r[id]=p;else{
+      // PSN自動チェックだけの記録（点数・メモ・お気に入り・気になるなし）は、自分で付けた評価より新しくても負けさせる
+      const auto=o=>o.psn&&!o.deleted&&!(o.score>0)&&!o.memo&&!o.fav&&!o.want;
+      const mine=o=>!o.deleted&&(o.score>0||o.memo||o.fav||o.want);
+      if(auto(p)&&mine(q))r[id]=q;else if(auto(q)&&mine(p))r[id]=p;
+      else r[id]=((p.updated_at||'')>=(q.updated_at||''))?p:q}});return r};
   out.ratings=pick(a.ratings,b.ratings);
   out.custom_games=pick(a.custom_games,b.custom_games);
   out.updated_at=nowIso();return out;
