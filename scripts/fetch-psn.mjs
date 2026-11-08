@@ -100,7 +100,7 @@ async function scanSchedules(windowFrom) {
 async function fetchTrophies(psn, tokens, played, resolved, games) {
   const titles = [];
   for (let offset = 0, i = 0; i < 30; i++) {
-    const r = await psn.getUserTitles({ accessToken: tokens.accessToken }, 'me', { limit: 800, offset });
+    const r = await psn.getUserTitles({ accessToken: tokens.accessToken }, 'me', { limit: 800, offset, headerOverrides: { 'Accept-Language': 'ja-JP' } });
     titles.push(...(r.trophyTitles || []));
     if (r.nextOffset == null || !r.trophyTitles?.length || r.nextOffset <= offset) break;
     offset = r.nextOffset;
