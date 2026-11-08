@@ -107,17 +107,19 @@ async function fetchTrophies(psn, tokens, played, resolved, games) {
   }
   const out = {};
   let nomatch = 0;
+  const miss = [];
   for (const t of titles) {
     const name = t.trophyTitleName;
     const p = played.find((x) => resolved.has(x.key) && x.names.some((n) => isSameTitle(name, n)));
     const id = p ? resolved.get(p.key) : (findGame([name], games) ? String(findGame([name], games).id) : null);
-    if (!id) { nomatch++; continue; }
+    if (!id) { nomatch++; miss.push({ name, platform: t.trophyTitlePlatform, progress: t.progress }); continue; }
     const e = t.earnedTrophies || {}, d = t.definedTrophies || {};
     const rec = { p: t.progress ?? 0, e: [e.bronze || 0, e.silver || 0, e.gold || 0, e.platinum || 0], d: [d.bronze || 0, d.silver || 0, d.gold || 0, d.platinum || 0] };
     const cur = out[id];
     if (!cur || rec.p > cur.p) out[id] = rec;   // PS4/PS5の両方がある場合は進んでいる方
   }
   console.log(`トロフィー: ${titles.length}タイトル中 ${Object.keys(out).length}本を紐付け（未紐付け ${nomatch}）`);
+  await fs.writeFile('psn-trophy-unmatched.enc', encryptState(miss, process.env.PSN_STATE_KEY) + '\n');
   return out;
 }
 
