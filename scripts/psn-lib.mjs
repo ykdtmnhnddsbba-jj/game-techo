@@ -6,6 +6,8 @@ export function norm(s) {
   return String(s || '')
     .normalize('NFKC')
     .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '').normalize('NFC')   // ō → o などアクセント記号を除く
+    .replace(/ー/g, '')                                      // 長音の揺れ（スーパ－/スーパー）を吸収
     .replace(/[(\[]\s*(ps[1-5]|ps\s?vita|switch\s?2?|nintendo switch\s?2?|pc|xbox[^)\]]*|steam)\s*[)\]]/g, '')   // 末尾の機種表記「(PS5)」など
     .replace(/\s*[-–]\s*(ps[45]|switch2?)\s*$/, '')
     .replace(/[®™©℠]/g, '')
@@ -47,4 +49,18 @@ export function decryptState(b64, secret) {
   const d = crypto.createDecipheriv('aes-256-gcm', keyOf(secret), buf.subarray(0, 12));
   d.setAuthTag(buf.subarray(12, 28));
   return JSON.parse(Buffer.concat([d.update(buf.subarray(28)), d.final()]).toString('utf8'));
+}
+
+// あいまい類似度（2文字ずつの Dice 係数, 0〜1）。候補の提案用（自動採用はしない）
+const grams = (s) => { const t = norm(s), m = new Map(); for (let i = 0; i < t.length - 1; i++) { const g = t.slice(i, i + 2); m.set(g, (m.get(g) || 0) + 1); } return [m, Math.max(0, t.length - 1)]; };
+export function similarity(a, b) {
+  const [x, nx] = grams(a), [y, ny] = grams(b);
+  if (!nx || !ny) return 0;
+  let hit = 0; for (const [g, c] of x) hit += Math.min(c, y.get(g) || 0);
+  return (2 * hit) / (nx + ny);
+}
+export function suggest(names, rows, n = 4, min = 0.3) {
+  return rows.map((r) => ({ r, sc: Math.max(...names.map((nm) => similarity(nm, r.title))) }))
+    .filter((x) => x.sc >= min).sort((a, b) => b.sc - a.sc).slice(0, n)
+    .map((x) => ({ id: String(x.r.id), title: x.r.title, date: x.r.date || x.r.release, plat: x.r.plat || '', score: +x.sc.toFixed(2) }));
 }

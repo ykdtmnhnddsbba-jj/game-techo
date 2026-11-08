@@ -7,12 +7,12 @@
 // 公開ファイルに入れるのは「ファミ通のタイトルID」だけ（プレイ時間・日付は保存しません）。
 import fs from 'node:fs/promises';
 import { parseSchedule, parseDetail, NON_GAME } from './famitsu-parse.mjs';
-import { findGame, pickCandidate, encryptState, decryptState } from './psn-lib.mjs';
+import { findGame, pickCandidate, suggest, encryptState, decryptState } from './psn-lib.mjs';
 
 const STATE = process.env.PSN_STATE_FILE || 'psn-state.enc';
 const CACHE = 'psn-cache.json';
 const OUT = 'psn-played.json';
-const ALIASES = 'psn-aliases.enc', UNMATCHED = 'psn-unmatched.enc';
+const ALIASES = 'psn-aliases.enc', UNMATCHED = 'psn-unmatched.enc', SUGGEST = 'psn-suggest.enc';
 const GAMES = process.env.GAMES || 'games.json';
 const BASE = 'https://www.famitsu.com';
 const RETRY_DAYS = 30;
@@ -114,7 +114,7 @@ async function main() {
   for (const p of played) {
     const extra = aliases[p.key] || [];
     const orig = [...p.names];
-    p.orig = orig; p.names = [...orig, ...extra];
+    p.orig = orig; p.pinned = extra.find((a) => /^#\d+$/.test(a))?.slice(1); p.names = [...orig, ...extra.filter((a) => !/^#\d+$/.test(a))];
     const sig = extra.join('|');
     const hit = findGame(p.names, games);
     if (hit) { ids.add(String(hit.id)); matched.add(p.key); continue; }
@@ -126,12 +126,13 @@ async function main() {
 
   // games.json に無いゲーム: ファミ通の過去の月別スケジュール（PS5の古い月 + PS4全期間）から探す。
   // （ファミ通の検索ページはブラウザ側の描画で、HTMLからは結果を読めないため）
+  let rows = null;
   if (todo.length) {
     console.log(`games.json に無いゲーム ${todo.length}本 → ファミ通の過去スケジュールから探します`);
-    const rows = await scanSchedules(gamesFile.window?.from);
+    rows = await scanSchedules(gamesFile.window?.from);
     if (rows) {
       for (const p of todo) {
-        const pick = pickCandidate(p.names, rows);
+        const pick = (p.pinned && rows.find((r) => r.id === p.pinned)) || pickCandidate(p.names, rows);
         if (!pick) { cache[p.key] = { id: null, checked: today(), ...(aliases[p.key] ? { alias: aliases[p.key].join('|') } : {}) }; unfound++; continue; }
         if (!games.some((g) => String(g.id) === pick.id)) {
           let genres = [], developer = '', detail_at = null;
@@ -146,6 +147,11 @@ async function main() {
     }
   }
 
+  if (rows) {   // 照合できなかったものに、ファミ通側の近い名前の候補を添える（暗号化。別名/ID指定づくり用）
+    const pool = [...rows, ...games.map((g) => ({ id: g.id, title: g.name, date: g.release }))];
+    const sug = played.filter((p) => !matched.has(p.key)).map((p) => ({ key: p.key, names: p.orig, candidates: suggest(p.names, pool) }));
+    await fs.writeFile(SUGGEST, encryptState(sug, process.env.PSN_STATE_KEY) + '\n');
+  }
   // 照合できなかったPSN名は暗号化して保存（公開しない。別名づくり用）
   const unmatched = played.filter((p) => !matched.has(p.key)).map((p) => ({ key: p.key, names: p.orig }));
   await fs.writeFile(UNMATCHED, encryptState(unmatched, process.env.PSN_STATE_KEY) + '\n');
