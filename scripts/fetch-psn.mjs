@@ -161,7 +161,7 @@ async function main() {
     await fs.writeFile(GAMES, JSON.stringify(gamesFile, null, 1) + '\n');
   }
   await fs.writeFile(CACHE, JSON.stringify(cache, null, 1) + '\n');
-  const sorted = [...ids].sort((a, b) => +a - +b);
+  const sorted = [...ids].sort((a, b) => (/^\d+$/.test(a) && /^\d+$/.test(b) ? +a - +b : /^\d+$/.test(a) ? -1 : /^\d+$/.test(b) ? 1 : a.localeCompare(b)));
   const prev = await readJson(OUT, { ids: [] });
   if (JSON.stringify(prev.ids) !== JSON.stringify(sorted)) await fs.writeFile(OUT, JSON.stringify({ generated_at: new Date().toISOString(), ids: sorted }) + '\n');
 }
