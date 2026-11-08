@@ -12,6 +12,7 @@ import { findGame, pickCandidate, encryptState, decryptState } from './psn-lib.m
 const STATE = process.env.PSN_STATE_FILE || 'psn-state.enc';
 const CACHE = 'psn-cache.json';
 const OUT = 'psn-played.json';
+const ALIASES = 'psn-aliases.enc', UNMATCHED = 'psn-unmatched.enc';
 const GAMES = process.env.GAMES || 'games.json';
 const BASE = 'https://www.famitsu.com';
 const RETRY_DAYS = 30;
@@ -104,15 +105,22 @@ async function main() {
   if (!gamesFile?.games) throw new Error(`${GAMES} を読めません`);
   const games = gamesFile.games;
   const cache = await readJson(CACHE, {});
+  let aliases = {};   // 手動で用意した日本語名など: { <PSNのキー>: ['日本語名', ...] }（公開しないよう暗号化して保存）
+  try { aliases = decryptState(await fs.readFile(ALIASES, 'utf8'), process.env.PSN_STATE_KEY); } catch { /* 無ければ空 */ }
+  const matched = new Set();
   const ids = new Set(), added = [], todo = [];
   let unfound = 0;
 
   for (const p of played) {
+    const extra = aliases[p.key] || [];
+    const orig = [...p.names];
+    p.orig = orig; p.names = [...orig, ...extra];
+    const sig = extra.join('|');
     const hit = findGame(p.names, games);
-    if (hit) { ids.add(String(hit.id)); continue; }
+    if (hit) { ids.add(String(hit.id)); matched.add(p.key); continue; }
     const c = cache[p.key];
-    if (c?.id) { ids.add(String(c.id)); continue; }                                               // 以前の検索で見つかっている
-    if (c && (Date.now() - Date.parse(c.checked)) / 86400e3 < RETRY_DAYS) { unfound++; continue; } // 見つからなかった → 30日は再検索しない
+    if (c?.id) { ids.add(String(c.id)); matched.add(p.key); continue; }                           // 以前の検索で見つかっている
+    if (c && (c.alias || '') === sig && (Date.now() - Date.parse(c.checked)) / 86400e3 < RETRY_DAYS) { unfound++; continue; } // 見つからなかった → 30日は再検索しない（別名を足したら再検索）
     todo.push(p);
   }
 
@@ -124,7 +132,7 @@ async function main() {
     if (rows) {
       for (const p of todo) {
         const pick = pickCandidate(p.names, rows);
-        if (!pick) { cache[p.key] = { id: null, checked: today() }; unfound++; continue; }
+        if (!pick) { cache[p.key] = { id: null, checked: today(), ...(aliases[p.key] ? { alias: aliases[p.key].join('|') } : {}) }; unfound++; continue; }
         if (!games.some((g) => String(g.id) === pick.id)) {
           let genres = [], developer = '', detail_at = null;
           try { const d = parseDetail(await famitsu(`/game/title/${pick.id}/page/1`)); genres = d.genres; developer = d.maker; detail_at = today(); }
@@ -133,11 +141,14 @@ async function main() {
           games.push(g); added.push(g);
         }
         cache[p.key] = { id: pick.id, checked: today() };
-        ids.add(pick.id);
+        ids.add(pick.id); matched.add(p.key);
       }
     }
   }
 
+  // 照合できなかったPSN名は暗号化して保存（公開しない。別名づくり用）
+  const unmatched = played.filter((p) => !matched.has(p.key)).map((p) => ({ key: p.key, names: p.orig }));
+  await fs.writeFile(UNMATCHED, encryptState(unmatched, process.env.PSN_STATE_KEY) + '\n');
   console.log(`照合: ${ids.size}本 / games.json に追加 ${added.length}本 / 見つからず ${unfound}本`);
   if (added.length) {
     games.sort((a, b) => a.release.localeCompare(b.release) || a.name.localeCompare(b.name, 'ja'));

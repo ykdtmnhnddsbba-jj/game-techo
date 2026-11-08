@@ -1,7 +1,7 @@
 // ファミ通.com の「PS5 ゲーム発売日スケジュール」から games.json を作る。
 //   node scripts/fetch-famitsu.mjs
 // 環境変数（任意）:
-//   MONTHS_BACK(既定24) MONTHS_AHEAD(既定12) MAX_DETAIL(既定1000: 1回に取る個別ページ数の上限)
+//   MONTHS_BACK(既定2) MONTHS_AHEAD(既定2) MAX_DETAIL(既定1000: 1回に取る個別ページ数の上限)
 //   REQUEST_GAP_MS(既定1000) OUT(既定 games.json) FAMITSU_BASE / FAMITSU_UA（テスト・調整用）
 // 個別ページ（ジャンル・メーカー）は新規ゲームの分だけ取得し、結果は games.json に保存して次回以降は再取得しません。
 import fs from 'node:fs/promises';
@@ -9,8 +9,8 @@ import { parseSchedule, parseDetail, NON_GAME } from './famitsu-parse.mjs';
 
 const BASE = process.env.FAMITSU_BASE || 'https://www.famitsu.com';
 const OUT = process.env.OUT || 'games.json';
-const MONTHS_BACK = +(process.env.MONTHS_BACK || 24);
-const MONTHS_AHEAD = +(process.env.MONTHS_AHEAD || 12);
+const MONTHS_BACK = +(process.env.MONTHS_BACK || 2);
+const MONTHS_AHEAD = +(process.env.MONTHS_AHEAD || 2);
 const MAX_DETAIL = +(process.env.MAX_DETAIL || 1000);
 const GAP = +(process.env.REQUEST_GAP_MS || 1000);
 const UA = process.env.FAMITSU_UA || 'Mozilla/5.0 (compatible; game-techo/1.0; personal-use release schedule fetcher)';
