@@ -15,7 +15,7 @@ const CACHE = 'psn-cache.json';
 const OUT = 'psn-played.json';
 const GAMES = process.env.GAMES || 'games.json';
 const BASE = 'https://www.famitsu.com';
-const SEARCH = process.env.FAMITSU_SEARCH || '/search/?type=game&q={q}';
+const SEARCH = process.env.FAMITSU_SEARCH || '/search/?q={q}&type=game-title';
 const MAX_SEARCH = +(process.env.MAX_SEARCH || 40);
 const RETRY_DAYS = 30;
 const UA = 'Mozilla/5.0 (compatible; game-techo/1.0; personal-use)';
@@ -84,7 +84,8 @@ async function main() {
   const games = gamesFile.games;
   const cache = await readJson(CACHE, {});
   const ids = new Set(), added = [];
-  let searches = 0, searchFail = 0, unfound = 0;
+  let searches = 0, searchFail = 0, unfound = 0, emptyStreak = 0, working = false;
+  const pendingNull = [];   // 検索が正常に動いたと確認できたときだけ「見つからず」を記録する
 
   for (const p of played) {
     const hit = findGame(p.names, games);
@@ -95,16 +96,18 @@ async function main() {
       continue;
     }
     if (c && (Date.now() - Date.parse(c.checked)) / 86400e3 < RETRY_DAYS) { unfound++; continue; }   // 見つからなかった → 30日は再検索しない
-    if (searches >= MAX_SEARCH || searchFail >= 5) continue;                                        // 今回は上限。次回に回す
+    if (searches >= MAX_SEARCH || searchFail >= 5 || emptyStreak >= 5) continue;                                        // 今回は上限。次回に回す
     searches++;
     try {
       const q = encodeURIComponent(p.names[p.names.length > 1 ? 1 : 0].replace(/[®™©]/g, '').trim());
       const cands = parseSearch(await famitsu(SEARCH.replace('{q}', q)));
-      if (!cands.length && searches <= 3) console.warn(`  検索結果0件: ${p.names[0]}（検索URLかHTML構造の確認が必要な可能性）`);
+      if (cands.length) { working = true; emptyStreak = 0; } else emptyStreak++;
+      if (!cands.length && emptyStreak <= 3) console.warn(`  検索結果0件: ${p.names[0]}`);
+      if (emptyStreak >= 5) console.warn('  検索結果が5回連続で0件のため中断します（検索URLかHTML構造の確認が必要な可能性）');
       const pick = pickCandidate(p.names, cands);
-      if (!pick) { cache[p.key] = { id: null, checked: today() }; unfound++; continue; }
+      if (!pick) { pendingNull.push(p.key); unfound++; continue; }
       const d = parseDetail(await famitsu(`/game/title/${pick.id}/page/1`));
-      if (!d.release) { cache[p.key] = { id: null, checked: today() }; unfound++; console.warn(`  発売日が読めず追加しません: ${pick.title}`); continue; }
+      if (!d.release) { pendingNull.push(p.key); unfound++; console.warn(`  発売日が読めず追加しません: ${pick.title}`); continue; }
       const dup = games.find((g) => String(g.id) === pick.id);
       if (!dup) {
         const g = { id: pick.id, name: pick.title, native: '', cover: d.cover, release: d.release, region: 'JP', genres: d.genres, tags: [], developer: d.maker, series: '', avg: null, pop: 0, desc: '', price: '', url: `${BASE}/game/title/${pick.id}/page/1`, detail_at: today(), added_by: 'psn' };
@@ -116,6 +119,7 @@ async function main() {
     } catch (e) { searchFail++; console.warn(`  検索失敗 ${p.names[0]}: ${e.message}`); }
   }
 
+  if (working) for (const k of pendingNull) cache[k] = { id: null, checked: today() };
   console.log(`照合: ${ids.size}本 / games.json に追加 ${added.length}本 / 見つからず ${unfound}本 / 今回の検索 ${searches}回`);
   if (added.length) {
     games.sort((a, b) => a.release.localeCompare(b.release) || a.name.localeCompare(b.name, 'ja'));

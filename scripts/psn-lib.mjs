@@ -6,6 +6,8 @@ export function norm(s) {
   return String(s || '')
     .normalize('NFKC')
     .toLowerCase()
+    .replace(/[(\[]\s*(ps[1-5]|ps\s?vita|switch\s?2?|nintendo switch\s?2?|pc|xbox[^)\]]*|steam)\s*[)\]]/g, '')   // 末尾の機種表記「(PS5)」など
+    .replace(/\s*[-–]\s*(ps[45]|switch2?)\s*$/, '')
     .replace(/[®™©℠]/g, '')
     .replace(/[\s\-–—―~〜～:：・!！?？'"“”‘’`´()（）\[\]【】「」『』<>＜＞,.，。、/／\\&＆+＋*★☆♪_]/g, '');
 }
@@ -27,8 +29,9 @@ export function findGame(names, games) {
 
 // 検索結果(candidates: [{id,title}])から、PSNの名前と同じものを選ぶ
 export function pickCandidate(names, candidates) {
-  for (const c of candidates) for (const n of names) if (isSameTitle(n, c.title)) return c;
-  return null;
+  const hits = candidates.filter((c) => names.some((n) => isSameTitle(n, c.title)));
+  const rank = (c) => (/PS5/i.test(c.title) ? 0 : /PS4/i.test(c.title) ? 1 : 2);   // 複数機種版があれば PS5 > PS4 > その他
+  return hits.sort((a, b) => rank(a) - rank(b))[0] || null;
 }
 
 // リフレッシュトークンの保存（AES-256-GCM。鍵は環境変数 PSN_STATE_KEY から導出）
