@@ -95,8 +95,8 @@ label.chk{display:flex;gap:6px;align-items:center;color:var(--sub);font-size:14p
 .tro .tn{font-size:12px}
 .tro .tpl{margin-left:auto;font-weight:800;font-size:12px;padding:2px 8px;border-radius:999px;background:#2a2f3f;color:#aab}
 .tro .tpl.got{background:linear-gradient(135deg,#f6d365,#e0a82e);color:#3a2a00}
-.tro .bar{height:9px;border-radius:5px;background:#10131c;overflow:hidden;margin-top:6px}
-.tro .bar i{display:block;height:100%;background:linear-gradient(90deg,#5b8cff,#8fb0ff)}
+.tro .tbar{height:9px;border-radius:5px;background:#10131c;overflow:hidden;margin-top:6px}
+.tro .tbar i{display:block;height:100%;background:linear-gradient(90deg,#5b8cff,#8fb0ff)}
 .tro.done{border-color:#e0b341;background:linear-gradient(135deg,rgba(246,211,101,.16),rgba(224,168,46,.08))}
 .tro.done .tp{color:#f6d365}.tro.done .bar i{background:linear-gradient(90deg,#f6d365,#e0a82e)}
 .tchip{position:absolute;left:6px;bottom:6px;z-index:2;font-size:12px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(20,24,40,.88);color:#cfe0ff;border:1px solid #5b8cff;box-shadow:0 1px 4px rgba(0,0,0,.5)}
@@ -556,7 +556,7 @@ function trophyHtml(id){
   const t=TROPHY[String(id)];if(!t)return'';
   const done=t.p>=100,plat=t.d[3]>0,got=t.e[3]>0;
   const tot=t.d.reduce((a,b)=>a+b,0),have=t.e.reduce((a,b)=>a+b,0);
-  return`<div class="tro ${done?'done':''}"><div class="trow"><span class="tp">🏆 ${t.p}%</span><span class="tn">${done?'コンプリート！ ':''}${have}/${tot}個</span>${plat?`<span class="tpl ${got?'got':''}">${got?'💎 プラチナ取得':'プラチナ未取得'}</span>`:''}</div><div class="bar"><i style="width:${t.p}%"></i></div></div>`;
+  return`<div class="tro ${done?'done':''}"><div class="trow"><span class="tp">🏆 ${t.p}%</span><span class="tn">${done?'コンプリート！ ':''}${have}/${tot}個</span>${plat?`<span class="tpl ${got?'got':''}">${got?'💎 プラチナ取得':'プラチナ未取得'}</span>`:''}</div><div class="tbar"><i style="width:${t.p}%"></i></div></div>`;
 }
 function trophyChip(id){
   const t=TROPHY[String(id)];if(!t)return'';
