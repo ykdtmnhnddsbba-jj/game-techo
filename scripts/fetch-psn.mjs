@@ -1,13 +1,12 @@
 // PSN のプレイ履歴から「遊んだゲーム」を求め、psn-played.json（ファミ通ID一覧のみ）を作る。
-// games.json に無いゲームはファミ通で検索して games.json に追加する。
+// games.json に無いゲームはファミ通の過去スケジュールから探して games.json に追加する。
 //   node scripts/fetch-psn.mjs        （要 `npm i psn-api`）
 // 環境変数:
 //   PSN_STATE_KEY  必須。リフレッシュトークンを暗号化する鍵（GitHub Secrets）
 //   PSN_NPSSO      初回／トークン失効時だけ必要（GitHub Secrets）
-//   FAMITSU_SEARCH 検索URL（{q} を検索語に置換。既定は下記）  MAX_SEARCH（1回に検索する上限。既定40）
 // 公開ファイルに入れるのは「ファミ通のタイトルID」だけ（プレイ時間・日付は保存しません）。
 import fs from 'node:fs/promises';
-import { parseSearch, parseDetail } from './famitsu-parse.mjs';
+import { parseSchedule, parseDetail, NON_GAME } from './famitsu-parse.mjs';
 import { findGame, pickCandidate, encryptState, decryptState } from './psn-lib.mjs';
 
 const STATE = process.env.PSN_STATE_FILE || 'psn-state.enc';
@@ -15,8 +14,6 @@ const CACHE = 'psn-cache.json';
 const OUT = 'psn-played.json';
 const GAMES = process.env.GAMES || 'games.json';
 const BASE = 'https://www.famitsu.com';
-const SEARCH = process.env.FAMITSU_SEARCH || '/search/?q={q}&type=game-title';
-const MAX_SEARCH = +(process.env.MAX_SEARCH || 40);
 const RETRY_DAYS = 30;
 const UA = 'Mozilla/5.0 (compatible; game-techo/1.0; personal-use)';
 const today = () => new Date().toISOString().slice(0, 10);
@@ -73,6 +70,30 @@ async function famitsu(path) {
   return r.text();
 }
 
+const ymNum = (y, m0) => { const d = new Date(Date.UTC(y, m0, 1)); return d.getUTCFullYear() * 100 + d.getUTCMonth() + 1; };
+// 月別スケジュールを走査して [{id,title,date,cover,price,url}] を返す。読めないページが続く場合は null（何も記録しない）
+async function scanSchedules(windowFrom) {
+  const now = new Date();
+  const wf = windowFrom ? new Date(windowFrom + 'T00:00:00Z') : new Date(Date.UTC(now.getUTCFullYear() - 2, now.getUTCMonth(), 1));
+  const jobs = [];
+  const range = (y0, m0, y1, m1) => { const r = []; for (let i = y0 * 12 + m0; i < y1 * 12 + m1; i++) r.push(ymNum(Math.floor(i / 12), i % 12)); return r; };
+  for (const ym of range(2020, 10, wf.getUTCFullYear(), wf.getUTCMonth())) jobs.push(['ps5', ym]);                       // PS5: 発売(2020-11)〜games.jsonの範囲の手前
+  for (const ym of range(2014, 1, now.getUTCFullYear(), now.getUTCMonth() + 13)) jobs.push(['ps4', ym]);                 // PS4: 2014-02〜先12か月
+  const out = new Map();
+  let ok = 0, bad = 0, empty = 0;
+  for (const [plat, ym] of jobs) {
+    try {
+      const rs = parseSchedule(await famitsu(`/schedule/${plat}/${ym}`));
+      ok++; empty = rs.length ? 0 : empty + 1;
+      for (const r of rs) { const k = r.id; const cur = out.get(k); if (!cur || r.date < cur.date) out.set(k, { ...r, plat }); }
+      if (plat === 'ps4' && empty >= 12 && ym > 201800) { console.warn('  PS4スケジュールが空のため中断'); break; }
+    } catch (e) { bad++; if (bad <= 3) console.warn(`  ${plat}/${ym}: ${e.message}`); if (bad >= 8 && !ok) { console.warn('  スケジュールを読めないため中断（URLの確認が必要な可能性）'); return null; } }
+  }
+  const rows = [...out.values()].filter((r) => !NON_GAME.test(r.title));
+  console.log(`  スケジュール走査: ${jobs.length}ページ（成功${ok} / 失敗${bad}）→ ${rows.length}本`);
+  return ok ? rows : null;
+}
+
 async function main() {
   const psn = await import('psn-api');
   const tokens = await authenticate(psn);
@@ -83,50 +104,40 @@ async function main() {
   if (!gamesFile?.games) throw new Error(`${GAMES} を読めません`);
   const games = gamesFile.games;
   const cache = await readJson(CACHE, {});
-  const ids = new Set(), added = [];
-  let searches = 0, searchFail = 0, unfound = 0, emptyStreak = 0, working = false;
-  const pendingNull = [];   // 検索が正常に動いたと確認できたときだけ「見つからず」を記録する
+  const ids = new Set(), added = [], todo = [];
+  let unfound = 0;
 
   for (const p of played) {
     const hit = findGame(p.names, games);
     if (hit) { ids.add(String(hit.id)); continue; }
     const c = cache[p.key];
-    if (c?.id) {                                       // 以前の検索で見つかっている
-      ids.add(String(c.id));
-      continue;
-    }
-    if (c && (Date.now() - Date.parse(c.checked)) / 86400e3 < RETRY_DAYS) { unfound++; continue; }   // 見つからなかった → 30日は再検索しない
-    if (searches >= MAX_SEARCH || searchFail >= 5 || emptyStreak >= 5) continue;                                        // 今回は上限。次回に回す
-    searches++;
-    try {
-      const q = encodeURIComponent(p.names[p.names.length > 1 ? 1 : 0].replace(/[®™©]/g, '').trim());
-      const html = await famitsu(SEARCH.replace('{q}', q));
-      const cands = parseSearch(html);
-      if (!cands.length && emptyStreak === 0) {   // 診断: 検索ページの中身を少しだけログに出す
-        const hrefs = [...new Set([...html.matchAll(/href="([^"]*(?:game|title)[^"]*)"/g)].map((m) => m[1]))].slice(0, 8);
-        console.warn(`  [診断] 長さ=${html.length} title=${(html.match(/<title>([^<]*)/) || [])[1]} /game/title出現=${(html.match(/game\/title/g) || []).length} 総リンク=${(html.match(/<a\b/g) || []).length} 例=${JSON.stringify(hrefs)}`);
-        const i = html.indexOf('game/title'); if (i >= 0) console.warn('  [診断] 周辺: ' + html.slice(Math.max(0, i - 200), i + 300).replace(/\s+/g, ' '));
-        else console.warn('  [診断] 本文: ' + html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<[^>]+>/g, ' ').replace(/\s+/g, ' ').slice(0, 300));
-      }
-      if (cands.length) { working = true; emptyStreak = 0; } else emptyStreak++;
-      if (!cands.length && emptyStreak <= 3) console.warn(`  検索結果0件: ${p.names[0]}`);
-      if (emptyStreak >= 5) console.warn('  検索結果が5回連続で0件のため中断します（検索URLかHTML構造の確認が必要な可能性）');
-      const pick = pickCandidate(p.names, cands);
-      if (!pick) { pendingNull.push(p.key); unfound++; continue; }
-      const d = parseDetail(await famitsu(`/game/title/${pick.id}/page/1`));
-      if (!d.release) { pendingNull.push(p.key); unfound++; console.warn(`  発売日が読めず追加しません: ${pick.title}`); continue; }
-      const dup = games.find((g) => String(g.id) === pick.id);
-      if (!dup) {
-        const g = { id: pick.id, name: pick.title, native: '', cover: d.cover, release: d.release, region: 'JP', genres: d.genres, tags: [], developer: d.maker, series: '', avg: null, pop: 0, desc: '', price: '', url: `${BASE}/game/title/${pick.id}/page/1`, detail_at: today(), added_by: 'psn' };
-        games.push(g); added.push(g);
-      }
-      cache[p.key] = { id: pick.id, checked: today() };
-      ids.add(pick.id);
-      searchFail = 0;
-    } catch (e) { searchFail++; console.warn(`  検索失敗 ${p.names[0]}: ${e.message}`); }
+    if (c?.id) { ids.add(String(c.id)); continue; }                                               // 以前の検索で見つかっている
+    if (c && (Date.now() - Date.parse(c.checked)) / 86400e3 < RETRY_DAYS) { unfound++; continue; } // 見つからなかった → 30日は再検索しない
+    todo.push(p);
   }
 
-  if (working) for (const k of pendingNull) cache[k] = { id: null, checked: today() };
+  // games.json に無いゲーム: ファミ通の過去の月別スケジュール（PS5の古い月 + PS4全期間）から探す。
+  // （ファミ通の検索ページはブラウザ側の描画で、HTMLからは結果を読めないため）
+  if (todo.length) {
+    console.log(`games.json に無いゲーム ${todo.length}本 → ファミ通の過去スケジュールから探します`);
+    const rows = await scanSchedules(gamesFile.window?.from);
+    if (rows) {
+      for (const p of todo) {
+        const pick = pickCandidate(p.names, rows);
+        if (!pick) { cache[p.key] = { id: null, checked: today() }; unfound++; continue; }
+        if (!games.some((g) => String(g.id) === pick.id)) {
+          let genres = [], developer = '', detail_at = null;
+          try { const d = parseDetail(await famitsu(`/game/title/${pick.id}/page/1`)); genres = d.genres; developer = d.maker; detail_at = today(); }
+          catch (e) { console.warn(`  個別ページ取得失敗 ${pick.title}: ${e.message}`); }
+          const g = { id: pick.id, name: pick.title, native: '', cover: pick.cover, release: pick.date, region: 'JP', genres, tags: [], developer, series: '', avg: null, pop: 0, desc: '', price: pick.price || '', url: pick.url, ...(detail_at ? { detail_at } : {}), added_by: 'psn' };
+          games.push(g); added.push(g);
+        }
+        cache[p.key] = { id: pick.id, checked: today() };
+        ids.add(pick.id);
+      }
+    }
+  }
+
   console.log(`照合: ${ids.size}本 / games.json に追加 ${added.length}本 / 見つからず ${unfound}本 / 今回の検索 ${searches}回`);
   if (added.length) {
     games.sort((a, b) => a.release.localeCompare(b.release) || a.name.localeCompare(b.name, 'ja'));
