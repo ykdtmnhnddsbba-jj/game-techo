@@ -1,7 +1,7 @@
 {
  "source": "ファミ通.com",
  "platform": "PS5",
- "generated_at": "2026-11-08T01:18:06.022Z",
+ "generated_at": "2026-11-12T20:02:30.646Z",
  "window": {
   "from": "2026-09-01",
   "to": "2027-02-01"
@@ -4753,6 +4753,27 @@
    "price": "7698円[税抜]",
    "url": "https://www.famitsu.com/game/title/71424/page/1",
    "detail_at": "2026-11-07"
+  },
+  {
+   "id": "72743",
+   "name": "ガンズ・オブ・エスカトン",
+   "native": "",
+   "cover": "",
+   "release": "2026-12-08",
+   "region": "JP",
+   "genres": [
+    "FPS・TPS",
+    "アクションシューティング"
+   ],
+   "tags": [],
+   "developer": "4Divinity",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "4500円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72743/page/1",
+   "detail_at": "2026-11-12"
   },
   {
    "id": "72491",
