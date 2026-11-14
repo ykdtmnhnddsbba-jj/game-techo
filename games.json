@@ -1,7 +1,7 @@
 {
  "source": "ファミ通.com",
  "platform": "PS5",
- "generated_at": "2026-11-13T20:02:17.494Z",
+ "generated_at": "2026-11-14T19:50:58.121Z",
  "window": {
   "from": "2026-09-01",
   "to": "2027-02-01"
@@ -3451,7 +3451,7 @@
    "desc": "",
    "price": "8164円[税抜]",
    "url": "https://www.famitsu.com/game/title/44182/page/1",
-   "detail_at": "2026-11-07"
+   "detail_at": "2026-11-14"
   },
   {
    "id": "72363",
@@ -3650,7 +3650,7 @@
    "desc": "",
    "price": "6799円[税抜]",
    "url": "https://www.famitsu.com/game/title/48578/page/1",
-   "detail_at": "2026-11-07"
+   "detail_at": "2026-11-14"
   },
   {
    "id": "72224",
@@ -5271,7 +5271,7 @@
    "id": "71382",
    "name": "Forza Horizon 6",
    "native": "",
-   "cover": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/154143/-Ugjzp-c?w=400&h=400&func=bound",
    "release": "2027-01-27",
    "region": "JP",
    "genres": [
@@ -5283,7 +5283,7 @@
    "avg": null,
    "pop": 0,
    "desc": "",
-   "price": "価格未定",
+   "price": "8909円[税抜]",
    "url": "https://www.famitsu.com/game/title/71382/page/1",
    "detail_at": "2026-11-07"
   },
@@ -5327,6 +5327,26 @@
    "price": "5800円[税抜]",
    "url": "https://www.famitsu.com/game/title/72736/page/1",
    "detail_at": "2026-11-07"
+  },
+  {
+   "id": "69503",
+   "name": "トロピコ 7 デラックスエディション",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/151721/2nOw7lek?w=400&h=400&func=bound",
+   "release": "2027-01-28",
+   "region": "JP",
+   "genres": [
+    "シミュレーション"
+   ],
+   "tags": [],
+   "developer": "Kalypso Media",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "8163円[税抜]",
+   "url": "https://www.famitsu.com/game/title/69503/page/1",
+   "detail_at": "2026-11-14"
   },
   {
    "id": "72182",
