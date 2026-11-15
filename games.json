@@ -1,7 +1,7 @@
 {
  "source": "ファミ通.com",
  "platform": "PS5",
- "generated_at": "2026-11-14T19:50:58.121Z",
+ "generated_at": "2026-11-15T19:51:45.465Z",
  "window": {
   "from": "2026-09-01",
   "to": "2027-02-01"
@@ -5283,7 +5283,7 @@
    "avg": null,
    "pop": 0,
    "desc": "",
-   "price": "8909円[税抜]",
+   "price": "価格未定",
    "url": "https://www.famitsu.com/game/title/71382/page/1",
    "detail_at": "2026-11-07"
   },
@@ -5327,26 +5327,6 @@
    "price": "5800円[税抜]",
    "url": "https://www.famitsu.com/game/title/72736/page/1",
    "detail_at": "2026-11-07"
-  },
-  {
-   "id": "69503",
-   "name": "トロピコ 7 デラックスエディション",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/151721/2nOw7lek?w=400&h=400&func=bound",
-   "release": "2027-01-28",
-   "region": "JP",
-   "genres": [
-    "シミュレーション"
-   ],
-   "tags": [],
-   "developer": "Kalypso Media",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "8163円[税抜]",
-   "url": "https://www.famitsu.com/game/title/69503/page/1",
-   "detail_at": "2026-11-14"
   },
   {
    "id": "72182",
