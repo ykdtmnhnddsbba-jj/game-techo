@@ -144,6 +144,12 @@ async function fetchKouryaku(psn, tokens, refs) {
       const earned = (await psn.getUserTrophiesEarnedForTitle(auth, 'me', ref.np, 'all', { npServiceName: ref.svc, limit: 800, headerOverrides: hdr })).trophies || [];
       const r = mapTrophies(defs, earned, data.trophies);
       console.log(`攻略手帖: ${g.slug} 定義${defs.length}件 対応づけ=${r.how}（名前一致${r.named}/${r.total}） 取得済み${r.earned.length}`);
+      if (r.named < r.total) {   // 名前が合わなかったものを表示（ゲーム側の公開情報のみ。取得状況は出さない）
+        const { norm } = await import('./psn-lib.mjs');
+        const mine = new Set(data.trophies.map((m) => norm(m.name))), theirs = new Set(defs.map((d) => norm(d.trophyName)));
+        console.log('  攻略データ側で未一致:', data.trophies.filter((m) => !theirs.has(norm(m.name))).map((m) => m.name).join(' / '));
+        console.log('  PSN側で未一致:', defs.filter((d) => !mine.has(norm(d.trophyName))).map((d) => `${d.trophyName}[${d.trophyType}]`).join(' / '));
+      }
       if (r.how === 'none') { console.warn('  対応づけできないためスキップ（トロフィー名・種別の並びを確認）'); continue; }
       games[String(g.id)] = { earned: r.earned, total: r.total, how: r.how };
     } catch (e) { console.warn(`攻略手帖: ${g.slug} の取得に失敗（スキップ）:`, e.message); }
