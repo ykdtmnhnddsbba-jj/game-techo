@@ -13,6 +13,27 @@
       "title": "Ghost of Yōtei（ゴースト・オブ・ヨウテイ）",
       "platform": "PS5",
       "file": "games/ghost-of-yotei.json"
+    },
+    {
+      "id": "57849-legends",
+      "slug": "ghost-of-yotei-legends",
+      "title": "Ghost of Yōtei DLC①：Legends（オンライン協力）",
+      "platform": "PS5",
+      "file": "games/ghost-of-yotei-legends.json"
+    },
+    {
+      "id": "57849-sekigahara",
+      "slug": "ghost-of-yotei-sekigahara",
+      "title": "Ghost of Yōtei DLC②：Echoes of Sekigahara",
+      "platform": "PS5",
+      "file": "games/ghost-of-yotei-sekigahara.json"
+    },
+    {
+      "id": "57849-mostwanted",
+      "slug": "ghost-of-yotei-mostwanted",
+      "title": "Ghost of Yōtei DLC③：Most Wanted Mode",
+      "platform": "PS5",
+      "file": "games/ghost-of-yotei-mostwanted.json"
     }
   ]
 }

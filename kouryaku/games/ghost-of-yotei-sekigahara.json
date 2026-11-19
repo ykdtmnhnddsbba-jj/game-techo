@@ -1,0 +1,260 @@
+{
+ "_readme": "攻略データ。trophies=トロフィー一覧(grade: platinum/gold/silver/bronze, chapter=分類, missable=取り逃し注意)。routes は無いゲームでは空。phases[].steps[]=チャート。steps[].t=関連トロフィーID。",
+ "schema_version": 1,
+ "id": "57849-sekigahara",
+ "title": "Ghost of Yōtei DLC②：Echoes of Sekigahara",
+ "platform": "PS5",
+ "updated": "2026-11-20",
+ "remaining_note": "このDLCは本編のプラチナには関係しません。",
+ "profile_note": "DLCはPSN連携の対象外です。取れたら手動でチェックしてください。トロフィー名は英語表記（日本語名は未確認）。",
+ "sources": [
+  {
+   "title": "Echoes of Sekigahara DLC Trophy Guide & Roadmap（PowerPyx）",
+   "url": "https://www.powerpyx.com/ghost-of-yotei-echoes-of-sekigahara-dlc-trophy-guide-roadmap/"
+  }
+ ],
+ "caveats": [
+  "全12個（すべてブロンズ）。取り逃し・オンライン・バグはありません。難易度はCasualでも全部取れます。目安は6〜8時間、難易度3/10。",
+  "参照元のページが途中で切れていたため、黄金の鳥など一部の詳細は未確認です。"
+ ],
+ "likely": [],
+ "routes": [],
+ "trophies": [
+  {
+   "id": "t01",
+   "name": "You Are My Ghost",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "ストーリー",
+   "cond": "「Dream's End」ミッションをクリアする。",
+   "tip": "ストーリー進行で自動。"
+  },
+  {
+   "id": "t02",
+   "name": "Food for the People",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "収集",
+   "cond": "4つのViper Storehouseを制圧する。",
+   "tip": ""
+  },
+  {
+   "id": "t03",
+   "name": "No More Snakes",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "ストーリー",
+   "cond": "「Dream's End」「The Wolf's Chosen」・全バウンティを終えたあと、最終ミッション「The Nature of War」（町の防衛戦）をクリア。",
+   "tip": "最も難しいトロフィーとされる。最後に回す。"
+  },
+  {
+   "id": "t04",
+   "name": "Unbreakable",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "決闘",
+   "cond": "無敗の戦士Nobushigeを倒す。",
+   "tip": "Soichiroから2つの課題をこなす→MatakichiとKyubeeに勝つ→Toshibetsu FallsでNobushigeと決闘。"
+  },
+  {
+   "id": "t05",
+   "name": "Free Bird",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "収集",
+   "cond": "黄金の鳥を解放する。",
+   "tip": "場所は未確認。"
+  },
+  {
+   "id": "t06",
+   "name": "Paths to Color",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "収集",
+   "cond": "全Dye Trade Routesを購入する。",
+   "tip": "Viper Rationsが110個必要。"
+  },
+  {
+   "id": "t07",
+   "name": "Mother of Misfortune",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "ミニゲーム",
+   "cond": "Fortune's Asobiyaで「Zeni Hajiki」に3回勝つ。",
+   "tip": "途中で人形の回収などが必要。"
+  },
+  {
+   "id": "t08",
+   "name": "Hungry for More",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "収集",
+   "cond": "新レシピを4つ発見する。",
+   "tip": ""
+  },
+  {
+   "id": "t09",
+   "name": "Handsome Yet Deadly",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "ストーリー",
+   "cond": "「A Past and Present Battle」で習得するGambler's Markを使い、複数の敵を倒す。",
+   "tip": ""
+  },
+  {
+   "id": "t10",
+   "name": "Pack Hunter",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "戦闘",
+   "cond": "Call of the Pack能力で敵を倒す。",
+   "tip": "「The Wolf's Chosen」の途中で解除される。"
+  },
+  {
+   "id": "t11",
+   "name": "Return to Sender",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "戦闘",
+   "cond": "Catch Arrow能力で敵を倒す。",
+   "tip": "Onryo > Ranged > Catch Arrowsを習得して使う。"
+  },
+  {
+   "id": "t12",
+   "name": "Not This Time",
+   "grade": "bronze",
+   "route": "all",
+   "chapter": "ストーリー",
+   "cond": "Viperの罠を1つ解除する。",
+   "tip": "ストーリー中に自然に出会う。"
+  }
+ ],
+ "phases": [
+  {
+   "id": "p1",
+   "title": "① DLCに入る・ストーリー（約4〜5時間）",
+   "summary": "本編でOniとKitsuneを倒し、Oshima Coastに到達したあと、バウンティボードで「Nagato the Handsome」を選ぶと始まります。",
+   "steps": [
+    {
+     "id": "s001",
+     "text": "本編のOni・Kitsuneを倒し、Oshima Coastへ。バウンティボードで「Nagato the Handsome」を選ぶ。",
+     "t": []
+    },
+    {
+     "id": "s002",
+     "text": "新エリア Ashoro Foothills で6つのTale（ストーリー）を進める。",
+     "t": []
+    },
+    {
+     "id": "s003",
+     "text": "「A Past and Present Battle」でGambler's Markを習得し、複数の敵を倒す。",
+     "t": [
+      "t09"
+     ]
+    },
+    {
+     "id": "s004",
+     "text": "ストーリー中にViperの罠を1つ解除する。",
+     "t": [
+      "t12"
+     ]
+    },
+    {
+     "id": "s005",
+     "text": "「Dream's End」をクリアする。",
+     "t": [
+      "t01"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "p2",
+   "title": "② サブ・収集（約1〜2時間）",
+   "summary": "「The Wolf's Chosen」、「A Mother's Love」、バウンティ、Viper Storehouseなど。",
+   "steps": [
+    {
+     "id": "s006",
+     "text": "Mythic Tale「The Wolf's Chosen」を進める。途中でCall of the Pack能力で敵を倒す。",
+     "t": [
+      "t10"
+     ]
+    },
+    {
+     "id": "s007",
+     "text": "Onryo > Ranged > Catch Arrowsを習得して、Catch Arrowで敵を倒す。",
+     "t": [
+      "t11"
+     ]
+    },
+    {
+     "id": "s008",
+     "text": "Side Tale「A Mother's Love」をクリア。",
+     "t": []
+    },
+    {
+     "id": "s009",
+     "text": "全バウンティを達成する。",
+     "t": []
+    },
+    {
+     "id": "s010",
+     "text": "4つのViper Storehouseを制圧する。同時にDye Merchantが解放される。",
+     "t": [
+      "t02"
+     ]
+    },
+    {
+     "id": "s011",
+     "text": "Dye Trade Routesを全部購入する（Viper Rations 110個）。",
+     "t": [
+      "t06"
+     ]
+    },
+    {
+     "id": "s012",
+     "text": "新レシピを4つ発見する。",
+     "t": [
+      "t08"
+     ]
+    },
+    {
+     "id": "s013",
+     "text": "Fortune's Asobiyaで「Zeni Hajiki」に3回勝つ（人形の回収などが必要）。",
+     "t": [
+      "t07"
+     ]
+    },
+    {
+     "id": "s014",
+     "text": "Soichiroの2つの課題→MatakichiとKyubeeに勝つ→Toshibetsu FallsでNobushigeと決闘。",
+     "t": [
+      "t04"
+     ]
+    },
+    {
+     "id": "s015",
+     "text": "黄金の鳥を解放する（場所は未確認）。",
+     "t": [
+      "t05"
+     ],
+     "warn": true
+    }
+   ]
+  },
+  {
+   "id": "p3",
+   "title": "③ 最終ミッション（約1時間）",
+   "summary": "「Dream's End」「The Wolf's Chosen」・全バウンティを終えたら挑戦できます。",
+   "steps": [
+    {
+     "id": "s016",
+     "text": "最終ミッション「The Nature of War」（町の防衛戦）をクリア。残りのトロフィーもここで回収。",
+     "t": [
+      "t03"
+     ]
+    }
+   ]
+  }
+ ]
+}
