@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>賞金首×装備チェック表 | Ghost of Yōtei</title>
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1f2328;--sub:#6b7280;--line:#e4e1d8;--accent:#2f5d8a;--accent-bg:#e8f0f8;--warn:#9a5b00;--warn-bg:#fff4dc;--ok:#2e7d4f;--ok-bg:#e6f4ec}
+@media (prefers-color-scheme:dark){:root{--bg:#16181b;--card:#1f2327;--ink:#e8e8e6;--sub:#9aa1a9;--line:#31363c;--accent:#7fb0e0;--accent-bg:#22303d;--warn:#f0b255;--warn-bg:#35291a;--ok:#6fd09a;--ok-bg:#1b2e24}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI","Meiryo",sans-serif}
+header{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line);padding:10px 14px 0}
+h1{font-size:16px;margin:0}
+.back{font-size:12.5px;margin-left:8px}
+a{color:var(--accent)}
+.bar{height:8px;background:var(--line);border-radius:5px;overflow:hidden;margin:8px 0 4px}
+.bar>i{display:block;height:100%;background:var(--ok);width:0;transition:width .2s}
+.meta{font-size:12.5px;color:var(--sub);display:flex;gap:12px;flex-wrap:wrap}
+.tabs{display:flex;gap:2px;margin-top:6px}
+.tabs button{flex:1;padding:8px 6px;border:0;background:none;color:var(--sub);font:inherit;border-bottom:3px solid transparent;cursor:pointer}
+.tabs button.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+main{max-width:820px;margin:0 auto;padding:12px 12px 80px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.card h2{font-size:15px;margin:0 0 2px;display:flex;justify-content:space-between;gap:8px}
+.card h2 small{font-weight:400;color:var(--sub)}
+.note{font-size:12.5px;color:var(--sub);margin:2px 0 4px}
+.row{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px dashed var(--line);cursor:pointer}
+.row:first-of-type{border-top:0}
+.row input{margin-top:5px;width:18px;height:18px;flex:none}
+.row .t{flex:1}
+.row .g{font-weight:600}
+.row .b{font-size:13.5px;color:var(--sub)}
+.row.done .g{color:var(--ok)}
+.row.done{background:var(--ok-bg)}
+.tag{display:inline-block;font-size:11.5px;padding:0 6px;border-radius:8px;background:var(--accent-bg);color:var(--accent);margin-left:4px;font-weight:400}
+.warn{display:block;font-size:12.5px;color:var(--warn);background:var(--warn-bg);border-radius:6px;padding:2px 8px;margin-top:3px}
+.tools{display:flex;gap:8px;margin:10px 0}
+.tools button{font:inherit;padding:6px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;cursor:pointer}
+.src{font-size:12.5px;color:var(--sub);margin-top:16px}
+</style>
+</head>
+<body>
+<header>
+  <h1>賞金首×装備チェック表<a class="back" href="./#ghost-of-yotei">← 攻略チャート</a></h1>
+  <div class="bar"><i id="bar"></i></div>
+  <div class="meta"><span id="m1"></span><span id="m2"></span></div>
+  <div class="tabs"><button data-v="slot" class="on">部位別</button><button data-v="bounty">賞金首別</button></div>
+</header>
+<main>
+  <div class="card" style="background:var(--accent-bg)">
+    <b>使い方：</b>装備画面で持っているものにチェック → その賞金首は「討伐済み」になります。<br>
+    <span class="note">装備のない賞金首（8人）と、碧落の持ち主は装備で判定できないので、「賞金首別」タブで手動チェックします。</span>
+  </div>
+  <div id="view"></div>
+  <div class="tools"><button id="reset">全部リセット</button></div>
+  <p class="src">出典：<a href="https://gamewith.jp/ghost-of-yotei/521642">ゲームウィズ 賞金首</a>／<a href="https://gamewith.jp/ghost-of-yotei/521080">頭防具一覧</a>／<a href="https://gamewith.jp/ghost-of-yotei/521081">面一覧</a>／<a href="https://gamewith.jp/ghost-of-yotei/521082">鎧一覧</a>／<a href="https://gamewith.jp/ghost-of-yotei/521084">装具一覧</a>。チェックはこの端末のブラウザにだけ保存されます。</p>
+</main>
+<script>
+// 賞金首 31人（id, 名前, 地域）
+const B=[
+["b01","おぞい三匹","羊蹄平"],["b02","火薬の一平","羊蹄平"],["b03","鴉の源蔵","羊蹄平"],["b04","微笑みの善智","羊蹄平"],["b05","骨砕きの宗次","羊蹄平"],["b06","楽狂いの相馬","羊蹄平"],
+["b07","八重婆","十勝ヶ峰"],["b08","空腹の猪吉","十勝ヶ峰"],["b09","鉄の忠太","十勝ヶ峰"],["b10","一つ目の盛高","十勝ヶ峰"],["b11","神隠しの順平","十勝ヶ峰"],["b12","熊男の親俊","十勝ヶ峰"],
+["b13","赤糸八兵衛","石狩ヶ原"],["b14","浦島の亀吉","石狩ヶ原"],["b15","騙り屋志郎","石狩ヶ原"],["b16","人でなし栄次郎","石狩ヶ原"],["b17","火付けの燈司","石狩ヶ原"],["b18","青姥","石狩ヶ原"],
+["b19","犬飼い豊太郎","天塩ヶ丘"],["b20","無名の人殺し","天塩ヶ丘"],["b21","真夜中の久保","天塩ヶ丘"],["b22","博打打ちの稲川","天塩ヶ丘"],["b23","吹雪の片桐","天塩ヶ丘"],
+["b24","土埋めの忠明","渡島ヶ浦"],["b25","鎧剥ぎの新八","渡島ヶ浦"],["b26","はぐれ鬼面隊","渡島ヶ浦"],["b27","麗しのお岩","渡島ヶ浦"],["b28","鷹の目の近藤","渡島ヶ浦"],["b29","信なき世話人","渡島ヶ浦"],["b30","歯牙砕き","渡島ヶ浦"],["b31","死に遅れ","渡島ヶ浦"]
+];
+// 装備（部位, 名前, 賞金首id, 注意）
+const BUY_WARN="クリア後は購入でも入手可。所持＝討伐とは限りません";
+const G=[
+["頭防具","赤糸八兵衛の三度笠","b13",BUY_WARN+"（骸漁りの太郎で200銭）"],
+["頭防具","鴉の源蔵の三度笠","b03",""],
+["頭防具","賞金稼ぎ頭の鉢巻き","b06",""],
+["面","火薬の一平の面頬","b02",""],
+["面","忠太の頭巾","b09","賞金首ページでは「防具」表記。面一覧に掲載"],
+["面","空腹の猪吉の面","b08",""],
+["面","浦島の亀吉の面","b14",""],
+["面","怪盗洗熊の面","b15",""],
+["面","人でなし栄次郎の面","b16",""],
+["面","火付けの燈司の面","b17",""],
+["面","青姥の面","b18",""],
+["面","真夜中の久保の面頬","b21",""],
+["鎧","賞金稼ぎ頭の装束","b06",""],
+["装具（刀・二刀）","兜虫之和顔","b04",""],
+["装具（刀・二刀）","蛇之衝突","b05",""],
+["装具（刀・二刀）","八重之茶毒","b07",""],
+["装具（刀・二刀）","獣之饗宴","b12","骸漁りの太郎から花3でも購入可。所持＝討伐とは限りません"],
+["装具（刀・二刀）","豊太郎之牙","b19",""],
+["装具（刀・二刀）","無明之死","b20",""],
+["装具（刀・二刀）","黄昏之死","b24",""],
+["装具（刀・二刀）","新八之筆","b25",""],
+["装具（刀・二刀）","義忠之四苦","b31",""],
+["装具（槍）","博徒の槍","b22",""],
+["分類不明","碧落","b29","ゲームウィズで部位・分類の記載なし。未確認"]
+];
+const SLOT_NOTE={
+"頭防具":"笠・鉢巻・頭巾など。賞金首の報酬は3種。",
+"面":"面・面頬・口当など。賞金首の報酬は9種。",
+"鎧":"賞金首の報酬は賞金稼ぎ頭の装束のみ。",
+"装具（刀・二刀）":"武器の見た目を変える装具（効果なし）。",
+"装具（槍）":"槍の見た目を変える装具。",
+"分類不明":""
+};
+const KEY="yotei-bounty-gear-v1";
+let S={};try{S=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+let view="slot";
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const bn=id=>B.find(b=>b[0]===id);
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function row(id,main,sub,warn,tag){
+  const d=!!S[id];
+  return `<label class="row${d?" done":""}"><input type="checkbox" data-id="${id}"${d?" checked":""}><span class="t"><span class="g">${esc(main)}</span>${tag?`<span class="tag">${esc(tag)}</span>`:""}<br><span class="b">${sub}</span>${warn?`<span class="warn">⚠ ${esc(warn)}</span>`:""}</span></label>`;
+}
+function render(){
+  const h=[];
+  if(view==="slot"){
+    const slots=[...new Set(G.map(g=>g[0]))];
+    for(const s of slots){
+      const items=G.filter(g=>g[0]===s);
+      const n=items.filter(g=>S[g[2]]).length;
+      h.push(`<div class="card"><h2>${esc(s)}<small>${n}/${items.length}</small></h2>${SLOT_NOTE[s]?`<div class="note">${esc(SLOT_NOTE[s])}</div>`:""}`);
+      for(const g of items){const b=bn(g[2]);h.push(row(g[2],g[1],`→ ${esc(b[1])}（${esc(b[2])}）`,g[3]));}
+      h.push("</div>");
+    }
+    const noGear=B.filter(b=>!G.some(g=>g[2]===b[0]));
+    h.push(`<div class="card"><h2>装備なし（手動チェック）<small>${noGear.filter(b=>S[b[0]]).length}/${noGear.length}</small></h2><div class="note">報酬が銭のみ。装備では判定できません。</div>`);
+    for(const b of noGear)h.push(row(b[0],b[1],esc(b[2])));
+    h.push("</div>");
+  }else{
+    const regs=[...new Set(B.map(b=>b[2]))];
+    for(const r of regs){
+      const bs=B.filter(b=>b[2]===r);
+      h.push(`<div class="card"><h2>${esc(r)}<small>${bs.filter(b=>S[b[0]]).length}/${bs.length}</small></h2>`);
+      for(const b of bs){
+        const gs=G.filter(g=>g[2]===b[0]);
+        const sub=gs.length?gs.map(g=>`${esc(g[1])}（${esc(g[0].replace(/（.*/,""))}）`).join("、"):"装備なし（手動）";
+        const warn=gs.map(g=>g[3]).filter(Boolean)[0]||"";
+        h.push(row(b[0],b[1],sub,warn));
+      }
+      h.push("</div>");
+    }
+  }
+  document.getElementById("view").innerHTML=h.join("");
+  const done=B.filter(b=>S[b[0]]).length;
+  document.getElementById("bar").style.width=(done/B.length*100)+"%";
+  document.getElementById("m1").textContent=`討伐 ${done}/${B.length}`;
+  const left=B.filter(b=>!S[b[0]]);
+  document.getElementById("m2").textContent=left.length?`残り：${left.map(b=>b[1]).join("、")}`:"全員討伐済み！";
+}
+document.addEventListener("change",e=>{
+  const id=e.target.dataset&&e.target.dataset.id;
+  if(!id)return;
+  if(e.target.checked)S[id]=1;else delete S[id];
+  save();render();
+});
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+  view=b.dataset.v;
+  document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
+  render();
+});
+document.getElementById("reset").onclick=()=>{if(confirm("チェックを全部消しますか？")){S={};save();render();}};
+render();
+</script>
+</body>
+</html>
