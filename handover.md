@@ -5,9 +5,9 @@
 - 続きの作業でリポジトリに push するには、セッションにリポジトリ `ykdtmnhnddsbba-jj/game-techo` を追加する。
 - `.github/workflows` は編集内容をローカルへ書けない。ワークフローを直すときはリポジトリ側へ直接 push する。
 - リポジトリ: https://github.com/ykdtmnhnddsbba-jj/game-techo （main / root。公開サイトは GitHub Pages）
-- ローカル: `G:\マイドライブ\App\ゲームデータベース`（index.html / games.json / scripts/ / README.md / handover.md）
-- 元になったサイト: アニメ手帖（`G:\マイドライブ\App\アニメデータベース` / リポジトリ anime-techo）。レイアウト・評価UI・Drive同期はこれを踏襲。
-- 参考: `G:\マイドライブ\App\PS5-Game-Radar`（PowerShell製のローカルアプリ。同じファミ通ページから取得している）
+- ローカル: `G:\マイドライブ\App\apps\media-db\ゲームデータベース`（index.html / games.json / scripts/ / README.md / handover.md）
+- 元になったサイト: アニメ手帖（`G:\マイドライブ\App\apps\media-db\アニメデータベース` / リポジトリ anime-techo）。レイアウト・評価UI・Drive同期はこれを踏襲。
+- 参考: `G:\マイドライブ\App\apps\media-db\PS5-Game-Radar`（PowerShell製のローカルアプリ。同じファミ通ページから取得している）
 - 注意: ローカルフォルダの `.github` は書き込みが保護されている。ワークフローは**リポジトリ側**（`.github/workflows/update-games.yml`）が正本。
 
 ## 構成
