@@ -360,24 +360,31 @@ let gToken=null,gExp=0,gClient=null,driveFileId=null,syncState=settings.drive_li
 const G_SCOPE='https://www.googleapis.com/auth/drive.file';
 const G_REDIR=location.origin+location.pathname.replace(/index\.html$/,'');
 const G_TOKKEY='gauth_tok:'+G_REDIR;
+/* スマホのブラウザはタブ再読込・別タブ復帰で sessionStorage が消えることがあるため、localStorage にも保存する（アニメ手帖と同じ） */
+const gSt={
+  get(k){try{const v=localStorage.getItem(k);if(v!=null)return v}catch(e){}try{return sessionStorage.getItem(k)}catch(e){return null}},
+  set(k,v){try{localStorage.setItem(k,v)}catch(e){}try{sessionStorage.setItem(k,v)}catch(e){}},
+  del(k){try{localStorage.removeItem(k)}catch(e){}try{sessionStorage.removeItem(k)}catch(e){}}
+};
+const G_STATEKEY='game_gauth_state';
 /* 認証はポップアップではなくページ遷移（リダイレクト）方式。Sleipnir等のアプリ内ブラウザでも動く */
 (function(){
   try{
     if(/access_token=|error=/.test(location.hash)){
       const p=new URLSearchParams(location.hash.slice(1));
-      if(p.get('state')&&p.get('state')===sessionStorage.getItem('gauth_state')){
-        if(p.get('access_token'))sessionStorage.setItem(G_TOKKEY,JSON.stringify({t:p.get('access_token'),e:Date.now()+(+p.get('expires_in')||3600)*1000}));
-        sessionStorage.removeItem('gauth_state');
+      if(p.get('state')&&p.get('state')===gSt.get(G_STATEKEY)){
+        if(p.get('access_token'))gSt.set(G_TOKKEY,JSON.stringify({t:p.get('access_token'),e:Date.now()+(+p.get('expires_in')||3600)*1000}));
+        gSt.del(G_STATEKEY);
         history.replaceState(null,'',location.pathname+location.search);
       }
     }
-    const s=JSON.parse(sessionStorage.getItem(G_TOKKEY)||'null');
-    if(s&&s.e>Date.now()){gToken=s.t;gExp=s.e}
+    const s=JSON.parse(gSt.get(G_TOKKEY)||'null');
+    if(s&&s.e>Date.now()){gToken=s.t;gExp=s.e}else if(s)gSt.del(G_TOKKEY);
   }catch(e){}
 })();
 function gRedirect(prompt){
   const st=Math.random().toString(36).slice(2)+Date.now().toString(36);
-  try{sessionStorage.setItem('gauth_state',st)}catch(e){}
+  gSt.set(G_STATEKEY,st);
   const q=new URLSearchParams({client_id:settings.google_client_id.trim(),redirect_uri:G_REDIR,response_type:'token',scope:G_SCOPE,state:st,include_granted_scopes:'true'});
   if(prompt)q.set('prompt',prompt);
   location.href='https://accounts.google.com/o/oauth2/v2/auth?'+q.toString();
