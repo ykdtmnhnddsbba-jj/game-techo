@@ -109,13 +109,17 @@ label.chk{display:flex;gap:6px;align-items:center;color:var(--sub);font-size:14p
 .badge.date{background:#232a55;color:#c4ccff}
 .badge.soon{background:#33290d;color:var(--warn);border:1px solid #6b5a1c}
 .badge.out{background:#16312f;color:var(--accent2);border:1px solid #2a5b55}
+.badge.ser{background:#2b1f45;color:#d7c4ff;border:1px solid #4b3a78}
+.qb.on.n{color:var(--sub);border-color:var(--line);background:var(--panel2);text-decoration:line-through}
+.qb.on.b{color:#9fe6b8;border-color:#2a5b3d;background:#15301f}
+.card.nope{opacity:.55}
 .badge.price{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
 .qc{display:flex;flex-direction:column;gap:7px;margin-top:2px}
 .sbs{display:flex;gap:4px}
 .sb{flex:1;min-width:0;padding:9px 0;border-radius:8px;border:1px solid var(--line);background:var(--panel2);cursor:pointer;font-weight:700;font-size:14px;color:var(--sub)}
 .sb:hover{border-color:var(--accent);color:var(--text)}
 .sb.on{background:var(--accent);border-color:var(--accent);color:#0c1030}
-.qc .r2{display:flex;gap:6px}
+.qc .r2{display:flex;gap:6px;flex-wrap:wrap}.qc .r2 input{flex:1 1 100%}
 .qc input{flex:1;min-width:0;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13px}
 .qb{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:4px 12px;cursor:pointer;font-size:13px;color:var(--sub);white-space:nowrap}
 .qb:hover{border-color:var(--sub)}
@@ -149,6 +153,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--sub);font-
 </footer>
 <div id="modalRoot"></div>
 
+<script src="../portal/lib/techo-google.js"></script>
 <script>
 'use strict';
 /* =============== utils =============== */
@@ -240,13 +245,47 @@ function isRated(id){const r=db.ratings[id];return !!(r&&!r.deleted&&r.score>0)}
 function isPlayed(id){const r=db.ratings[id];return !!(r&&!r.deleted&&(r.played||r.score>0))}
 function isWant(id){const r=db.ratings[id];return !!(r&&!r.deleted&&r.want)}
 function isFav(id){const r=db.ratings[id];return !!(r&&!r.deleted&&r.fav)}
+function isNope(id){const r=db.ratings[id];return !!(r&&!r.deleted&&r.nope)}
+function isBuy(id){const r=db.ratings[id];return !!(r&&!r.deleted&&r.want&&r.buy)}
 const KIND={g:'ジャンル',t:'テーマ',d:'開発元',s:'シリーズ'};
+/* 好きなシリーズ（PS5-Game-Radar の判定ルールを引き継いだもの）。ファミ通のデータにはシリーズ名が無いので、タイトルから当てる。
+   1行 =「ラベル|強さ(0〜50)|タイトルの正規表現」。設定タブで直せる（この端末に保存）。
+   当たったゲームは ①シリーズ名が付いて好み分析に入る ②相性%に「好きなシリーズ」の上乗せが付く ③カードにシリーズのバッジが出る */
+const DEF_SERIES=`軌跡シリーズ|46|空の軌跡|英雄伝説|軌跡
+アトラスRPG|44|ペルソナ|女神転生|メタファー
+FFシリーズ|44|ファイナルファンタジー|FINAL FANTASY|FFVII|FF7|FFT
+ドラクエ系|42|ドラゴンクエスト|ドラクエ|トルネコ
+龍が如くスタジオ|42|龍が如く|STRANGER THAN HEAVEN
+推理・謎・物語|38|都市伝説|ソムニウム|レイトン|デカポリス|ダンガンロンパ|探偵|ミステリー
+王道JRPG|37|テイルズ|聖剣伝説|幻想水滸伝|百英雄伝|オクトパストラベラー|FANTASIAN|Sea of Stars|ロマンシング|サガ
+戦略・タクティクス|36|ユニコーンオーバーロード|トライアングルストラテジー|ブリガンダイン|タクティクス|スーパーロボット大戦|三國志
+和風アクション|34|鬼武者|仁王|Ronin|ローニン|Wo Long|朧村正|無双|Ghost of|ゴースト・オブ
+ディズニー・物語|31|ディズニー|Disney|KINGDOM HEARTS|キングダム ハーツ
+アクションRPG|30|モンスターハンター|モンハン|AI LIMIT
+育成・運営|29|アトリエ|ルーンファクトリー|ツーポイント`;
+let SERIES=[];
+function parseSeries(txt){
+  return String(txt||'').split(/\r?\n/).map(l=>l.trim()).filter(l=>l&&!l.startsWith('#')).map(l=>{
+    const [label,w,...pat]=l.split('|');
+    try{return{label:label.trim(),weight:Math.max(0,Math.min(50,+w||0)),re:new RegExp(pat.join('|'),'i')}}catch(e){return null}
+  }).filter(x=>x&&x.label&&String(x.re)!=='/(?:)/i');
+}
+function loadSeries(){SERIES=parseSeries(settings.series_rules!=null?settings.series_rules:DEF_SERIES)}
+const seriesCache=new Map();
+function seriesOf(o){
+  if(o.series)return o.series;
+  const t=String(o.title||o.name||'')+' '+String(o.native||o.title_native||'');
+  if(!seriesCache.has(t)){const m=SERIES.find(x=>x.re.test(t));seriesCache.set(t,m?m.label:'')}
+  return seriesCache.get(t);
+}
+const seriesRule=label=>SERIES.find(x=>x.label===label);
+loadSeries();
 function feats(o){
   const f=[];
   (o.genres||[]).forEach(g=>f.push(['g:'+g,1]));
   (o.tags||[]).forEach(t=>f.push(['t:'+t,.6]));
   if(o.developer)f.push(['d:'+o.developer,.8]);
-  if(o.series)f.push(['s:'+o.series,.8]);
+  const se=seriesOf(o);if(se)f.push(['s:'+se,.8]);
   return f;
 }
 function buildProfile(){
@@ -255,6 +294,8 @@ function buildProfile(){
   const mean=rs.reduce((a,r)=>a+r.score,0)/rs.length;
   const num={},den={};
   rs.forEach(r=>{const dev=r.score-mean;feats(r).forEach(([k,w])=>{num[k]=(num[k]||0)+w*dev;den[k]=(den[k]||0)+w})});
+  // 「興味なし」は、平均より2点低い評価を半分の重さで入れる（Radar の「興味なし」と同じ考え方）
+  entries().filter(r=>r.nope&&!(r.score>0)).forEach(r=>feats(r).forEach(([k,w])=>{num[k]=(num[k]||0)-w*.5*2;den[k]=(den[k]||0)+w*.5}));
   const w={};Object.keys(num).forEach(k=>{w[k]={weight:num[k]/(den[k]+1.5),count:den[k]}});
   return{n:rs.length,mean,w};
 }
@@ -264,9 +305,13 @@ function recommend(it,prof){
   f.forEach(([k,w])=>{const e=prof.w[k];const val=e?e.weight:0;sum+=val*w;wsum+=w;if(e)contrib.push([k,val*w])});
   let raw=wsum?sum/wsum*2:0;
   if(it.avg)raw+=(it.avg-70)/20*.4;
+  const se=seriesOf(it),sr=se&&seriesRule(se);
+  if(sr)raw+=sr.weight/46*1.2;                      // 好きなシリーズの上乗せ（いちばん強い軌跡で約+25%）
+  if(isNope(it.id))raw-=2;
   const match=Math.round(100/(1+Math.exp(-raw*.9)));
   const label=k=>k.slice(2);
-  const reasons=contrib.filter(c=>c[1]>0.15).sort((a,b)=>b[1]-a[1]).slice(0,3).map(c=>label(c[0]));
+  const reasons=contrib.filter(c=>c[1]>0.15&&!(sr&&c[0]==='s:'+se)).sort((a,b)=>b[1]-a[1]).slice(0,3).map(c=>label(c[0]));
+  if(sr)reasons.unshift(se);
   const cons=contrib.filter(c=>c[1]<-0.15).sort((a,b)=>a[1]-b[1]).slice(0,2).map(c=>label(c[0]));
   return{match,reasons,cons};
 }
@@ -278,18 +323,21 @@ function upsert(it,patch){
   const old=db.ratings[it.id];
   const live=(old&&!old.deleted)?old:null;
   const wasPlayed=!!(live&&(live.played||live.score>0));
-  const cur=Object.assign({score:0,memo:'',played:false,fav:false,want:false},snapshot(it),live||{},patch);
+  const cur=Object.assign({score:0,memo:'',played:false,fav:false,want:false,nope:false,buy:false},snapshot(it),live||{},patch);
   if(cur.score>0)cur.played=true;
   if(cur.played&&!wasPlayed&&patch.want===undefined)cur.want=false;   // 遊んだら「気になる」は自動で外す
+  if(patch.want)cur.nope=false;                                        // 「気になる」と「興味なし」は同時に付けない
+  if(patch.nope)cur.want=false;
+  if(!cur.want)cur.buy=false;                                          // 「購入予定」は「気になる」の中の印
   cur.rated_at=cur.rated_at||nowIso();cur.updated_at=nowIso();
-  if(!(cur.score>0)&&!cur.played&&!cur.fav&&!cur.want&&!cur.memo){
+  if(!(cur.score>0)&&!cur.played&&!cur.fav&&!cur.want&&!cur.nope&&!cur.memo){
     if(old)db.ratings[it.id]={...old,...(cur.psn_off?{psn_off:true}:{}),deleted:true,updated_at:nowIso()};
   }else db.ratings[it.id]=cur;
   save();
 }
 function ctrlHtml(id){
   const r=db.ratings[id],ok=r&&!r.deleted,sc=ok?(r.score||0):0;
-  return`<div class="qc" data-id="${esc(id)}"><div class="sbs">${Array.from({length:10},(_,i)=>`<button class="sb ${sc===i+1?'on':''}" data-s="${i+1}" title="${i+1}点（もう一度押すと解除）">${i+1}</button>`).join('')}</div><div class="r2"><input class="qm" maxlength="140" placeholder="一言メモ（Enterで保存）" value="${esc(ok?r.memo:'')}"><button class="qb q ${isWant(id)?'on':''}" data-a="q" title="今後遊びたい（気になる）">☆ 気になる</button><button class="qb w ${isPlayed(id)?'on':''}" data-a="w" title="プレイ済み">✓ プレイ済み</button><button class="qb f ${isFav(id)?'on':''}" data-a="f" title="お気に入り">♥ お気に入り</button></div></div>`;
+  return`<div class="qc" data-id="${esc(id)}"><div class="sbs">${Array.from({length:10},(_,i)=>`<button class="sb ${sc===i+1?'on':''}" data-s="${i+1}" title="${i+1}点（もう一度押すと解除）">${i+1}</button>`).join('')}</div><div class="r2"><input class="qm" maxlength="140" placeholder="一言メモ（Enterで保存）" value="${esc(ok?r.memo:'')}"><button class="qb q ${isWant(id)?'on':''}" data-a="q" title="今後遊びたい（気になる）">☆ 気になる</button><button class="qb w ${isPlayed(id)?'on':''}" data-a="w" title="プレイ済み">✓ プレイ済み</button><button class="qb f ${isFav(id)?'on':''}" data-a="f" title="お気に入り">♥ お気に入り</button><button class="qb b ${isBuy(id)?'on':''}" data-a="b" title="買うと決めた（「気になる」の中の購入予定）">🛒 購入予定</button><button class="qb n ${isNope(id)?'on':''}" data-a="n" title="興味なし（おすすめを下げ、発売月の一覧で目立たなくする）">✕ 興味なし</button></div></div>`;
 }
 function refreshCard(card,id){
   if(!card)return;
@@ -304,6 +352,9 @@ function refreshCard(card,id){
   q.querySelector('.qb.q').classList.toggle('on',isWant(id));
   q.querySelector('.qb.w').classList.toggle('on',isPlayed(id));
   q.querySelector('.qb.f').classList.toggle('on',isFav(id));
+  q.querySelector('.qb.b').classList.toggle('on',isBuy(id));
+  q.querySelector('.qb.n').classList.toggle('on',isNope(id));
+  card.classList.toggle('nope',isNope(id));
 }
 function gridClick(e){
   const q=e.target.closest('.qc');if(!q)return false;
@@ -317,6 +368,12 @@ function gridClick(e){
   }else if(b.dataset.a==='w'){
     if(isRated(id)){toast('評価済みのゲームはプレイ済みです');return true}
     upsert(it,isPlayed(id)?{played:false,psn_off:true}:{played:true});   // 自分で外したら PSN の自動チェックで戻さない
+  }else if(b.dataset.a==='b'){
+    if(isPlayed(id)){toast('プレイ済みのゲームです');return true}
+    upsert(it,isBuy(id)?{buy:false}:{want:true,buy:true});
+  }else if(b.dataset.a==='n'){
+    if(isPlayed(id)){toast('プレイ済みのゲームです（「興味なし」は未プレイ用）');return true}
+    upsert(it,{nope:!isNope(id)});
   }else upsert(it,{fav:!isFav(id)});
   refreshCard(q.closest('.card'),id);return true;
 }
@@ -361,90 +418,41 @@ const DRIVE_NAME='game-db.json';
 let gToken=null,gExp=0,gClient=null,driveFileId=null,syncState=settings.drive_linked?'need':'off',syncTimer=null,syncing=false;
 const G_SCOPE='https://www.googleapis.com/auth/drive.file';
 const G_REDIR=location.origin+location.pathname.replace(/index\.html$/,'');
-const G_TOKKEY='gauth_tok:'+G_REDIR;
-/* スマホのブラウザはタブ再読込・別タブ復帰で sessionStorage が消えることがあるため、localStorage にも保存する（アニメ手帖と同じ） */
-const gSt={
-  get(k){try{const v=localStorage.getItem(k);if(v!=null)return v}catch(e){}try{return sessionStorage.getItem(k)}catch(e){return null}},
-  set(k,v){try{localStorage.setItem(k,v)}catch(e){}try{sessionStorage.setItem(k,v)}catch(e){}},
-  del(k){try{localStorage.removeItem(k)}catch(e){}try{sessionStorage.removeItem(k)}catch(e){}}
-};
-const G_STATEKEY='game_gauth_state';
-/* 認証はポップアップではなくページ遷移（リダイレクト）方式。Sleipnir等のアプリ内ブラウザでも動く */
-(function(){
-  try{
-    if(/access_token=|error=/.test(location.hash)){
-      const p=new URLSearchParams(location.hash.slice(1));
-      if(p.get('state')&&p.get('state')===gSt.get(G_STATEKEY)){
-        if(p.get('access_token'))gSt.set(G_TOKKEY,JSON.stringify({t:p.get('access_token'),e:Date.now()+(+p.get('expires_in')||3600)*1000}));
-        gSt.del(G_STATEKEY);
-        history.replaceState(null,'',location.pathname+location.search);
-      }
-    }
-    const s=JSON.parse(gSt.get(G_TOKKEY)||'null');
-    if(s&&s.e>Date.now()){gToken=s.t;gExp=s.e}else if(s)gSt.del(G_TOKKEY);
-  }catch(e){}
-})();
-function gRedirect(prompt){
-  const st=Math.random().toString(36).slice(2)+Date.now().toString(36);
-  gSt.set(G_STATEKEY,st);
-  const q=new URLSearchParams({client_id:settings.google_client_id.trim(),redirect_uri:G_REDIR,response_type:'token',scope:G_SCOPE,state:st,include_granted_scopes:'true'});
-  if(prompt)q.set('prompt',prompt);
-  location.href='https://accounts.google.com/o/oauth2/v2/auth?'+q.toString();
-  return new Promise(()=>{});   // 遷移するので戻らない
-}
+/* ログインと Drive の読み書きは手帖共通の ../portal/lib/techo-google.js（ポータルのリポジトリ）。
+   トークンは全部の手帖で共通なので、どれか1つの手帖でログインすれば他の手帖もそのまま同期できる */
+const GA=window.TechoGoogle?TechoGoogle.create({site:'game',clientId:()=>settings.google_client_id}):null;
+let gAuthMsg=GA?GA.message():'共通ファイル（portal/lib/techo-google.js）を読み込めませんでした。Drive同期は使えません';
+function gLoad(scope){const t=GA&&GA.token(scope);gToken=t?t.t:null;gExp=t?t.e:0;return !!t}
+gLoad();
+function gRedirect(prompt,scope){if(!GA)throw new Error(gAuthMsg||'共通ファイルを読み込めませんでした');return GA.redirect(prompt,scope||G_SCOPE)}
 async function driveAuth(interactive){
-  if(!settings.google_client_id.trim())throw new Error('Google クライアントIDが未設定です（設定タブ）');
+  if(gLoad())return;                                   // ほかの手帖でログイン済みなら、そのトークンを使う
+  if(!String(settings.google_client_id||'').trim())throw new Error('Google クライアントIDが未設定です（設定タブ）');
   if(interactive)return gRedirect('');
   throw new Error('再接続が必要です');
 }
 /* 起動時：トークンがあれば同期、無ければ1回だけ無言で再認証を試す（ループ防止つき） */
 function gStartup(){
-  if(!settings.google_client_id)return;
+  if(gAuthMsg){const m=gAuthMsg;gAuthMsg='';setTimeout(()=>toast(m,6000),400)}
+  if(!settings.google_client_id||!GA)return;
   if(gToken){driveSync(false);return}
   if(!settings.drive_linked)return;
-  let last=0;try{last=+sessionStorage.getItem('gauth_silent')||0}catch(e){}
-  if(Date.now()-last<300000){setSync('need');return}
-  try{sessionStorage.setItem('gauth_silent',String(Date.now()))}catch(e){}
+  if(!GA.silentOk()){setSync('need');return}
   gRedirect('none');
 }
 window.addEventListener('pageshow',e=>{if(e.persisted){syncing=false;setSync('need')}});
-const gFetch=(url,opt={})=>fetch(url,{...opt,headers:{...(opt.headers||{}),Authorization:'Bearer '+gToken}});
+const gFetch=(url,opt={})=>GA.fetch(url,opt);
 async function driveSync(interactive){
   if(syncing)return;syncing=true;setSync('busy');
   try{
     if(!gToken||Date.now()>gExp-60000)await driveAuth(interactive);
     let remoteChanged=false;
-    let id=driveFileId;
-    if(!id){
-      const q=encodeURIComponent(`name='${DRIVE_NAME}' and trashed=false`);
-      const r=await gFetch(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)&orderBy=${encodeURIComponent('modifiedTime desc')}&pageSize=1`);
-      if(!r.ok)throw new Error('Drive検索に失敗 ('+r.status+')。Drive APIが有効か確認してください');
-      const j=await r.json();id=j.files&&j.files[0]&&j.files[0].id;
-    }
-    if(id){
-      const r=await gFetch(`https://www.googleapis.com/drive/v3/files/${id}?alt=media`);
-      // 読み込めないまま書き込むと他の端末の変更を消してしまうので、必ず中断する
-      if(!r.ok){if(r.status===404)driveFileId=null;throw new Error('Driveの読み込みに失敗 ('+r.status+')。保存は中止しました')}
-      if(r.ok){
-        const remote=await r.json();
-        const before={r:db.ratings,c:db.custom_games};
+    const id=await GA.syncFile(DRIVE_NAME,driveFileId,async remote=>{
+      const before={r:db.ratings,c:db.custom_games};
         db=mergeDb(db,{ratings:remote.ratings||{},custom_games:remote.custom_games||{}});saveLocal();rebuildIndex();
         const diff=(a,b)=>[...new Set([...Object.keys(a),...Object.keys(b)])].some(k=>((a[k]||{}).updated_at||'')!==((b[k]||{}).updated_at||''));
         remoteChanged=diff(before.r,db.ratings)||diff(before.c,db.custom_games);
-      }
-    }
-    const body=JSON.stringify(exportObj(),null,1);
-    if(id){
-      const r=await gFetch(`https://www.googleapis.com/upload/drive/v3/files/${id}?uploadType=media`,{method:'PATCH',headers:{'Content-Type':'application/json'},body});
-      if(!r.ok)throw new Error('Drive保存に失敗 ('+r.status+')');
-    }else{
-      const b='gamedb'+Date.now();
-      const meta=JSON.stringify({name:DRIVE_NAME,mimeType:'application/json'});
-      const mp=`--${b}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${meta}\r\n--${b}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${body}\r\n--${b}--`;
-      const r=await gFetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',{method:'POST',headers:{'Content-Type':'multipart/related; boundary='+b},body:mp});
-      if(!r.ok)throw new Error('Drive作成に失敗 ('+r.status+')');
-      id=(await r.json()).id;
-    }
+    },()=>JSON.stringify(exportObj(),null,1));
     driveFileId=id;settings.drive_linked=true;saveSettings();setSync('ok');
     // 画面は作り直さない（スクロール位置・入力中の文字・並びを保つ）。他端末の変更があったときだけ、表示中のカードをその場で更新する
     if(remoteChanged){
@@ -452,14 +460,14 @@ async function driveSync(interactive){
       toast('他の端末の変更を反映しました（並びは再読込・条件変更のときに更新）');
     }
     return true;
-  }catch(e){setSync(interactive?'bad':'need');if(interactive)toast(e.message,5000);console.warn(e);return false}
+  }catch(e){if(e&&e.forget)driveFileId=null;setSync(interactive?'bad':'need');if(interactive)toast(e.message,5000);console.warn(e);return false}
   finally{syncing=false}
 }
 function scheduleSync(){
   if(!settings.drive_linked)return;
   setSync('dirty');clearTimeout(syncTimer);
   syncTimer=setTimeout(()=>{
-    if(gToken&&Date.now()<gExp-60000)driveSync(false);else setSync('need');
+    if(gLoad()&&Date.now()<gExp-60000)driveSync(false);else setSync('need');
   },2500);
 }
 function setSync(s){
@@ -517,6 +525,7 @@ function renderMonth(m){
       <option value="played" ${ui.state==='played'?'selected':''}>プレイ済みのみ</option>
       <option value="want" ${ui.state==='want'?'selected':''}>気になるのみ</option>
       <option value="fav" ${ui.state==='fav'?'selected':''}>お気に入りのみ</option>
+      <option value="nope" ${ui.state==='nope'?'selected':''}>興味なしのみ</option>
     </select>
     <label class="chk"><input type="checkbox" id="chkUn" ${ui.onlyUnrated?'checked':''}> 未評価のみ</label>
     <button class="btn" id="colBtn" title="1行に並べるゲーム数">表示: ${ui.cols}列</button>
@@ -565,6 +574,8 @@ function visibleItems(){
   ui.viewKey=viewKey;
   const passes=it=>{
     if(ui.onlyUnrated&&isRated(it.id))return false;
+    if(ui.state==='nope')return isNope(it.id);
+    if(isNope(it.id)&&!ui.query)return false;          // 興味なしは、検索したときと「興味なしのみ」のときだけ出す
     if(ui.state==='unplayed')return !isPlayed(it.id);
     if(ui.state==='played')return isPlayed(it.id);
     if(ui.state==='want')return isWant(it.id);
@@ -611,13 +622,14 @@ function cardHtml(it,rec,prof){
   const rc=rec.get(it.id);
   const showMatch=prof.n>=3&&!rated&&rc&&rc.match!=null;
   const meta=[it.genres.slice(0,3).join(' / '),it.developer].filter(Boolean).join(' ・ ');
-  return`<div class="card item" data-id="${esc(it.id)}">
+  const se=seriesOf(it);
+  return`<div class="card item ${isNope(it.id)?'nope':''}" data-id="${esc(it.id)}">
     <div class="cover ${it.cover?'':'nocover'}">${coverImg(it.cover)}${rated?`<span class="score">${r.score}</span>`:''}</div>
     <div class="cbody">
       <div class="thead"><div class="tl">
       <div class="ctitle">${esc(titleOf(it))}</div>
       <div class="meta">${esc(meta)}${it.avg?` ・ ★${it.avg}`:''}</div>
-      <div class="bd"><span class="badge date ${isHintRegion(it.region)?'hint':''}" title="${esc(regionNote(it.region))}">${esc(fmtDate(it.release))}</span>${it.price?`<span class="badge price">${esc(it.price)}</span>`:''}</div></div>${isPlayed(it.id)?trophyChip(it.id):''}</div>
+      <div class="bd"><span class="badge date ${isHintRegion(it.region)?'hint':''}" title="${esc(regionNote(it.region))}">${esc(fmtDate(it.release))}</span>${it.price?`<span class="badge price">${esc(it.price)}</span>`:''}${se?`<span class="badge ser">${esc(se)}</span>`:''}</div></div>${isPlayed(it.id)?trophyChip(it.id):''}</div>
       ${showMatch?`<div class="reason">相性 ${rc.match}%${rc.reasons.length?'　◎ '+esc(rc.reasons.join('・')):''}</div>`:''}
       ${ctrlHtml(it.id)}
     </div></div>`;
@@ -691,16 +703,16 @@ function wantCard(r){
 function renderWant(m){
   const all=entries().filter(r=>r.want&&!(r.played||r.score>0));
   const today=new Date().toISOString().slice(0,10);
-  let rs=all.filter(r=>ui.wantF==='all'||(ui.wantF==='upcoming'?(!wantRelease(r)||wantRelease(r)>=today):(wantRelease(r)&&wantRelease(r)<today)));
+  let rs=all.filter(r=>ui.wantF==='all'||(ui.wantF==='buy'?!!r.buy:ui.wantF==='upcoming'?(!wantRelease(r)||wantRelease(r)>=today):(wantRelease(r)&&wantRelease(r)<today)));
   rs.sort((a,b)=>(wantRelease(a)||'9999').localeCompare(wantRelease(b)||'9999')||String(a.title).localeCompare(String(b.title),'ja'));
   const nUp=all.filter(r=>!wantRelease(r)||wantRelease(r)>=today).length;
   let html='',cur=null;
   rs.forEach(r=>{const d=wantRelease(r),k=d?d.slice(0,7):'';if(k!==cur){cur=k;const n=rs.filter(x=>(wantRelease(x)||'').slice(0,7)===k).length;
     html+=`<h3 class="gh">${d?(+d.slice(0,4))+'年'+(+d.slice(5,7))+'月発売':'発売日未定'}　<span class="hint">${n}本</span></h3>`}html+=wantCard(r)});
   m.innerHTML=`<div class="stick"><div class="toolbar">
-    <select id="wantF"><option value="all" ${ui.wantF==='all'?'selected':''}>すべて（発売日順）</option><option value="upcoming" ${ui.wantF==='upcoming'?'selected':''}>これから発売のみ</option><option value="released" ${ui.wantF==='released'?'selected':''}>発売済み（未購入）のみ</option></select>
+    <select id="wantF"><option value="all" ${ui.wantF==='all'?'selected':''}>すべて（発売日順）</option><option value="upcoming" ${ui.wantF==='upcoming'?'selected':''}>これから発売のみ</option><option value="released" ${ui.wantF==='released'?'selected':''}>発売済み（未購入）のみ</option><option value="buy" ${ui.wantF==='buy'?'selected':''}>🛒 購入予定のみ</option></select>
     <button class="btn" id="colBtn3">表示: ${ui.cols}列</button>
-    <span class="hint">${rs.length}本（うち発売前 ${nUp}本）</span></div></div>
+    <span class="hint">${rs.length}本（うち発売前 ${nUp}本・購入予定 ${all.filter(r=>r.buy).length}本）</span></div></div>
     <div class="grid" id="wgrid" style="--cols:${ui.cols}">${rs.length?html:'<div class="empty" style="grid-column:1/-1">「気になる」を付けたゲームがありません。「発売月」タブで買いたいゲームの「☆ 気になる」を押すと、ここに発売日順で並びます。</div>'}</div>`;
   $('#wantF').onchange=e=>{ui.wantF=e.target.value;renderWant(m)};
   $('#colBtn3').onclick=()=>{ui.cols=ui.cols===2?1:2;$('#colBtn3').textContent='表示: '+ui.cols+'列';$('#wgrid').style.setProperty('--cols',ui.cols)};
@@ -798,6 +810,11 @@ function renderSettings(m){
     </div>
     <div class="row"><button class="btn pri" id="cgAdd">追加</button></div>
   </div>
+  <div class="panel"><h2>⭐ 好きなシリーズ</h2>
+    <p class="hint">タイトルにこの言葉が入るゲームに、シリーズのバッジを付けて「相性%」を上げます（PS5-Game-Radar から引き継いだ判定）。1行に「ラベル|強さ(0〜50)|言葉|言葉…」。言葉は正規表現として扱います。この端末だけに保存されます。</p>
+    <textarea id="serTxt" rows="9" style="width:100%;font-family:monospace;font-size:.85rem">${esc(settings.series_rules!=null?settings.series_rules:DEF_SERIES)}</textarea>
+    <div class="row"><button class="btn pri" id="serSave">保存</button><button class="btn" id="serReset">初期値に戻す</button><span class="hint" id="serNote">${SERIES.length}件</span></div>
+  </div>
   <div class="panel"><h2>☁ Google Drive 同期</h2>
     <p class="hint">評価データを Drive の <code>${DRIVE_NAME}</code> に自動保存します（このアプリが作ったファイルだけにアクセスする権限）。デバイス間で同じデータを使えます。</p>
     <div class="field"><label>Google OAuth クライアントID</label><input id="gcid" placeholder="xxxx.apps.googleusercontent.com" value="${esc(settings.google_client_id)}"></div>
@@ -815,6 +832,9 @@ function renderSettings(m){
     try{const j=JSON.parse(await f.text());if(!j||!Array.isArray(j.games))throw new Error('games.json の形式ではありません');
       lsSet(LS_GAMES,j);GAMES=j;gamesStatus='imported';rebuildIndex();toast(j.games.length+'本を読み込みました');render()}
     catch(err){toast('読み込み失敗: '+err.message,4500)}};
+  const serApply=v=>{settings.series_rules=v;saveSettings();loadSeries();seriesCache.clear();ui.viewKey='';$('#serNote').textContent=SERIES.length+'件 を保存しました';toast('好きなシリーズを更新しました')};
+  $('#serSave').onclick=()=>serApply($('#serTxt').value);
+  $('#serReset').onclick=()=>{$('#serTxt').value=DEF_SERIES;serApply(null)};
   $('#cgAdd').onclick=()=>{
     const name=$('#cgName').value.trim(),date=$('#cgDate').value;
     if(!name||!date){toast('タイトルと発売日は必須です');return}
