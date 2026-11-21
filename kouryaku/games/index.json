@@ -34,6 +34,13 @@
       "title": "Ghost of Yōtei DLC③：Most Wanted Mode",
       "platform": "PS5",
       "file": "games/ghost-of-yotei-mostwanted.json"
+    },
+    {
+      "id": "53003",
+      "slug": "caligula-2",
+      "title": "カリギュラ2",
+      "platform": "PS5",
+      "file": "games/caligula-2.json"
     }
   ]
 }
