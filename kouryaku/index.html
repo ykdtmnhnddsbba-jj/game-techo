@@ -135,7 +135,14 @@ function counts(){
   });
   return c;
 }
+function hasTrophies(){ return !!(game && game.trophies && game.trophies.length); }
 function renderProgress(){
+  if (!hasTrophies()){   // スマホゲームなどトロフィーが無いゲームは、チャートの進み具合を出す
+    var tot=0, dn=0; game.phases.forEach(function(p){ p.steps.forEach(function(s){ tot++; if (stepDone(s.id)) dn++; }); });
+    document.getElementById('barFill').style.width = (tot ? dn/tot*100 : 0) + '%';
+    document.getElementById('progMeta').innerHTML = '<b>チャート ' + dn + ' / ' + tot + '</b><span>トロフィーの無いゲーム</span>';
+    return;
+  }
   var c = counts();
   document.getElementById('barFill').style.width = (c.total ? c.done/c.total*100 : 0) + '%';
   var parts = ['<b>' + c.done + ' / ' + c.total + '</b>'];
@@ -170,7 +177,7 @@ function renderChart(){
   if (nx){
     h += '<div class="card next"><b>次にやること</b><div style="margin-top:4px">' + esc(nx.step.text) + '</div>' + chipHtml(nx.step.t) + '<div class="small" style="margin-top:4px">（' + esc(nx.phase.title) + '）</div></div>';
   } else {
-    h += '<div class="card next"><b>チャートはすべて完了しました。</b> 「トロフィー」タブで未取得を確認しましょう。</div>';
+    h += '<div class="card next"><b>チャートはすべて完了しました。</b>' + (hasTrophies() ? ' 「トロフィー」タブで未取得を確認しましょう。' : '') + '</div>';
   }
   game.phases.forEach(function(p, i){
     var done = p.steps.filter(function(s){return stepDone(s.id)}).length;
@@ -285,6 +292,7 @@ function renderData(){
 function render(){
   var m = document.getElementById('main');
   var rb = document.querySelector('#tabs button[data-tab="route"]'); if (rb && game) rb.textContent = hasRoutes() ? 'ルート' : '注意・出典';
+  var tb = document.querySelector('#tabs button[data-tab="trophy"]'); if (tb && game){ tb.style.display = hasTrophies() ? '' : 'none'; if (!hasTrophies() && tab==='trophy') tab = 'chart'; }
   m.innerHTML = tab==='chart' ? renderChart() : tab==='trophy' ? renderTrophy() : tab==='route' ? renderRoute() : renderData();
   renderProgress();
   Array.prototype.forEach.call(document.querySelectorAll('#tabs button'), function(b){ b.classList.toggle('on', b.getAttribute('data-tab')===tab); });

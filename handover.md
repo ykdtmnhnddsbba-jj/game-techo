@@ -88,11 +88,11 @@
 - Radar の評価11件は `radar-import.json`（G: のこのフォルダ。個人データなのでリポジトリには入れない）を 設定 →「JSONを読み込む（統合）」で取り込める。
 - Radar 本体（G:\マイドライブ\App\apps\media-db\PS5-Game-Radar）は引退予定（archive へ移すのは本人確認後）。
 
-## 2026-11-21 追記: 幻想水滸伝 I&II HDリマスター を攻略手帖に追加
-- `kouryaku/games/suikoden-1-2-hd.json`（id=57455、56個＝プラチナ1/金2/銀5/銅48、ⅠとⅡで1つの一覧）。index.json に追記済み。公開URL: https://ykdtmnhnddsbba-jj.github.io/game-techo/kouryaku/#suikoden-1-2-hd
-- チャートは「Ⅰを HARD・108星で1周 → Ⅱを HARD・108星で1周」。取り逃し（パーンの一騎討ち、将軍の処刑、シャサラザード以降の仲間不可、クライブの時間制限、料理対決の負け、Ⅰのデータ引き継ぎ）に⚠。
-- 資料は Game8 など。サイト間で食い違う所や確かめられなかった所（牧場・畑の条件、HD版の引き継ぎ画面）は本文に【要確認】と書いてある。
-- ユーザーの元の呼び名は「幻想水滸伝SP攻略」（G: の media-db/幻想水滸伝SP攻略 フォルダ、HANDOFF.md のみ）。PS5 で手元にある幻想水滸伝はこの HDリマスター（ゲーム手帖 ID 57455）だけなので、これだと判断した。
+## 2026-11-21 追記: 幻想水滸伝 STAR LEAP（スマホ）を攻略手帖に追加
+- 「幻想水滸伝SP」はスマホの『幻想水滸伝 STAR LEAP（スターリープ）』（本人の指摘）。最初に PS5 の I&II HDリマスターと間違えて追加したが、差し替えた（HDリマスター版の JSON は削除。必要なら PR #3 の履歴から戻せる）。
+- `kouryaku/games/suikoden-star-leap.json`（id=suikoden-star-leap、platform=スマホ）。トロフィーが無いので `trophies` は空、チャート6章（このゲームについて／リセマラ／序盤／毎日／期間限定／育成）。
+- ビューア: `trophies` が空のゲームは、トロフィータブを隠して、上の進み具合を「チャート 済/全」で出す。fetch-psn.mjs は PSN と紐付かないゲームをスキップするので影響なし。
+- ④期間限定は 2026-11-21 時点の日付。イベントやガチャが変わったら更新する。
 
 ## 2026-11-17 追記: Ghost of Yōtei を攻略手帖に追加
 - `kouryaku/games/ghost-of-yotei.json`（id=57849、トロフィー56個＝本編54＋2周目2個）。index.json に追記済み。公開URL: https://ykdtmnhnddsbba-jj.github.io/game-techo/kouryaku/#ghost-of-yotei
