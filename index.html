@@ -107,6 +107,8 @@ label.chk{display:flex;gap:6px;align-items:center;color:var(--sub);font-size:14p
  .tpanel .pl.no{display:none}.tpanel .pl.got .t{display:none}.tpanel .pl.got{font-size:15px;padding:2px 8px}
 }
 .badge.date{background:#232a55;color:#c4ccff}
+.badge.soon{background:#33290d;color:var(--warn);border:1px solid #6b5a1c}
+.badge.out{background:#16312f;color:var(--accent2);border:1px solid #2a5b55}
 .badge.price{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
 .qc{display:flex;flex-direction:column;gap:7px;margin-top:2px}
 .sbs{display:flex;gap:4px}
@@ -175,7 +177,7 @@ const DEFAULT_CLIENT_ID='568813131190-9pb3hf0f3g3rbiglkq4nbk88g4eltk9p.apps.goog
 if(!settings.google_client_id)settings.google_client_id=DEFAULT_CLIENT_ID;
 const T0={year:new Date().getFullYear(),month:new Date().getMonth()+1};
 const ui={viewKey:null,rank:new Map(),shown:new Set(),useMatch:false,tab:'month',year:T0.year,month:T0.month,sort:'auto',onlyUnrated:false,state:'all',
-  query:'',mySort:'group',mineF:'all',cols:(innerWidth<=720?1:2),promptYM:null};
+  query:'',wantF:'all',mySort:'group',mineF:'all',cols:(innerWidth<=720?1:2),promptYM:null};
 
 function saveLocal(){db.updated_at=nowIso();lsSet(LS_DB,db)}
 function save(){saveLocal();scheduleSync()}
@@ -360,24 +362,31 @@ let gToken=null,gExp=0,gClient=null,driveFileId=null,syncState=settings.drive_li
 const G_SCOPE='https://www.googleapis.com/auth/drive.file';
 const G_REDIR=location.origin+location.pathname.replace(/index\.html$/,'');
 const G_TOKKEY='gauth_tok:'+G_REDIR;
+/* スマホのブラウザはタブ再読込・別タブ復帰で sessionStorage が消えることがあるため、localStorage にも保存する（アニメ手帖と同じ） */
+const gSt={
+  get(k){try{const v=localStorage.getItem(k);if(v!=null)return v}catch(e){}try{return sessionStorage.getItem(k)}catch(e){return null}},
+  set(k,v){try{localStorage.setItem(k,v)}catch(e){}try{sessionStorage.setItem(k,v)}catch(e){}},
+  del(k){try{localStorage.removeItem(k)}catch(e){}try{sessionStorage.removeItem(k)}catch(e){}}
+};
+const G_STATEKEY='game_gauth_state';
 /* 認証はポップアップではなくページ遷移（リダイレクト）方式。Sleipnir等のアプリ内ブラウザでも動く */
 (function(){
   try{
     if(/access_token=|error=/.test(location.hash)){
       const p=new URLSearchParams(location.hash.slice(1));
-      if(p.get('state')&&p.get('state')===sessionStorage.getItem('gauth_state')){
-        if(p.get('access_token'))sessionStorage.setItem(G_TOKKEY,JSON.stringify({t:p.get('access_token'),e:Date.now()+(+p.get('expires_in')||3600)*1000}));
-        sessionStorage.removeItem('gauth_state');
+      if(p.get('state')&&p.get('state')===gSt.get(G_STATEKEY)){
+        if(p.get('access_token'))gSt.set(G_TOKKEY,JSON.stringify({t:p.get('access_token'),e:Date.now()+(+p.get('expires_in')||3600)*1000}));
+        gSt.del(G_STATEKEY);
         history.replaceState(null,'',location.pathname+location.search);
       }
     }
-    const s=JSON.parse(sessionStorage.getItem(G_TOKKEY)||'null');
-    if(s&&s.e>Date.now()){gToken=s.t;gExp=s.e}
+    const s=JSON.parse(gSt.get(G_TOKKEY)||'null');
+    if(s&&s.e>Date.now()){gToken=s.t;gExp=s.e}else if(s)gSt.del(G_TOKKEY);
   }catch(e){}
 })();
 function gRedirect(prompt){
   const st=Math.random().toString(36).slice(2)+Date.now().toString(36);
-  try{sessionStorage.setItem('gauth_state',st)}catch(e){}
+  gSt.set(G_STATEKEY,st);
   const q=new URLSearchParams({client_id:settings.google_client_id.trim(),redirect_uri:G_REDIR,response_type:'token',scope:G_SCOPE,state:st,include_granted_scopes:'true'});
   if(prompt)q.set('prompt',prompt);
   location.href='https://accounts.google.com/o/oauth2/v2/auth?'+q.toString();
@@ -414,6 +423,8 @@ async function driveSync(interactive){
     }
     if(id){
       const r=await gFetch(`https://www.googleapis.com/drive/v3/files/${id}?alt=media`);
+      // 読み込めないまま書き込むと他の端末の変更を消してしまうので、必ず中断する
+      if(!r.ok){if(r.status===404)driveFileId=null;throw new Error('Driveの読み込みに失敗 ('+r.status+')。保存は中止しました')}
       if(r.ok){
         const remote=await r.json();
         const before={r:db.ratings,c:db.custom_games};
@@ -462,7 +473,7 @@ $('#syncChip').onclick=()=>{
 };
 
 /* =============== rendering =============== */
-const TABS=[['month','発売月'],['mine','マイ評価'],['taste','好み分析'],['settings','設定']];
+const TABS=[['month','発売月'],['want','☆ 気になる'],['mine','マイ評価'],['taste','好み分析'],['settings','設定']];
 function renderNav(){
   $('#nav').innerHTML=TABS.map(([k,l])=>`<button data-tab="${k}" class="${ui.tab===k?'on':''}">${l}</button>`).join('');
 }
@@ -471,6 +482,7 @@ function render(){
   renderNav();setSync(syncState);
   const m=$('#main');
   if(ui.tab==='month')renderMonth(m);
+  else if(ui.tab==='want')renderWant(m);
   else if(ui.tab==='mine')renderMine(m);
   else if(ui.tab==='taste')renderTaste(m);
   else renderSettings(m);
@@ -661,6 +673,39 @@ function renderMine(m){
   $('#colBtn2').onclick=()=>{ui.cols=ui.cols===2?1:2;$('#colBtn2').textContent='表示: '+ui.cols+'列';$('#mgrid').style.setProperty('--cols',ui.cols)};
   $('#mgrid').onclick=e=>{if(gridClick(e))return;if(!e.target.closest('.cover,.ctitle'))return;const c=e.target.closest('.card');if(c)openModal(c.dataset.id)};
   $('#mgrid').onchange=gridChange;
+}
+
+
+/* ---- 気になる（購入予定）: 発売日順 ---- */
+function wantRelease(r){const g=index.get(String(r.id));return(g&&g.release)||r.release||''}   // 発売日は最新の games.json を優先（延期に追従）
+function daysUntil(d){if(!d)return null;const t=new Date();const t0=Date.UTC(t.getFullYear(),t.getMonth(),t.getDate());return Math.round((Date.parse(d+'T00:00:00Z')-t0)/86400000)}
+function wantCard(r){
+  const g=index.get(String(r.id))||{};const cv=r.cover||g.cover||'',rel=wantRelease(r),dd=daysUntil(rel);
+  const left=dd==null?'':dd>0?`<span class="badge soon">あと${dd}日</span>`:dd===0?'<span class="badge soon">今日発売</span>':'<span class="badge out">発売中</span>';
+  const meta=[(r.genres||g.genres||[]).slice(0,3).join(' / '),r.developer||g.developer].filter(Boolean).join(' ・ ');
+  return`<div class="card item" data-id="${esc(r.id)}">
+      <div class="cover ${cv?'':'nocover'}">${coverImg(cv)}</div>
+      <div class="cbody"><div class="ctitle">${esc(r.title)}</div><div class="meta">${esc(meta)}</div>
+      <div class="bd"><span class="badge date">${esc(rel?rel.slice(0,4)+'/'+fmtDate(rel):'発売日未定')}</span>${left}${g.price?`<span class="badge price">${esc(g.price)}</span>`:''}</div>${ctrlHtml(r.id)}</div></div>`;
+}
+function renderWant(m){
+  const all=entries().filter(r=>r.want&&!(r.played||r.score>0));
+  const today=new Date().toISOString().slice(0,10);
+  let rs=all.filter(r=>ui.wantF==='all'||(ui.wantF==='upcoming'?(!wantRelease(r)||wantRelease(r)>=today):(wantRelease(r)&&wantRelease(r)<today)));
+  rs.sort((a,b)=>(wantRelease(a)||'9999').localeCompare(wantRelease(b)||'9999')||String(a.title).localeCompare(String(b.title),'ja'));
+  const nUp=all.filter(r=>!wantRelease(r)||wantRelease(r)>=today).length;
+  let html='',cur=null;
+  rs.forEach(r=>{const d=wantRelease(r),k=d?d.slice(0,7):'';if(k!==cur){cur=k;const n=rs.filter(x=>(wantRelease(x)||'').slice(0,7)===k).length;
+    html+=`<h3 class="gh">${d?(+d.slice(0,4))+'年'+(+d.slice(5,7))+'月発売':'発売日未定'}　<span class="hint">${n}本</span></h3>`}html+=wantCard(r)});
+  m.innerHTML=`<div class="stick"><div class="toolbar">
+    <select id="wantF"><option value="all" ${ui.wantF==='all'?'selected':''}>すべて（発売日順）</option><option value="upcoming" ${ui.wantF==='upcoming'?'selected':''}>これから発売のみ</option><option value="released" ${ui.wantF==='released'?'selected':''}>発売済み（未購入）のみ</option></select>
+    <button class="btn" id="colBtn3">表示: ${ui.cols}列</button>
+    <span class="hint">${rs.length}本（うち発売前 ${nUp}本）</span></div></div>
+    <div class="grid" id="wgrid" style="--cols:${ui.cols}">${rs.length?html:'<div class="empty" style="grid-column:1/-1">「気になる」を付けたゲームがありません。「発売月」タブで買いたいゲームの「☆ 気になる」を押すと、ここに発売日順で並びます。</div>'}</div>`;
+  $('#wantF').onchange=e=>{ui.wantF=e.target.value;renderWant(m)};
+  $('#colBtn3').onclick=()=>{ui.cols=ui.cols===2?1:2;$('#colBtn3').textContent='表示: '+ui.cols+'列';$('#wgrid').style.setProperty('--cols',ui.cols)};
+  $('#wgrid').onclick=e=>{if(gridClick(e))return;if(!e.target.closest('.cover,.ctitle'))return;const c=e.target.closest('.card');if(c)openModal(c.dataset.id)};
+  $('#wgrid').onchange=gridChange;
 }
 
 /* ---- taste ---- */
