@@ -414,6 +414,8 @@ async function driveSync(interactive){
     }
     if(id){
       const r=await gFetch(`https://www.googleapis.com/drive/v3/files/${id}?alt=media`);
+      // 読み込めないまま書き込むと他の端末の変更を消してしまうので、必ず中断する
+      if(!r.ok){if(r.status===404)driveFileId=null;throw new Error('Driveの読み込みに失敗 ('+r.status+')。保存は中止しました')}
       if(r.ok){
         const remote=await r.json();
         const before={r:db.ratings,c:db.custom_games};
