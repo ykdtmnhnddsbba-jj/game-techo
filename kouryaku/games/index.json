@@ -43,11 +43,11 @@
       "file": "games/caligula-2.json"
     },
     {
-      "id": "57455",
-      "slug": "suikoden-1-2-hd",
-      "title": "幻想水滸伝 I&II HDリマスター（門の紋章戦争／デュナン統一戦争）",
-      "platform": "PS5",
-      "file": "games/suikoden-1-2-hd.json"
+      "id": "suikoden-star-leap",
+      "slug": "suikoden-star-leap",
+      "title": "幻想水滸伝 STAR LEAP（スターリープ）",
+      "platform": "スマホ",
+      "file": "games/suikoden-star-leap.json"
     }
   ]
 }
