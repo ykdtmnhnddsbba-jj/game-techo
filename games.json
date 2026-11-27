@@ -1,7 +1,7 @@
 {
  "source": "ファミ通.com",
  "platform": "PS5",
- "generated_at": "2026-11-21T19:54:48.303Z",
+ "generated_at": "2026-11-27T20:09:39.685Z",
  "window": {
   "from": "2026-09-01",
   "to": "2027-02-01"
@@ -4675,26 +4675,6 @@
    "detail_at": "2026-11-07"
   },
   {
-   "id": "72470",
-   "name": "君色パトラIF",
-   "native": "",
-   "cover": "",
-   "release": "2026-11-26",
-   "region": "JP",
-   "genres": [
-    "アドベンチャー"
-   ],
-   "tags": [],
-   "developer": "エンターグラム",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "3000円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72470/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
    "id": "72354",
    "name": "高校のダーティーシークレット",
    "native": "",
@@ -4713,6 +4693,26 @@
    "price": "4400円[税抜]",
    "url": "https://www.famitsu.com/game/title/72354/page/1",
    "detail_at": "2026-11-07"
+  },
+  {
+   "id": "72764",
+   "name": "Hela：ちいさなねずみと魔法の森",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/156310/yCBdPH4U?w=400&h=400&func=bound",
+   "release": "2026-12-01",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "MY.GAMES",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "4000円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72764/page/1",
+   "detail_at": "2026-11-27"
   },
   {
    "id": "72664",
@@ -4794,26 +4794,6 @@
    "desc": "",
    "price": "1800円[税抜]",
    "url": "https://www.famitsu.com/game/title/72491/page/1",
-   "detail_at": "2026-11-07"
-  },
-  {
-   "id": "72486",
-   "name": "Caladrius2/Dark Element（カラドリウス2/ダークエレメント）",
-   "native": "",
-   "cover": "https://image.kagali.kgl-systems.io/item/155676/fSbc0GO9?w=400&h=400&func=bound",
-   "release": "2026-12-10",
-   "region": "JP",
-   "genres": [
-    "シューティング"
-   ],
-   "tags": [],
-   "developer": "モス",
-   "series": "",
-   "avg": null,
-   "pop": 0,
-   "desc": "",
-   "price": "5980円[税抜]",
-   "url": "https://www.famitsu.com/game/title/72486/page/1",
    "detail_at": "2026-11-07"
   },
   {
@@ -5288,6 +5268,46 @@
    "detail_at": "2026-11-07"
   },
   {
+   "id": "72773",
+   "name": "ARIA BLUE I.夏音",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/156327/qi0Zsmaj?w=400&h=400&func=bound",
+   "release": "2027-01-28",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "エンターグラム",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "4000円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72773/page/1",
+   "detail_at": "2026-11-27"
+  },
+  {
+   "id": "72486",
+   "name": "Caladrius2/Dark Element（カラドリウス2/ダークエレメント）",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/155676/fSbc0GO9?w=400&h=400&func=bound",
+   "release": "2027-01-28",
+   "region": "JP",
+   "genres": [
+    "シューティング"
+   ],
+   "tags": [],
+   "developer": "モス",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "5980円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72486/page/1",
+   "detail_at": "2026-11-07"
+  },
+  {
    "id": "40843",
    "name": "Fate/EXTRA Record",
    "native": "",
@@ -5329,6 +5349,46 @@
    "detail_at": "2026-11-07"
   },
   {
+   "id": "72777",
+   "name": "Until Dawn 2 -祟り島の惨劇-",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/156336/p7Ii-tE9?w=400&h=400&func=bound",
+   "release": "2027-01-28",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "ソニー・インタラクティブエンタテインメント",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "4982円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72777/page/1",
+   "detail_at": "2026-11-27"
+  },
+  {
+   "id": "72778",
+   "name": "イエロークリーク物語小屋の番人",
+   "native": "",
+   "cover": "https://image.kagali.kgl-systems.io/item/156339/XBzVAc7Z?w=400&h=400&func=bound",
+   "release": "2027-01-28",
+   "region": "JP",
+   "genres": [
+    "アクションアドベンチャー"
+   ],
+   "tags": [],
+   "developer": "賈船",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "4000円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72778/page/1",
+   "detail_at": "2026-11-27"
+  },
+  {
    "id": "69503",
    "name": "トロピコ 7 デラックスエディション",
    "native": "",
@@ -5347,6 +5407,26 @@
    "price": "8163円[税抜]",
    "url": "https://www.famitsu.com/game/title/69503/page/1",
    "detail_at": "2026-11-16"
+  },
+  {
+   "id": "72470",
+   "name": "君色パトラIF",
+   "native": "",
+   "cover": "",
+   "release": "2027-01-28",
+   "region": "JP",
+   "genres": [
+    "アドベンチャー"
+   ],
+   "tags": [],
+   "developer": "エンターグラム",
+   "series": "",
+   "avg": null,
+   "pop": 0,
+   "desc": "",
+   "price": "3000円[税抜]",
+   "url": "https://www.famitsu.com/game/title/72470/page/1",
+   "detail_at": "2026-11-07"
   },
   {
    "id": "72182",
