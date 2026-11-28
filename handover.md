@@ -141,3 +141,4 @@
 - 対策: scripts/fetch-psn.mjs で、プレイ履歴のタイトルID（PPSA…/CUSA…）から getUserTrophiesForSpecificTitle で npCommunicationId を引き、名前より先にこれで紐付けるようにした。名前照合は従来どおり予備として残す。ログに「タイトルIDで紐付いたトロフィー: N件」が出る。
 - 模擬データで動作確認済み（トロフィー名 "FINAL FANTASY RESONANCE" でも 72137 に紐付く）。
 - **次の作業**: 次回の Actions（毎日 04:17）または手動実行のあと、psn-trophies.json に 72137 が入ったか確認する。入らなければ Actions ログの「タイトルIDで紐付いたトロフィー」の件数と失敗メッセージを見る。
+- ※ 2026-11-28 時点で未 push（このセッションからGitHubへ書き込めなかった）。G: のこのフォルダの scripts/fetch-psn.mjs と handover.md は修正済み。リポジトリへ反映してから Actions を手動実行する。
