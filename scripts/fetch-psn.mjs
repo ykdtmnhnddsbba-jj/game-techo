@@ -58,8 +58,10 @@ async function fetchPlayed(psn, tokens) {
     if (t.category && !/^(ps4_game|ps5_native_game)$/.test(t.category)) continue;
     const key = t.concept?.id ? `c${t.concept.id}` : t.titleId;
     const names = [t.name, t.localizedName].filter(Boolean);
+    const tids = t.titleId ? [t.titleId] : [];
     const cur = byKey.get(key);
-    if (cur) cur.names = [...new Set([...cur.names, ...names])]; else byKey.set(key, { key, names });
+    if (cur) { cur.names = [...new Set([...cur.names, ...names])]; cur.titleIds = [...new Set([...cur.titleIds, ...tids])]; }
+    else byKey.set(key, { key, names, titleIds: tids });
   }
   return [...byKey.values()];
 }
@@ -105,13 +107,26 @@ async function fetchTrophies(psn, tokens, played, resolved, games, refs = new Ma
     if (r.nextOffset == null || !r.trophyTitles?.length || r.nextOffset <= offset) break;
     offset = r.nextOffset;
   }
+  // プレイ履歴のタイトルID（PPSA…/CUSA…）→ トロフィーの npCommunicationId を引く。
+  // トロフィー側の名前がプレイ履歴やファミ通と違う表記でも、同じゲームとして確実に紐付けられる。
+  const byNp = new Map();   // npCommunicationId → ファミ通ID
+  const tidToId = new Map();
+  for (const x of played) if (resolved.has(x.key)) for (const tid of x.titleIds || []) tidToId.set(tid, resolved.get(x.key));
+  const tids = [...tidToId.keys()];
+  for (let i = 0; i < tids.length; i += 5) {
+    try {
+      const r = await psn.getUserTrophiesForSpecificTitle({ accessToken: tokens.accessToken }, 'me', { npTitleIds: tids.slice(i, i + 5).join(',') });
+      for (const x of r.titles || []) for (const tt of x.trophyTitles || []) if (tt.npCommunicationId && tidToId.has(x.npTitleId)) byNp.set(tt.npCommunicationId, tidToId.get(x.npTitleId));
+    } catch (e) { console.warn('  タイトルIDからのトロフィー照合に失敗（名前で照合を続けます）:', e.message); }
+  }
+  console.log(`  タイトルIDで紐付いたトロフィー: ${byNp.size}件`);
   const out = {};
   let nomatch = 0;
   const miss = [];
   for (const t of titles) {
     const name = t.trophyTitleName;
     const p = played.find((x) => resolved.has(x.key) && x.names.some((n) => isSameTitle(name, n)));
-    const id = p ? resolved.get(p.key) : (findGame([name], games) ? String(findGame([name], games).id) : null);
+    const id = byNp.get(t.npCommunicationId) || (p ? resolved.get(p.key) : (findGame([name], games) ? String(findGame([name], games).id) : null));
     if (!id) { nomatch++; miss.push({ name, platform: t.trophyTitlePlatform, progress: t.progress }); continue; }
     const e = t.earnedTrophies || {}, d = t.definedTrophies || {};
     const rec = { p: t.progress ?? 0, e: [e.bronze || 0, e.silver || 0, e.gold || 0, e.platinum || 0], d: [d.bronze || 0, d.silver || 0, d.gold || 0, d.platinum || 0] };

@@ -134,3 +134,10 @@
 - 2026-11-28: Ghost of Yōtei の DLC 3本（Legends / Echoes of Sekigahara / Most Wanted）の攻略ページを削除（本人の指示）。index.json からも外した。本編 ghost-of-yotei.json は残す。戻すなら git の履歴から。
 - 2026-11-28: GitHub は確認なしで push してよい（本人の指示）。
 - 2026-11-28: ゼノバース2/BLEACHのチャートを具体的な手順に書き直し（本人の要望：キャラ名・場所・クエスト番号まで）。出典は PSNProfiles のトロフィーガイド（Claude in Chrome で閲覧。このセッションの WebFetch からは開けなかった）。BLEACH: 最大Lv100、★★★は卍解一護の月牙連発、20HITは恋次、魄晶石は1個7,500〜12,000pt・MISSIONS★で8,000pt、シークレットモーメントはシークレットストーリーを進めると解放。ゼノバース2: 5種族の覚醒技の取り方、SSGSSはサイヤ人LV90＋ウイス友好度MAX、昇格試験の推奨LVと相手、先生25人、EMは17個でOK など。英語版の名前のまま載せた箇所（バトル名・NPC名の一部）は caveats に記載。
+
+## 2026-11-28 追記: FF レゾナンスのトロフィーがゲーム手帖に出ない件
+- 症状: psn-played.json には 72137（ファイナルファンタジー レゾナンス）があるのに、psn-trophies.json に入っていない（psn-trophies.json は 2026-11-20 から更新なし）。Actions 自体は毎日動いている。
+- 原因（推定）: トロフィーは PSN の「トロフィーのタイトル名」をプレイ履歴の名前と照合していた。レゾナンスはトロフィー側の名前の表記が違って外れていたとみられる（暗号化ファイルの中身は鍵が無いので未確認）。
+- 対策: scripts/fetch-psn.mjs で、プレイ履歴のタイトルID（PPSA…/CUSA…）から getUserTrophiesForSpecificTitle で npCommunicationId を引き、名前より先にこれで紐付けるようにした。名前照合は従来どおり予備として残す。ログに「タイトルIDで紐付いたトロフィー: N件」が出る。
+- 模擬データで動作確認済み（トロフィー名 "FINAL FANTASY RESONANCE" でも 72137 に紐付く）。
+- **次の作業**: 次回の Actions（毎日 04:17）または手動実行のあと、psn-trophies.json に 72137 が入ったか確認する。入らなければ Actions ログの「タイトルIDで紐付いたトロフィー」の件数と失敗メッセージを見る。
