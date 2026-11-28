@@ -48,6 +48,20 @@
       "title": "幻想水滸伝 STAR LEAP（スターリープ）",
       "platform": "スマホ",
       "file": "games/suikoden-star-leap.json"
+    },
+    {
+      "id": "33683",
+      "slug": "dragon-ball-xenoverse-2",
+      "title": "ドラゴンボール ゼノバース2",
+      "platform": "PS5",
+      "file": "games/dragon-ball-xenoverse-2.json"
+    },
+    {
+      "id": "bleach-rebirth-of-souls",
+      "slug": "bleach-rebirth-of-souls",
+      "title": "BLEACH Rebirth of Souls",
+      "platform": "PS5",
+      "file": "games/bleach-rebirth-of-souls.json"
     }
   ]
 }
