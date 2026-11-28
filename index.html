@@ -646,7 +646,7 @@ function cardHtml(it,rec,prof){
       <div class="thead"><div class="tl">
       <div class="ctitle">${esc(titleOf(it))}</div>
       <div class="meta">${esc(meta)}${it.avg?` ・ ★${it.avg}`:''}</div>
-      <div class="bd"><span class="badge date ${isHintRegion(it.region)?'hint':''}" title="${esc(regionNote(it.region))}">${esc(fmtDate(it.release))}</span>${it.price?`<span class="badge price">${esc(it.price)}</span>`:''}${it.plat==='ps4'?'<span class="badge plat">PS4</span>':''}${se?`<span class="badge ser">${esc(se)}</span>`:''}</div></div>${isPlayed(it.id)?trophyChip(it.id):''}</div>
+      <div class="bd"><span class="badge date ${isHintRegion(it.region)?'hint':''}" title="${esc(regionNote(it.region))}">${esc((ui.query&&it.release?it.release.slice(0,4)+'/':'')+fmtDate(it.release))}</span>${it.price?`<span class="badge price">${esc(it.price)}</span>`:''}${it.plat==='ps4'?'<span class="badge plat">PS4</span>':''}${se?`<span class="badge ser">${esc(se)}</span>`:''}</div></div>${isPlayed(it.id)?trophyChip(it.id):''}</div>
       ${showMatch?`<div class="reason">相性 ${rc.match}%${rc.reasons.length?'　◎ '+esc(rc.reasons.join('・')):''}</div>`:''}
       ${ctrlHtml(it.id)}
     </div></div>`;
