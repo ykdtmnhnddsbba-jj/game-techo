@@ -21,6 +21,9 @@ jobs:
           node-version: 20
       - name: Fetch PS5 release schedule from Famitsu
         run: node scripts/fetch-famitsu.mjs
+      - name: Build search catalog (weekly)
+        continue-on-error: true      # 失敗しても games.json の更新は続ける
+        run: node scripts/build-catalog.mjs
       - name: Mark played games from PSN (optional)
         if: ${{ env.PSN_STATE_KEY != '' }}
         continue-on-error: true      # PSN側が失敗しても games.json の更新は続ける
@@ -32,7 +35,7 @@ jobs:
           node scripts/fetch-psn.mjs
       - name: Commit if changed
         run: |
-          for f in games.json psn-played.json psn-trophies.json psn-cache.json psn-state.enc psn-aliases.enc psn-unmatched.enc psn-suggest.enc psn-trophy-unmatched.enc kouryaku/psn-earned.json; do [ -f "$f" ] && git add "$f"; done
+          for f in games.json catalog.json psn-played.json psn-trophies.json psn-cache.json psn-state.enc psn-aliases.enc psn-unmatched.enc psn-suggest.enc psn-trophy-unmatched.enc kouryaku/psn-earned.json; do [ -f "$f" ] && git add "$f"; done
           if git diff --cached --quiet; then
             echo "no changes"
             exit 0
