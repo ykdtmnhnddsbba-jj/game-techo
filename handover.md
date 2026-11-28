@@ -133,3 +133,4 @@
 - ファミ通・Exophase・PSNProfilesはこのセッションから取得できなかった（プロキシで拒否）。トロフィー名は Gamerch / ひまトロ / ゲームブログ 等から。
 - 2026-11-28: Ghost of Yōtei の DLC 3本（Legends / Echoes of Sekigahara / Most Wanted）の攻略ページを削除（本人の指示）。index.json からも外した。本編 ghost-of-yotei.json は残す。戻すなら git の履歴から。
 - 2026-11-28: GitHub は確認なしで push してよい（本人の指示）。
+- 2026-11-28: ゼノバース2/BLEACHのチャートを具体的な手順に書き直し（本人の要望：キャラ名・場所・クエスト番号まで）。出典は PSNProfiles のトロフィーガイド（Claude in Chrome で閲覧。このセッションの WebFetch からは開けなかった）。BLEACH: 最大Lv100、★★★は卍解一護の月牙連発、20HITは恋次、魄晶石は1個7,500〜12,000pt・MISSIONS★で8,000pt、シークレットモーメントはシークレットストーリーを進めると解放。ゼノバース2: 5種族の覚醒技の取り方、SSGSSはサイヤ人LV90＋ウイス友好度MAX、昇格試験の推奨LVと相手、先生25人、EMは17個でOK など。英語版の名前のまま載せた箇所（バトル名・NPC名の一部）は caveats に記載。
