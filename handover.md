@@ -150,3 +150,9 @@
 - index.html: 検索したときだけ catalog.json を読み込み、games.json に無いゲームも結果に出す。PS4版には「PS4」バッジを付ける。検索結果の発売日には年を付ける。評価や☆を付けると、名前・画像などが記録の側に残る（ジャンル・メーカーは無し）。
 - 確認: 公開サイトで「BLEACH」を検索すると Rebirth of Souls（PS5/PS4、2025）と Brave Souls が出た。ゼノバース2はPS5版（ID 55916、2024-05-23）だけ出る。ファミ通のPS4スケジュールに2016年版が載っていないため。
 - 攻略手帖の dragon-ball-xenoverse-2.json は id=33683（PS4版の仮ID）。PSNで遊び始めたら、PS5版の 55916 に差し替える可能性が高い。
+
+## 2026-11-28 追記: 攻略手帖のゼノバース2/BLEACHをPS5版のIDに差し替え
+- ゼノバース2: 33683 → 55916（PS5版、2024-05-23）。33683 は実は「【海外】DRAGON BALL XENOVERSE 2」（PS4・2016）だった。
+- BLEACH Rebirth of Souls: 仮ID bleach-rebirth-of-souls → 56693（PS5版、2025-03-21。PS4版は 56694）。
+- index.json と各JSONの id・caveats を更新した。どちらもまだ遊んでいないので、手動チェックの引き継ぎは不要。
+- 遊び始めたら Actions ログの「攻略手帖: <slug> 定義N件 …」で紐付きを確認する。PS4版で遊んだ場合や、PSN側で別IDに照合された場合は id を合わせ直す。

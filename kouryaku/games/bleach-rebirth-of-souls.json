@@ -1,7 +1,7 @@
 {
  "_readme": "攻略データ。trophies=トロフィー一覧(grade: platinum/gold/silver/bronze, chapter=分類, missable=取り逃し注意)。routes は無いゲームでは空。phases[].steps[]=チャート。steps[].t=関連トロフィーID。",
  "schema_version": 1,
- "id": "bleach-rebirth-of-souls",
+ "id": "56693",
  "title": "BLEACH Rebirth of Souls",
  "platform": "PS5",
  "updated": "2026-11-28",
@@ -29,7 +29,7 @@
   "技名の日本語表記（月牙・虚閃など）は原作に合わせた表記で、ゲーム内の表記と少し違う場合があります。",
   "PS4版とPS5版はトロフィーが別リスト。チャートはPS5版前提です。",
   "ストーリーの具体的な展開には触れていません。バトル名・章名はトロフィー名に出ているものだけです。",
-  "攻略手帖のID（bleach-rebirth-of-souls）は仮。PSNで遊び始めてファミ通IDと紐付いたら差し替えると、PSNの取得状況が自動で反映されます。"
+  "攻略手帖のIDはPS5版のファミ通ID（56693、2025-03-21発売）。PS4版は56694。"
  ],
  "likely": [],
  "routes": [],
