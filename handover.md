@@ -122,3 +122,12 @@
 - GitHub main にマージ済み（PR #1）。このフォルダの index.html もマージ後の版に更新済み。
 - Google認証の state とトークンを localStorage にも保存（スマホで sessionStorage が消えてログインが通らない件。アニメ手帖と同じ gSt 方式）。state のキーは手帖ごとに分けた。
 - 「☆ 気になる」タブもリポジトリに反映済み（上の 2026-11-21 追記の「未 push」は解消）。
+
+## 2026-11-28 追記: ゼノバース2 と BLEACH Rebirth of Souls を攻略手帖に追加（PS Plus 2026年12月フリープレイ）
+- `kouryaku/games/dragon-ball-xenoverse-2.json`（id=33683 ※PS4版のファミ通IDを仮置き、トロフィー61個＝本編50＋無料アプデ5＋有料DLC6）と `kouryaku/games/bleach-rebirth-of-souls.json`（id=bleach-rebirth-of-souls ※仮ID、36個＝白1/金5/銀10/銅20）。index.json に追記。
+- 公開URL: https://ykdtmnhnddsbba-jj.github.io/game-techo/kouryaku/#dragon-ball-xenoverse-2 / #bleach-rebirth-of-souls
+- 進行状況: どちらも未プレイ（フリープレイ提供 2026-12-01〜2027-01-04）。PSN反映は遊び始めてから確認する。
+- **次の作業（PSN反映）**: 遊び始めた翌日以降に Actions のログ「攻略手帖: <slug> …」を見る。「PSNのトロフィー一覧と紐付いていません」なら、psn-cache.json / games.json(added_by:'psn') でファミ通IDを調べて、index.json と各JSONの id を差し替える（ゼノバース2はPS5版のIDになる可能性が高い）。名前が合わない分はログの「未一致」を見て直す。
+- ゼノバース2の未確認: PS5版のプラチナに無料アプデ(Ver.1.12/1.14)の5個が入るか（公式の注意書きでは入るように読める）、神龍の願い事の強化手順、SSGSS変身の覚え方、覚醒技全習得に必要な種族数、本編の金銀銅の一部（銀11個の内訳が資料で食い違う）。
+- BLEACHの未確認: プレイレベルの最大値、シークレットストーリーの解放条件、MISSIONS ★★★ の解放条件。金銀銅は一覧の並びからの推定。
+- ファミ通・Exophase・PSNProfilesはこのセッションから取得できなかった（プロキシで拒否）。トロフィー名は Gamerch / ひまトロ / ゲームブログ 等から。
